@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Africa 1652 Chart</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ---------- Tokens ---------- */
+:root{
+  --bg:#f5f1e8; --surface:#fffdf8; --ink:#1c1915; --ink-2:#554e44; --rule:#d9d1c2; --rule-2:#ebe5d8;
+  --accent:#8c2a1b; --accent-soft:#f3e3dd; --strong:#2e6b4a; --strong-soft:#e2efe6; --weak:#8c2a1b;
+  --hard:#b23a22; --soft:#2c5e8f; --minor:#8a7f6e; --band:#efe8da; --band-2:#e6ddcb;
+  --serif:"Fraunces",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --glyph:"Segoe UI Symbol","Noto Sans Symbols 2","Noto Sans Symbols","Apple Symbols","DejaVu Sans",sans-serif;
+  --gap-xs:.5rem; --gap-s:1rem; --gap-m:1.75rem; --gap-l:3rem; --gap-xl:5.5rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#14120f; --surface:#1d1a16; --ink:#efe9de; --ink-2:#b3a996; --rule:#3a342c; --rule-2:#2a2620;
+    --accent:#e2775c; --accent-soft:#3a221b; --strong:#7cc49a; --strong-soft:#1f3328; --weak:#e2775c;
+    --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#14120f; --surface:#1d1a16; --ink:#efe9de; --ink-2:#b3a996; --rule:#3a342c; --rule-2:#2a2620;
+  --accent:#e2775c; --accent-soft:#3a221b; --strong:#7cc49a; --strong-soft:#1f3328; --weak:#e2775c;
+  --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f;
+}
+
+/* ---------- Base ---------- */
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+@media (min-width:720px){.wrap{padding:0 32px}}
+p{margin:0 0 var(--gap-s);max-width:68ch}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
+.g{font-family:var(--glyph);font-style:normal}
+.num{font-family:var(--mono);font-size:.9em;font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- Header ---------- */
+header{padding:var(--gap-xl) 0 var(--gap-l);border-bottom:2px solid var(--ink)}
+.eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--gap-s)}
+h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700;letter-spacing:-.02em}
+.lede{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;color:var(--ink-2);margin-top:var(--gap-s);max-width:44ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--gap-s) var(--gap-m);margin-top:var(--gap-l);padding-top:var(--gap-m);border-top:1px solid var(--rule)}
+.fact dt{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.4rem}
+.fact dd{margin:0;font-weight:500}
+.fact dd small{display:block;font-weight:400;color:var(--ink-2);font-size:.85rem}
+
+/* ---------- Sections ---------- */
+section{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);padding:var(--gap-xl) 0 0}
+@media (min-width:900px){section{grid-template-columns:150px minmax(0,1fr);gap:var(--gap-m)}}
+.sec-label{font:500 .75rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:.55rem;border-top:2px solid var(--accent);align-self:start}
+.sec-body > h2{font-size:clamp(1.7rem,3.5vw,2.35rem);margin-bottom:var(--gap-s);letter-spacing:-.01em}
+.sec-body > .claim{font-family:var(--serif);font-size:1.25rem;line-height:1.45;margin-bottom:var(--gap-m);max-width:56ch}
+h3{font-size:1.25rem;margin:var(--gap-m) 0 var(--gap-xs)}
+
+/* ---------- Tables ---------- */
+.tbl-wrap{overflow-x:auto;margin:var(--gap-s) 0 var(--gap-m);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th{font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:.75rem .75rem .6rem;border-bottom:1px solid var(--rule);white-space:nowrap}
+td{padding:.6rem .75rem;border-bottom:1px solid var(--rule-2);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td:first-child,th:first-child{padding-left:0}
+tbody tr{transition:background .15s}
+tbody tr.hl{background:var(--accent-soft)}
+.body-cell{display:flex;align-items:center;gap:.55rem;font-weight:500;white-space:nowrap}
+.body-cell .g{font-size:1.15rem;width:1.3rem;text-align:center}
+
+/* ---------- Tags (repetition: one tag system for all judgements) ---------- */
+.tag{display:inline-block;font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:.32rem .5rem;border-radius:3px;border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+.tag.strong{background:var(--strong-soft);border-color:transparent;color:var(--strong)}
+.tag.weak{background:var(--accent-soft);border-color:transparent;color:var(--weak)}
+.tag.hard{color:var(--hard);border-color:currentColor}
+.tag.soft{color:var(--soft);border-color:currentColor}
+
+td .tag{white-space:normal;line-height:1.25}
+/* ---------- Wheel ---------- */
+.wheel-grid > *,.sec-body{min-width:0}
+.wheel-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-m);align-items:start}
+.wheel-box{max-width:620px}
+.wheel-box{background:var(--surface);border:1px solid var(--rule);padding:var(--gap-s)}
+#wheel{width:100%;height:auto;display:block}
+.wheel-note{font-size:.85rem;color:var(--ink-2);margin:var(--gap-xs) 0 0}
+#wheel .band{stroke:var(--rule);stroke-width:1}
+#wheel .ring{fill:none;stroke:var(--ink);stroke-width:1.2}
+#wheel .cusp{stroke:var(--rule);stroke-width:1}
+#wheel .angle{stroke:var(--ink);stroke-width:2.2}
+#wheel .angle-lbl{font:600 13px var(--mono);fill:var(--ink)}
+#wheel .sign{font-family:var(--glyph);font-size:19px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+#wheel .hnum{font:500 11px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+#wheel .tick{stroke:var(--ink);stroke-width:1.4}
+#wheel .lead{stroke:var(--ink-2);stroke-width:.7}
+#wheel .pg{font-family:var(--glyph);font-size:21px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+#wheel .pdeg{font:500 10px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+#wheel .planet{cursor:pointer;outline:none}
+#wheel .planet:focus .pg,#wheel .planet:hover .pg,#wheel .planet.on .pg{fill:var(--accent)}
+#wheel .asp{stroke-width:1.3;transition:opacity .15s}
+#wheel .asp.hard{stroke:var(--hard)}
+#wheel .asp.soft{stroke:var(--soft)}
+#wheel .asp.minor{stroke:var(--minor);stroke-dasharray:4 3}
+#wheel.focus .asp{opacity:.07}
+#wheel.focus .asp.on{opacity:1;stroke-width:2.2}
+.legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:var(--gap-xs);font-size:.8rem;color:var(--ink-2)}
+.legend span::before{content:"";display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:.35rem}
+.legend .l-hard::before{border-color:var(--hard)}
+.legend .l-soft::before{border-color:var(--soft)}
+.legend .l-minor::before{border-color:var(--minor);border-top-style:dashed}
+
+/* ---------- Cards (proximity: placement + meaning grouped) ---------- */
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-s);margin:var(--gap-s) 0 var(--gap-m)}
+.card{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ink);padding:var(--gap-s) var(--gap-s) .4rem}
+.card .k{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.card h3{margin:0 0 .5rem;font-size:1.2rem}
+.card p{font-size:.95rem}
+
+/* ---------- Dispositor chain ---------- */
+.chain{background:var(--surface);border:1px solid var(--rule);padding:var(--gap-m) var(--gap-s);margin:var(--gap-s) 0 var(--gap-m)}
+.chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin-bottom:.9rem}
+.chain-row:last-child{margin-bottom:0}
+.chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .6rem;border:1px solid var(--rule);border-radius:999px;font-size:.88rem;font-weight:500;background:var(--bg)}
+.chip .g{font-size:1rem}
+.chip.final{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.arrow{color:var(--ink-2);font-family:var(--mono)}
+
+/* ---------- Bars ---------- */
+.balance{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-m);margin:var(--gap-s) 0 var(--gap-m)}
+.bar-row{display:grid;grid-template-columns:5.5rem 1fr 1.5rem;align-items:center;gap:.6rem;margin-bottom:.55rem;font-size:.9rem}
+.bar{height:10px;background:var(--rule-2)}
+.bar i{display:block;height:100%;background:var(--ink)}
+.bar-row b{font-family:var(--mono);font-weight:500;text-align:right}
+.bar-row small{grid-column:2/4;color:var(--ink-2);margin-top:-.35rem;font-size:.8rem}
+
+/* ---------- Callout ---------- */
+.callout{border-left:4px solid var(--accent);background:var(--surface);padding:var(--gap-s) var(--gap-m);margin:var(--gap-s) 0 var(--gap-m)}
+.callout .big{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.1;margin-bottom:.4rem}
+.callout p:last-child{margin-bottom:0}
+
+/* ---------- Timeline ---------- */
+.timeline{list-style:none;margin:var(--gap-s) 0 var(--gap-m);padding:0;border-top:2px solid var(--ink)}
+.timeline li{display:grid;grid-template-columns:1fr;gap:.25rem var(--gap-m);padding:var(--gap-s) 0;border-bottom:1px solid var(--rule)}
+@media (min-width:720px){.timeline li{grid-template-columns:110px 1fr 1fr}}
+.timeline .yr{font:600 1.35rem/1.2 var(--serif)}
+.timeline .ev{font-weight:500}
+.timeline .ch{color:var(--ink-2);font-size:.95rem}
+
+/* ---------- Sources ---------- */
+.src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-m);margin-top:var(--gap-s)}
+.src-grid h3{margin-top:0;font-size:1.05rem}
+.src-grid ul{margin:0;padding-left:1.1rem;font-size:.92rem}
+.src-grid li{margin-bottom:.45rem}
+a{color:var(--accent);text-underline-offset:2px}
+footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2px solid var(--ink);font-size:.85rem;color:var(--ink-2)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Mundane astrology · Event chart</div>
+    <h1>South Africa, 1652</h1>
+    <p class="lede">The chart of what-will-be South Africa: the founding of the Dutch East India Company station at Table Bay.</p>
+    <dl class="facts">
+      <div class="fact"><dt>Date</dt><dd>Sunday 7 April 1652<small>Gregorian calendar · the day Van Riebeeck's command began</small></dd></div>
+      <div class="fact"><dt>Time</dt><dd>12:12 LMT<small>10:58:32 UT · divined by Dlozi Mthethwa</small></dd></div>
+      <div class="fact"><dt>Place</dt><dd>Table Bay, Cape Town<small>33°55′S · 18°22′E</small></dd></div>
+      <div class="fact"><dt>System</dt><dd>Tropical · Placidus<small>Geocentric · True Node</small></dd></div>
+    </dl>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 01 WHEEL -->
+  <section id="wheel-sec">
+    <div class="sec-label">01 · The chart</div>
+    <div class="sec-body">
+      <h2>The wheel and the placements</h2>
+      <p class="claim">Cancer rises with Saturn in the 1st house, the Sun stands on an Aries Midheaven, and four bodies gather in the 9th house of voyages and trade.</p>
+      <div class="wheel-grid">
+        <div class="wheel-box">
+          <svg id="wheel" viewBox="0 0 600 600" role="img" aria-label="Chart wheel for 7 April 1652, 12:12 LMT, Table Bay"></svg>
+          <div class="legend"><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span><span class="l-minor">Quincunx</span></div>
+          <p class="wheel-note">Hover or tap a planet, or a row in the table, to isolate its aspects.</p>
+        </div>
+        <div class="tbl-wrap" style="margin-top:0">
+          <table>
+            <thead><tr><th>Body</th><th>Position</th><th>House</th><th>Condition</th></tr></thead>
+            <tbody id="pos-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 SHAPE -->
+  <section>
+    <div class="sec-label">02 · Shape</div>
+    <div class="sec-body">
+      <h2>A chart turned outward</h2>
+      <p class="claim">Nine of the ten planets stand above the horizon; Saturn alone is below it, holding the 1st house.</p>
+      <p>In mundane work the upper half of the chart describes what is public, visible and directed outward, and the lower half describes the ground, the home and what is held. Here almost everything faces outward. The settlement was an outpost serving a company and a trade route whose centre lay elsewhere, and the chart puts nearly all its energy into that outward reach. The one planet left holding the ground is Saturn, the planet of walls, limits and hardship, and it sits in the house of the people themselves.</p>
+      <p>The 9th house carries the heaviest concentration: Mercury, the Moon, the North Node and the Sun. The 9th is the house of long voyages, shipping, foreign trade, law and religion. The station existed to provision ships on the route between the Netherlands and the East Indies, and the chart places its centre of gravity in exactly that house.</p>
+      <div class="balance">
+        <div>
+          <h3>Elements</h3>
+          <div id="elements"></div>
+        </div>
+        <div>
+          <h3>Modalities</h3>
+          <div id="modes"></div>
+        </div>
+      </div>
+      <p>Fire and cardinality dominate: initiative, conquest of new ground, beginnings. Air is almost absent, carried by Pluto alone. Air is the element of exchange, negotiation and shared ideas, and Mercury, the planet that governs exchange, is in its detriment and fall. The founding impulse is strong on action and thin on dialogue.</p>
+    </div>
+  </section>
+
+  <!-- 03 ANGLES -->
+  <section>
+    <div class="sec-label">03 · Angles</div>
+    <div class="sec-body">
+      <h2>The four angles</h2>
+      <p class="claim">The Ascendant describes the people and the body of the nation; the Midheaven describes government and authority.</p>
+      <div class="cards">
+        <div class="card">
+          <div class="k">Ascendant · 2°08′ Cancer</div>
+          <h3>A provisioning station</h3>
+          <p>Cancer is the sign of nourishment, shelter and the home port. The Company's instruction was to grow food and supply passing fleets, and its ruler, the Moon, sits in the 9th house of voyages: the people's purpose is to feed the ships.</p>
+        </div>
+        <div class="card">
+          <div class="k">1st house · Saturn 21°55′ Cancer</div>
+          <h3>Walls first</h3>
+          <p>Saturn in its detriment in the 1st marks the national body with restriction, defence and hardship. Work on the Fort of Good Hope began within the first week. Saturn had stationed direct on 23 March and was still barely moving, which concentrates its weight.</p>
+        </div>
+        <div class="card">
+          <div class="k">Midheaven · 20°54′ Aries</div>
+          <h3>Authority as conquest</h3>
+          <p>An Aries MC with the exalted Sun 2°42′ from it gives authority a solar, commanding, appointed character. Saturn squares the MC within 1°01′: the people and the governing power are set at right angles from the start.</p>
+        </div>
+        <div class="card">
+          <div class="k">10th house · Mars 4°05′ Taurus</div>
+          <h3>Force applied to land and cattle</h3>
+          <p>Mars rules the MC and sits in the 10th in Taurus, its detriment. Taurus is land, livestock and fixed property. Government in this chart acts through force over land and cattle.</p>
+        </div>
+        <div class="card">
+          <div class="k">Descendant · 2°08′ Capricorn</div>
+          <h3>The other, on the threshold</h3>
+          <p>Uranus at 26°29′ Sagittarius stands 5°39′ before the Descendant, opposing the Ascendant. The 7th house is open encounter, treaty and war; disruption arrives through the encounter with others.</p>
+        </div>
+        <div class="card">
+          <div class="k">IC · 20°54′ Libra</div>
+          <h3>The land, ruled from above</h3>
+          <p>The 4th house of land and territory is empty. Its ruler Venus sits in the 11th, the house of councils, and is the final dispositor of the whole chart (section 04).</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 RULERS -->
+  <section>
+    <div class="sec-label">04 · Rulership</div>
+    <div class="sec-body">
+      <h2>Every chain ends at the land</h2>
+      <p class="claim">Venus in Taurus is the sole final dispositor, and Venus rules the 4th house of land.</p>
+      <p>A dispositor chain follows each planet to the ruler of the sign it occupies, then to that planet's ruler, until it reaches a planet in its own sign. Using traditional rulers, every planet in this chart resolves to Venus, which sits in its own sign of Taurus. Venus rules the IC and the 4th house: the soil, territory and agriculture. Whatever the chart sets in motion, it is ultimately answerable to the land and its value.</p>
+      <div class="chain" id="chain"></div>
+      <h3>Key house rulers</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>House</th><th>Mundane meaning</th><th>Ruler</th><th>Ruler sits in</th></tr></thead>
+          <tbody id="rulers-body"></tbody>
+        </table>
+      </div>
+      <p>The 7th house ruler in the 1st is the starkest of these. The 7th is the foreigner, the other party, the open enemy; its ruler Saturn occupies the house of the people. In this chart the outsider becomes the body of the nation. The 4th ruler in the 11th puts the land in the hands of a council: the VOC's Council of Policy, established before the ships sailed, decided who could farm and where.</p>
+    </div>
+  </section>
+
+  <!-- 05 CONDITION -->
+  <section>
+    <div class="sec-label">05 · Condition</div>
+    <div class="sec-body">
+      <h2>Two strong planets, four weakened</h2>
+      <p class="claim">The Sun and Venus are dignified; Mercury, Mars, Jupiter and Saturn are all in detriment or fall.</p>
+      <p>This is a day chart, since the Sun is above the horizon. The Sun is the light of the sect, Jupiter the benefic of the sect, and Saturn the malefic of the sect; Mars is the malefic contrary to the sect. The Sun is close to its exaltation degree of 19° Aries and also holds the fire triplicity by day, so the light that leads the chart is at full strength.</p>
+      <p>Both malefics are angular and both are debilitated: Saturn in the 1st in Cancer, Mars in the 10th in Taurus. Angular planets act most visibly, so the two planets of hardship and force are the most prominent players after the Sun. Jupiter, the benefic that should temper them, is in its fall in the 7th and slowing towards its retrograde station on 29 April. Venus, the other benefic, is fully dignified but succedent, in the 11th, working through councils rather than on the angles.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Planet</th><th>Essential state</th><th>Angularity</th><th>Role by sect</th></tr></thead>
+          <tbody id="cond-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 ASPECTS -->
+  <section>
+    <div class="sec-label">06 · Aspects</div>
+    <div class="sec-body">
+      <h2>The tightest contacts</h2>
+      <p class="claim">The closest aspects in the chart all involve the outer planets, Chiron or an angle, which lets the slow forces speak through the faster structure.</p>
+      <p>Saturn's quincunx to Neptune is exact to within half a degree. Saturn in the 1st and Neptune in the 6th sit in signs that share nothing, so the people's walls and the dissolving pressure in the house of labour and servitude can only adjust to one another, never resolve. Neptune also trines the MC within 0°33′, which gives the governing power an idealised, mythologised face.</p>
+      <p>Chiron forms a cluster with three key points. It squares the Ascendant within 1°07′, opposes the Moon (the chart ruler) within 1°26′ and is quincunx Mars (the MC ruler) within 0°50′. Chiron is a modern body, discovered in 1977, and is read as the wound that does not close. Here it touches the people, their ruler and the ruler of government all at once.</p>
+      <p>Pluto in the 12th sextiles the North Node within 0°41′ and is quincunx Jupiter within 0°37′. The 12th is the house of hidden things, confinement and institutions; Pluto there, tied to the Node, sets a concealed transformation into the chart's direction of travel.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Aspect</th><th>Type</th><th>Orb</th><th>Phase</th></tr></thead>
+          <tbody id="asp-body"></tbody>
+        </table>
+      </div>
+      <p style="font-size:.88rem;color:var(--ink-2)">Orbs: 8° for conjunction, square, trine and opposition; 5° for sextile; 2°30′ for quincunx.</p>
+    </div>
+  </section>
+
+  <!-- 07 MOON -->
+  <section>
+    <div class="sec-label">07 · The Moon</div>
+    <div class="sec-body">
+      <h2>A balsamic Moon, hours from an eclipse</h2>
+      <p class="claim">The Moon is 13°31′ behind the Sun, in its balsamic phase and under the beams, about to be renewed.</p>
+      <p>The balsamic phase is the last sliver of the lunar cycle, the closing of one cycle before the next begins. The Moon is still inside the Sun's beams (within 17°), so the chart ruler is hidden in the Sun's light. Its next traditional aspect is a square to Jupiter in Capricorn; before that it makes a sextile to Pluto. It is not void of course.</p>
+      <div class="callout">
+        <div class="big">Total solar eclipse at 19°10′ Aries</div>
+        <p>The New Moon that the chart's Moon is moving towards fell at 11:43 LMT on Monday 8 April 1652, about 23½ hours after the chart moment, and it was a total solar eclipse. It fell 58′ from the chart's Sun and 1°44′ from its Midheaven.</p>
+        <p>The eclipse was not visible from the Cape. The path of totality crossed Ireland and Scotland, where the day is remembered as Mirk Monday. In mundane tradition, going back to Ptolemy, an eclipse on the angle of a chart is among the strongest signatures it can carry, and this one sits on the Midheaven, the point of authority and government.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 HOUSES -->
+  <section>
+    <div class="sec-label">08 · Houses</div>
+    <div class="sec-body">
+      <h2>House by house</h2>
+      <p class="claim">All twelve signs fall on house cusps, with no interceptions.</p>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>House</th><th>Cusp</th><th>Mundane meaning</th><th>Ruler (in)</th><th>Occupants</th></tr></thead>
+          <tbody id="houses-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 HISTORY -->
+  <section>
+    <div class="sec-label">09 · History</div>
+    <div class="sec-body">
+      <h2>The first decade against the chart</h2>
+      <p class="claim">The settlement's first eight years line up with the chart's strongest signatures.</p>
+      <ol class="timeline">
+        <li><div class="yr">1652</div><div class="ev">A refreshment station to supply VOC ships; the Fort of Good Hope begun within a week.</div><div class="ch">Cancer rising; Moon (chart ruler) in the 9th of shipping; 9th house stellium; Saturn in the 1st.</div></li>
+        <li><div class="yr">1657</div><div class="ev">The Company releases its first free burghers and grants them farms along the Liesbeek River.</div><div class="ch">Venus, ruler of the 4th (land) and final dispositor, in the 11th (council).</div></li>
+        <li><div class="yr">1658</div><div class="ev">The first large shipments of enslaved people arrive: the <i>Amersfoort</i> with captives taken from a Portuguese slaver bound from Angola, then the <i>Hasselt</i> from West Africa.</div><div class="ch">Uranus and Neptune in the 6th (servants, labour); 6th ruler Jupiter in fall in the 7th (foreign); Saturn quincunx Neptune.</div></li>
+        <li><div class="yr">1659–60</div><div class="ev">The first Khoikhoi–Dutch War, fought over grazing land and cattle.</div><div class="ch">Mars in Taurus in the 10th; 7th ruler (open enemies) Saturn in the 1st; Mars quincunx Chiron.</div></li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 10 SOURCES -->
+  <section>
+    <div class="sec-label">10 · Sources</div>
+    <div class="sec-body">
+      <h2>What is computed, borrowed and divined</h2>
+      <p class="claim">The positions are calculated, the interpretive frameworks are inherited from named traditions, and the time is Dlozi's own.</p>
+      <div class="src-grid">
+        <div>
+          <h3>Data</h3>
+          <ul>
+            <li>Date from the historical record: the ships anchored on 6 April 1652 and Van Riebeeck's command began on 7 April.</li>
+            <li>Time of 12:12 LMT divined by Dlozi Mthethwa.</li>
+            <li>Positions from the Swiss Ephemeris (Astrodienst AG), matched against the Astro.com chart and the Astrodienst ephemeris for 1652.</li>
+            <li>Eclipse and New Moon timings computed with the Swiss Ephemeris.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Interpretive frameworks</h3>
+          <ul>
+            <li>Dignities, sect, triplicities and dispositors: Hellenistic and medieval tradition, as set out in Ptolemy's <i>Tetrabiblos</i> and William Lilly's <i>Christian Astrology</i> (1647).</li>
+            <li>Mundane house meanings: Baigent, Campion and Harvey, <i>Mundane Astrology</i> (1984); Nicholas Campion, <i>The Book of World Horoscopes</i>.</li>
+            <li>Eclipses in mundane prediction: Ptolemy, <i>Tetrabiblos</i>, Book II.</li>
+            <li>Uranus, Neptune, Pluto and Chiron are modern additions (found 1781, 1846, 1930 and 1977); dispositor chains use traditional rulers only.</li>
+          </ul>
+        </div>
+        <div>
+          <h3>History</h3>
+          <ul>
+            <li><a href="https://sahistory.org.za/article/arrival-jan-van-riebeeck-cape-6-april-1652">The Arrival of Jan Van Riebeeck in the Cape</a>, SA History Online</li>
+            <li><a href="https://sahistory.org.za/article/first-slaves-cape">The First Slaves at the Cape</a>, SA History Online</li>
+            <li><a href="https://sahistory.org.za/article/dutch-and-khoisan">The Dutch and the Khoisan</a>, SA History Online</li>
+            <li><a href="https://en.wikipedia.org/wiki/Jan_van_Riebeeck">Jan van Riebeeck</a>, Wikipedia</li>
+            <li><a href="https://en.wikipedia.org/wiki/Solar_eclipse_of_April_8,_1652">Solar eclipse of April 8, 1652</a>, Wikipedia</li>
+            <li><a href="https://news.stv.tv/scotland/mirk-monday-the-eclipse-that-terrified-scotland">Mirk Monday: the eclipse that terrified Scotland</a>, STV News</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer><div class="wrap">Prepared for Dlozi Mthethwa · 12 October 2026</div></footer>
+
+<!-- ========== DATA ========== -->
+<script>
+const CHART = {
+  asc: 92.1356,
+  mc: 20.9,
+  cusps: [92.1356, 128.35, 167.117, 200.9, 227.783, 250.383, 272.1356, 308.35, 347.117, 20.9, 47.783, 70.383],
+  bodies: [
+    { id:"Sun",     glyph:"☉", lon:18.208,  house:9,  motion:"Direct",            state:"Exaltation · day triplicity", tone:"strong" },
+    { id:"Moon",    glyph:"☽", lon:4.698,   house:9,  motion:"Direct · fast",     state:"Peregrine · under the beams", tone:"" },
+    { id:"Mercury", glyph:"☿", lon:359.817, house:9,  motion:"Direct",            state:"Detriment and fall", tone:"weak" },
+    { id:"Venus",   glyph:"♀", lon:49.067,  house:11, motion:"Direct",            state:"Domicile", tone:"strong" },
+    { id:"Mars",    glyph:"♂", lon:34.083,  house:10, motion:"Direct",            state:"Detriment", tone:"weak" },
+    { id:"Jupiter", glyph:"♃", lon:282.033, house:7,  motion:"Slowing to station", state:"Fall", tone:"weak" },
+    { id:"Saturn",  glyph:"♄", lon:111.917, house:1,  motion:"Slow · just direct", state:"Detriment", tone:"weak" },
+    { id:"Uranus",  glyph:"♅", lon:266.483, house:6,  motion:"Retrograde",        state:"Modern body", tone:"" },
+    { id:"Neptune", glyph:"♆", lon:261.45,  house:6,  motion:"Retrograde",        state:"Modern body", tone:"" },
+    { id:"Pluto",   glyph:"♇", lon:71.4,    house:12, motion:"Direct",            state:"Modern body", tone:"" },
+    { id:"Node",    glyph:"☊", lon:10.733,  house:9,  motion:"Direct (true)",     state:"North Node", tone:"" },
+    { id:"Chiron",  glyph:"⚷", lon:183.25,  house:3,  motion:"Retrograde",        state:"Modern body", tone:"" }
+  ],
+  aspects: [
+    ["Saturn","Neptune","quincunx",0.47,"sep"], ["Neptune","MC","trine",0.55,"sep"], ["Jupiter","Pluto","quincunx",0.62,"sep"],
+    ["Pluto","Node","sextile",0.68,"sep"], ["Mars","Chiron","quincunx",0.83,"sep"], ["Saturn","MC","square",1.02,"sep"],
+    ["Chiron","ASC","square",1.12,"sep"], ["Jupiter","Node","square",1.3,"sep"], ["Moon","Chiron","opposition",1.43,"sep"],
+    ["Mars","ASC","sextile",1.95,"app"], ["Mercury","ASC","square",2.31,"sep"], ["Venus","Neptune","quincunx",2.37,"app"],
+    ["Moon","ASC","square",2.56,"app"], ["Sun","MC","conjunction",2.7,"sep"], ["Venus","Saturn","sextile",2.84,"app"],
+    ["Sun","Neptune","trine",3.25,"app"], ["Mercury","Uranus","square",3.34,"sep"], ["Mercury","Chiron","opposition",3.44,"app"],
+    ["Sun","Saturn","square",3.71,"app"], ["Moon","Mercury","conjunction",4.87,"sep"], ["Uranus","Neptune","conjunction",5.04,"sep"],
+    ["Uranus","MC","trine",5.59,"app"], ["Uranus","ASC","opposition",5.65,"sep"], ["Moon","Node","conjunction",6.04,"app"],
+    ["Sun","Jupiter","square",6.17,"sep"], ["Uranus","Chiron","square",6.77,"app"], ["Venus","Jupiter","trine",7.04,"sep"],
+    ["Moon","Jupiter","square",7.34,"app"], ["Sun","Node","conjunction",7.47,"sep"], ["Node","Chiron","opposition",7.47,"sep"],
+    ["Mars","Uranus","trine",7.6,"sep"], ["Mercury","Saturn","trine",7.91,"sep"], ["Mars","Jupiter","trine",7.95,"app"]
+  ],
+  houses: [
+    [1,"Cancer","The people, national character, the nation as a whole","Moon (9th)","Saturn"],
+    [2,"Leo","National wealth, resources, the economy","Sun (9th)","None"],
+    [3,"Virgo","Communication, transport, neighbours, local movement","Mercury (9th)","Chiron"],
+    [4,"Libra","The land, territory, agriculture, the soil","Venus (11th)","None"],
+    [5,"Scorpio","Children, pleasure, culture, speculation","Mars (10th)","None"],
+    [6,"Sagittarius","Workers, servants, labour, public health","Jupiter (7th)","Uranus, Neptune"],
+    [7,"Capricorn","Foreign relations, treaties, open enemies, war","Saturn (1st)","Jupiter"],
+    [8,"Aquarius","Death, debt, the resources of others","Saturn (1st)","None"],
+    [9,"Pisces","Voyages, shipping, foreign trade, law, religion","Jupiter (7th)","Mercury, Moon, Node, Sun"],
+    [10,"Aries","Government, authority, the head of state","Mars (10th)","Mars"],
+    [11,"Taurus","Councils, the legislature, allies","Venus (11th)","Venus"],
+    [12,"Gemini","Hidden enemies, prisons, institutions, the hidden","Mercury (9th)","Pluto"]
+  ],
+  rulers: [
+    ["1st","The people","Moon","9th · voyages, shipping"],
+    ["2nd","National wealth","Sun","9th · foreign trade"],
+    ["4th","The land","Venus","11th · councils (own sign)"],
+    ["6th","Labour, servants","Jupiter","7th · foreigners (fall)"],
+    ["7th","Foreigners, open enemies","Saturn","1st · the people (detriment)"],
+    ["10th","Government","Mars","10th · its own house (detriment)"]
+  ],
+  condition: [
+    ["Sun","Exaltation, day triplicity","On the MC (9th by Placidus)","Light of the sect","strong"],
+    ["Venus","Domicile","Succedent · 11th","Benefic contrary to sect","strong"],
+    ["Moon","Peregrine","Cadent · 9th","Chart ruler",""],
+    ["Mercury","Detriment and fall · 29°49′","Cadent · 9th","Neutral","weak"],
+    ["Mars","Detriment","Angular · 10th","Malefic contrary to sect","weak"],
+    ["Jupiter","Fall","Angular · 7th","Benefic of the sect","weak"],
+    ["Saturn","Detriment","Angular · 1st","Malefic of the sect","weak"]
+  ],
+  chain: [
+    { from:["Pluto","Mercury","Jupiter","Saturn","Moon","Mars"], to:"Venus" },
+    { from:["Sun","Mars"], to:"Venus" },
+    { from:["Uranus","Neptune"], to:"Jupiter", note:"then on through Saturn, Moon and Mars" },
+    { from:["Chiron"], to:"Venus" }
+  ],
+  elements: [["Fire",4,"Sun, Moon, Uranus, Neptune"],["Earth",3,"Venus, Mars, Jupiter"],["Air",1,"Pluto"],["Water",2,"Mercury, Saturn"]],
+  modes: [["Cardinal",4,"Sun, Moon, Jupiter, Saturn · both angles"],["Fixed",2,"Venus, Mars"],["Mutable",4,"Mercury, Uranus, Neptune, Pluto"]]
+};
+</script>
+
+<!-- ========== UTILITIES ========== -->
+<script>
+const Astro = (() => {
+  const SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+  const SIGN_GLYPHS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
+  const VS = "︎"; // text presentation, never emoji
+  const norm = d => ((d % 360) + 360) % 360;
+  const signIndex = lon => Math.floor(norm(lon) / 30);
+  const fmt = lon => {
+    const x = norm(lon) % 30;
+    let deg = Math.floor(x), min = Math.floor((x - deg) * 60 + 1e-6);
+    if (min === 60) { deg += 1; min = 0; }
+    return `${deg}°${String(min).padStart(2,"0")}′ ${SIGNS[signIndex(lon)]}`;
+  };
+  const fmtOrb = o => `${Math.floor(o)}°${String(Math.round((o % 1) * 60)).padStart(2,"0")}′`;
+  const glyph = g => g + VS;
+  return { SIGNS, SIGN_GLYPHS, norm, signIndex, fmt, fmtOrb, glyph };
+})();
+
+const Dom = {
+  el(tag, attrs = {}, html = "") {
+    const n = document.createElement(tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (html) n.innerHTML = html;
+    return n;
+  },
+  svg(tag, attrs = {}, text = "") {
+    const n = document.createElementNS("http://www.w3.org/2000/svg", tag);
+    for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+    if (text) n.textContent = text;
+    return n;
+  },
+  tag(text, tone = "") { return `<span class="tag ${tone}">${text}</span>`; }
+};
+
+const ASPECT_KIND = { conjunction:"", square:"hard", opposition:"hard", trine:"soft", sextile:"soft", quincunx:"minor" };
+</script>
+
+<!-- ========== WHEEL ========== -->
+<script>
+const Wheel = (() => {
+  const C = 300, R = { outer:292, zodiac:252, planet:212, deg:184, house:150, inner:128 };
+
+  // Ascendant on the left, zodiac running anticlockwise
+  const angleOf = (lon, asc) => (180 + Astro.norm(lon - asc)) * Math.PI / 180;
+  const pt = (lon, r, asc) => { const a = angleOf(lon, asc); return [C + r * Math.cos(a), C - r * Math.sin(a)]; };
+
+  // Push crowded glyphs apart so labels never collide
+  function spread(bodies, minSep = 8.5) {
+    const items = bodies.map(b => ({ id:b.id, lon:b.lon, disp:b.lon })).sort((a,b) => a.lon - b.lon);
+    for (let it = 0; it < 60; it++) {
+      let moved = false;
+      for (let i = 0; i < items.length; i++) {
+        const a = items[i], b = items[(i + 1) % items.length];
+        const gap = Astro.norm(b.disp - a.disp);
+        if (gap < minSep) { const push = (minSep - gap) / 2; a.disp -= push; b.disp += push; moved = true; }
+      }
+      if (!moved) break;
+    }
+    return Object.fromEntries(items.map(i => [i.id, Astro.norm(i.disp)]));
+  }
+
+  function drawZodiac(g, asc) {
+    for (let s = 0; s < 12; s++) {
+      const a0 = s * 30, a1 = a0 + 30;
+      const [x0,y0] = pt(a0, R.outer, asc), [x1,y1] = pt(a1, R.outer, asc);
+      const [x2,y2] = pt(a1, R.zodiac, asc), [x3,y3] = pt(a0, R.zodiac, asc);
+      g.append(Dom.svg("path", { class:"band", fill: s % 2 ? "var(--band)" : "var(--band-2)",
+        d:`M${x0},${y0} A${R.outer},${R.outer} 0 0 0 ${x1},${y1} L${x2},${y2} A${R.zodiac},${R.zodiac} 0 0 1 ${x3},${y3} Z` }));
+      const [tx,ty] = pt(a0 + 15, (R.outer + R.zodiac) / 2, asc);
+      g.append(Dom.svg("text", { class:"sign", x:tx, y:ty }, Astro.glyph(Astro.SIGN_GLYPHS[s])));
+    }
+    [R.outer, R.zodiac, R.inner].forEach(r => g.append(Dom.svg("circle", { class:"ring", cx:C, cy:C, r })));
+  }
+
+  function drawHouses(g, cusps, asc) {
+    cusps.forEach((c, i) => {
+      const angular = i % 3 === 0;
+      const [x0,y0] = pt(c, R.inner, asc), [x1,y1] = pt(c, angular ? R.outer + 6 : R.zodiac, asc);
+      g.append(Dom.svg("line", { class: angular ? "angle" : "cusp", x1:x0, y1:y0, x2:x1, y2:y1 }));
+      const next = cusps[(i + 1) % 12], mid = c + Astro.norm(next - c) / 2;
+      const [hx,hy] = pt(mid, R.inner + 12, asc);
+      g.append(Dom.svg("text", { class:"hnum", x:hx, y:hy }, String(i + 1)));
+    });
+    const labels = [["AC",0,-1],["IC",3,1],["DC",6,1],["MC",9,-1]];
+    labels.forEach(([t, i]) => {
+      const [lx,ly] = pt(cusps[i] + (i === 0 || i === 6 ? 4 : -4), R.zodiac - 14, asc);
+      g.append(Dom.svg("text", { class:"angle-lbl", x:lx, y:ly, "text-anchor":"middle", "dominant-baseline":"central" }, t));
+    });
+  }
+
+  function drawAspects(g, chart, asc) {
+    const pos = Object.fromEntries(chart.bodies.map(b => [b.id, b.lon]));
+    chart.aspects.forEach(([a, b, type]) => {
+      if (!(a in pos) || !(b in pos) || type === "conjunction") return;
+      const [x1,y1] = pt(pos[a], R.inner, asc), [x2,y2] = pt(pos[b], R.inner, asc);
+      g.append(Dom.svg("line", { class:`asp ${ASPECT_KIND[type]}`, "data-a":a, "data-b":b, x1, y1, x2, y2 }));
+    });
+  }
+
+  function drawPlanets(g, chart, asc) {
+    const disp = spread(chart.bodies);
+    chart.bodies.forEach(b => {
+      const grp = Dom.svg("g", { class:"planet", "data-body":b.id, tabindex:"0", "aria-label":`${b.id} ${Astro.fmt(b.lon)}` });
+      const [t0x,t0y] = pt(b.lon, R.zodiac, asc), [t1x,t1y] = pt(b.lon, R.zodiac - 9, asc);
+      grp.append(Dom.svg("line", { class:"tick", x1:t0x, y1:t0y, x2:t1x, y2:t1y }));
+      const [gx,gy] = pt(disp[b.id], R.planet, asc);
+      grp.append(Dom.svg("line", { class:"lead", x1:t1x, y1:t1y, x2:gx, y2:gy, opacity: Math.abs(disp[b.id] - b.lon) > .5 ? 1 : 0 }));
+      grp.append(Dom.svg("circle", { cx:gx, cy:gy, r:14, fill:"transparent" }));
+      grp.append(Dom.svg("text", { class:"pg", x:gx, y:gy }, Astro.glyph(b.glyph)));
+      const [dx,dy] = pt(disp[b.id], R.deg, asc);
+      grp.append(Dom.svg("text", { class:"pdeg", x:dx, y:dy }, String(Math.floor(b.lon % 30))));
+      grp.append(Dom.svg("title", {}, `${b.id} ${Astro.fmt(b.lon)}`));
+      g.append(grp);
+    });
+  }
+
+  function render(svg, chart) {
+    const asc = chart.asc;
+    const layers = ["zodiac","houses","aspects","planets"].map(() => svg.appendChild(Dom.svg("g")));
+    drawZodiac(layers[0], asc);
+    drawHouses(layers[1], chart.cusps, asc);
+    drawAspects(layers[2], chart, asc);
+    drawPlanets(layers[3], chart, asc);
+  }
+  return { render };
+})();
+</script>
+
+<!-- ========== TABLES & BLOCKS ========== -->
+<script>
+const Render = {
+  positions(tbody, chart) {
+    const rows = [...chart.bodies.map(b => ({ ...b })),
+      { id:"Ascendant", glyph:"", lon:chart.asc, house:1, motion:"", state:"Angle", tone:"" },
+      { id:"Midheaven", glyph:"", lon:chart.mc, house:10, motion:"", state:"Angle", tone:"" }];
+    rows.forEach(b => {
+      const tr = Dom.el("tr", { "data-body":b.id });
+      tr.innerHTML = `<td><span class="body-cell"><i class="g">${b.glyph ? Astro.glyph(b.glyph) : ""}</i>${b.id}</span></td>
+        <td class="num">${Astro.fmt(b.lon)}${/Retro/.test(b.motion) ? " R" : ""}</td>
+        <td class="num">${b.house}</td>
+        <td>${Dom.tag(b.state, b.tone)}</td>`;
+      tbody.append(tr);
+    });
+  },
+  bars(host, rows, max) {
+    rows.forEach(([label, n, who]) => {
+      host.append(Dom.el("div", { class:"bar-row" },
+        `<span>${label}</span><span class="bar"><i style="width:${n / max * 100}%"></i></span><b>${n}</b><small>${who}</small>`));
+    });
+  },
+  chain(host, chart) {
+    const byId = Object.fromEntries(chart.bodies.map(b => [b.id, b]));
+    const chip = (id, final = false) => `<span class="chip${final ? " final" : ""}"><i class="g">${Astro.glyph(byId[id].glyph)}</i>${id}${final ? " ⟲" : ""}</span>`;
+    chart.chain.forEach(row => {
+      const parts = row.from.map(id => chip(id)).concat(chip(row.to, row.to === "Venus"));
+      host.append(Dom.el("div", { class:"chain-row" },
+        parts.join('<span class="arrow">→</span>') + (row.note ? `<span class="arrow" style="font-size:.8rem">&nbsp;${row.note}</span>` : "")));
+    });
+  },
+  simple(tbody, rows, cellFn) {
+    rows.forEach(r => tbody.append(Dom.el("tr", {}, cellFn(r))));
+  }
+};
+</script>
+
+<!-- ========== INTERACTION ========== -->
+<script>
+const Focus = (() => {
+  let svg, rows;
+  function set(id) {
+    svg.classList.toggle("focus", !!id);
+    svg.querySelectorAll(".asp").forEach(l => l.classList.toggle("on", !!id && (l.dataset.a === id || l.dataset.b === id)));
+    svg.querySelectorAll(".planet").forEach(p => p.classList.toggle("on", p.dataset.body === id));
+    rows.forEach(r => r.classList.toggle("hl", r.dataset.body === id));
+  }
+  function bind(svgEl, rowEls) {
+    svg = svgEl; rows = [...rowEls];
+    const targets = [...svg.querySelectorAll(".planet"), ...rows];
+    targets.forEach(t => {
+      const id = t.dataset.body;
+      t.addEventListener("mouseenter", () => set(id));
+      t.addEventListener("mouseleave", () => set(null));
+      t.addEventListener("focus", () => set(id));
+      t.addEventListener("blur", () => set(null));
+      t.addEventListener("click", () => set(svg.classList.contains("focus") && t.classList.contains("on") ? null : id));
+    });
+  }
+  return { bind };
+})();
+</script>
+
+<!-- ========== BOOT ========== -->
+<script>
+(function init(chart) {
+  const $ = id => document.getElementById(id);
+  const byId = Object.fromEntries(chart.bodies.map(b => [b.id, b]));
+  const label = id => id === "ASC" ? "Ascendant" : id === "MC" ? "Midheaven" : id;
+  const g = id => byId[id] ? `<i class="g">${Astro.glyph(byId[id].glyph)}</i>` : "";
+
+  Wheel.render($("wheel"), chart);
+  Render.positions($("pos-body"), chart);
+  Render.bars($("elements"), chart.elements, 4);
+  Render.bars($("modes"), chart.modes, 4);
+  Render.chain($("chain"), chart);
+
+  Render.simple($("rulers-body"), chart.rulers, ([h, m, r, s]) =>
+    `<td class="num">${h}</td><td>${m}</td><td><span class="body-cell">${g(r)}${r}</span></td><td>${s}</td>`);
+
+  Render.simple($("cond-body"), chart.condition, ([p, st, ang, sect, tone]) =>
+    `<td><span class="body-cell">${g(p)}${p}</span></td><td>${Dom.tag(st, tone)}</td><td>${ang}</td><td>${sect}</td>`);
+
+  Render.simple($("asp-body"), chart.aspects, ([a, b, type, orb, ph]) =>
+    `<td><span class="body-cell">${g(a)}${label(a)} <span style="color:var(--ink-2);font-weight:400">·</span> ${g(b)}${label(b)}</span></td>
+     <td>${Dom.tag(type, ASPECT_KIND[type])}</td><td class="num">${Astro.fmtOrb(orb)}</td><td>${ph === "app" ? "Applying" : "Separating"}</td>`);
+
+  Render.simple($("houses-body"), chart.houses, ([n, sign, meaning, ruler, occ]) =>
+    `<td class="num">${n}</td><td class="num">${Astro.fmt(chart.cusps[n - 1])}</td><td>${meaning}</td><td>${ruler}</td><td>${occ}</td>`);
+
+  Focus.bind($("wheel"), $("pos-body").querySelectorAll("tr"));
+})(CHART);
+</script>
+</body>
+</html>
