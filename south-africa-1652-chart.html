@@ -8,58 +8,86 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-/* ---------- Tokens ---------- */
+/* =========================================================
+   TOKENS
+   ========================================================= */
 :root{
   --bg:#f5f1e8; --surface:#fffdf8; --ink:#1c1915; --ink-2:#554e44; --rule:#d9d1c2; --rule-2:#ebe5d8;
   --accent:#8c2a1b; --accent-soft:#f3e3dd; --strong:#2e6b4a; --strong-soft:#e2efe6; --weak:#8c2a1b;
-  --hard:#b23a22; --soft:#2c5e8f; --minor:#8a7f6e; --band:#efe8da; --band-2:#e6ddcb;
+  --hard:#b23a22; --soft:#2c5e8f; --minor:#8a7f6e; --band:#efe8da; --band-2:#e6ddcb; --transit:#2c5e8f;
   --serif:"Fraunces",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
   --glyph:"Segoe UI Symbol","Noto Sans Symbols 2","Noto Sans Symbols","Apple Symbols","DejaVu Sans",sans-serif;
   --gap-xs:.5rem; --gap-s:1rem; --gap-m:1.75rem; --gap-l:3rem; --gap-xl:5.5rem;
+  --nav-h:60px;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     --bg:#14120f; --surface:#1d1a16; --ink:#efe9de; --ink-2:#b3a996; --rule:#3a342c; --rule-2:#2a2620;
     --accent:#e2775c; --accent-soft:#3a221b; --strong:#7cc49a; --strong-soft:#1f3328; --weak:#e2775c;
-    --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f;
+    --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f; --transit:#7fb0e0;
   }
 }
 :root[data-theme="dark"]{
   --bg:#14120f; --surface:#1d1a16; --ink:#efe9de; --ink-2:#b3a996; --rule:#3a342c; --rule-2:#2a2620;
   --accent:#e2775c; --accent-soft:#3a221b; --strong:#7cc49a; --strong-soft:#1f3328; --weak:#e2775c;
-  --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f;
+  --hard:#e8775c; --soft:#7fb0e0; --minor:#8f8574; --band:#211e19; --band-2:#29251f; --transit:#7fb0e0;
 }
 
-/* ---------- Base ---------- */
+/* =========================================================
+   BASE
+   ========================================================= */
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans);}
-.wrap{max-width:1120px;margin:0 auto;padding:0 16px}
+html{-webkit-text-size-adjust:100%;scroll-padding-top:calc(var(--nav-h) + 16px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 var(--sans)}
+.wrap{max-width:1160px;margin:0 auto;padding:0 16px}
 @media (min-width:720px){.wrap{padding:0 32px}}
 p{margin:0 0 var(--gap-s);max-width:68ch}
 h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0}
 .g{font-family:var(--glyph);font-style:normal}
 .num{font-family:var(--mono);font-size:.9em;font-variant-numeric:tabular-nums;white-space:nowrap}
+.muted{color:var(--ink-2)}
+.small{font-size:.88rem}
+a{color:var(--accent);text-underline-offset:2px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 
-/* ---------- Header ---------- */
-header{padding:var(--gap-xl) 0 var(--gap-l);border-bottom:2px solid var(--ink)}
+/* =========================================================
+   NAV
+   ========================================================= */
+.nav{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--rule)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:var(--gap-s);height:var(--nav-h)}
+.brand{font:700 1.1rem/1 var(--serif);color:var(--ink);text-decoration:none;white-space:nowrap}
+.brand span{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-left:.5rem}
+.nav ul{list-style:none;display:flex;gap:.25rem;margin:0;padding:0}
+.nav a.link{display:block;padding:.45rem .7rem;font:500 .78rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-decoration:none;border-bottom:2px solid transparent}
+.nav a.link:hover{color:var(--ink)}
+.nav a.link[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+@media (max-width:520px){.brand span{display:none}.nav a.link{padding:.45rem .45rem;letter-spacing:.06em}}
+
+/* =========================================================
+   VIEWS
+   ========================================================= */
+.view[hidden]{display:none}
+.hero{padding:var(--gap-xl) 0 var(--gap-l);border-bottom:2px solid var(--ink)}
 .eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--gap-s)}
-h1{font-size:clamp(2.6rem,7vw,5rem);font-weight:700;letter-spacing:-.02em}
-.lede{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;color:var(--ink-2);margin-top:var(--gap-s);max-width:44ch}
-.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--gap-s) var(--gap-m);margin-top:var(--gap-l);padding-top:var(--gap-m);border-top:1px solid var(--rule)}
+h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:-.02em}
+.lede{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;color:var(--ink-2);margin-top:var(--gap-s);max-width:48ch}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--gap-s) var(--gap-m);margin:var(--gap-l) 0 0;padding-top:var(--gap-m);border-top:1px solid var(--rule)}
 .fact dt{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.4rem}
 .fact dd{margin:0;font-weight:500}
 .fact dd small{display:block;font-weight:400;color:var(--ink-2);font-size:.85rem}
 
-/* ---------- Sections ---------- */
-section{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);padding:var(--gap-xl) 0 0}
-@media (min-width:900px){section{grid-template-columns:150px minmax(0,1fr);gap:var(--gap-m)}}
+section.sec{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);padding:var(--gap-xl) 0 0}
+@media (min-width:900px){section.sec{grid-template-columns:150px minmax(0,1fr);gap:var(--gap-m)}}
 .sec-label{font:500 .75rem/1.4 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding-top:.55rem;border-top:2px solid var(--accent);align-self:start}
+.sec-body{min-width:0}
 .sec-body > h2{font-size:clamp(1.7rem,3.5vw,2.35rem);margin-bottom:var(--gap-s);letter-spacing:-.01em}
-.sec-body > .claim{font-family:var(--serif);font-size:1.25rem;line-height:1.45;margin-bottom:var(--gap-m);max-width:56ch}
+.claim{font-family:var(--serif);font-size:1.25rem;line-height:1.45;margin-bottom:var(--gap-m);max-width:56ch}
 h3{font-size:1.25rem;margin:var(--gap-m) 0 var(--gap-xs)}
 
-/* ---------- Tables ---------- */
+/* =========================================================
+   TABLES & TAGS
+   ========================================================= */
 .tbl-wrap{overflow-x:auto;margin:var(--gap-s) 0 var(--gap-m);border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
 table{width:100%;border-collapse:collapse;font-size:.95rem}
 th{font:500 .7rem/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2);text-align:left;padding:.75rem .75rem .6rem;border-bottom:1px solid var(--rule);white-space:nowrap}
@@ -68,57 +96,63 @@ tr:last-child td{border-bottom:0}
 td:first-child,th:first-child{padding-left:0}
 tbody tr{transition:background .15s}
 tbody tr.hl{background:var(--accent-soft)}
+tbody tr.clickable{cursor:pointer}
+tbody tr.clickable:hover{background:var(--rule-2)}
 .body-cell{display:flex;align-items:center;gap:.55rem;font-weight:500;white-space:nowrap}
 .body-cell .g{font-size:1.15rem;width:1.3rem;text-align:center}
-
-/* ---------- Tags (repetition: one tag system for all judgements) ---------- */
 .tag{display:inline-block;font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:.32rem .5rem;border-radius:3px;border:1px solid var(--rule);color:var(--ink-2);white-space:nowrap}
+td .tag{white-space:normal;line-height:1.25}
 .tag.strong{background:var(--strong-soft);border-color:transparent;color:var(--strong)}
 .tag.weak{background:var(--accent-soft);border-color:transparent;color:var(--weak)}
 .tag.hard{color:var(--hard);border-color:currentColor}
 .tag.soft{color:var(--soft);border-color:currentColor}
 
-td .tag{white-space:normal;line-height:1.25}
-/* ---------- Wheel ---------- */
-.wheel-grid > *,.sec-body{min-width:0}
-.wheel-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-m);align-items:start}
-.wheel-box{max-width:620px}
-.wheel-box{background:var(--surface);border:1px solid var(--rule);padding:var(--gap-s)}
-#wheel{width:100%;height:auto;display:block}
+/* =========================================================
+   WHEEL (shared by all views)
+   ========================================================= */
+.wheel-box{background:var(--surface);border:1px solid var(--rule);padding:var(--gap-s);max-width:620px}
+.wheel{width:100%;height:auto;display:block}
 .wheel-note{font-size:.85rem;color:var(--ink-2);margin:var(--gap-xs) 0 0}
-#wheel .band{stroke:var(--rule);stroke-width:1}
-#wheel .ring{fill:none;stroke:var(--ink);stroke-width:1.2}
-#wheel .cusp{stroke:var(--rule);stroke-width:1}
-#wheel .angle{stroke:var(--ink);stroke-width:2.2}
-#wheel .angle-lbl{font:600 13px var(--mono);fill:var(--ink)}
-#wheel .sign{font-family:var(--glyph);font-size:19px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
-#wheel .hnum{font:500 11px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
-#wheel .tick{stroke:var(--ink);stroke-width:1.4}
-#wheel .lead{stroke:var(--ink-2);stroke-width:.7}
-#wheel .pg{font-family:var(--glyph);font-size:21px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
-#wheel .pdeg{font:500 10px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
-#wheel .planet{cursor:pointer;outline:none}
-#wheel .planet:focus .pg,#wheel .planet:hover .pg,#wheel .planet.on .pg{fill:var(--accent)}
-#wheel .asp{stroke-width:1.3;transition:opacity .15s}
-#wheel .asp.hard{stroke:var(--hard)}
-#wheel .asp.soft{stroke:var(--soft)}
-#wheel .asp.minor{stroke:var(--minor);stroke-dasharray:4 3}
-#wheel.focus .asp{opacity:.07}
-#wheel.focus .asp.on{opacity:1;stroke-width:2.2}
+.wheel .band{stroke:var(--rule);stroke-width:1}
+.wheel .ring{fill:none;stroke:var(--ink);stroke-width:1.2}
+.wheel .divider{fill:none;stroke:var(--rule);stroke-width:1;stroke-dasharray:3 3}
+.wheel .cusp{stroke:var(--rule);stroke-width:1}
+.wheel .angle{stroke:var(--ink);stroke-width:2.2}
+.wheel .angle-lbl{font:600 13px var(--mono);fill:var(--ink)}
+.wheel .sign{font-family:var(--glyph);font-size:19px;fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+.wheel .hnum{font:500 11px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+.wheel .tick{stroke:var(--ink);stroke-width:1.4}
+.wheel .tick.t{stroke:var(--transit)}
+.wheel .lead{stroke:var(--ink-2);stroke-width:.7}
+.wheel .pg{font-family:var(--glyph);font-size:21px;fill:var(--ink);text-anchor:middle;dominant-baseline:central}
+.wheel .pg.t{fill:var(--transit);font-size:19px}
+.wheel .pdeg{font:500 10px var(--mono);fill:var(--ink-2);text-anchor:middle;dominant-baseline:central}
+.wheel .planet{cursor:pointer;outline:none}
+.wheel .planet:focus .pg,.wheel .planet:hover .pg,.wheel .planet.on .pg{fill:var(--accent)}
+.wheel .asp{stroke-width:1.3;transition:opacity .15s}
+.wheel .asp.hard{stroke:var(--hard)}
+.wheel .asp.soft{stroke:var(--soft)}
+.wheel .asp.minor{stroke:var(--minor);stroke-dasharray:4 3}
+.wheel .asp.conj{stroke:var(--ink);stroke-width:2}
+.wheel.focus .asp{opacity:.07}
+.wheel.focus .asp.on{opacity:1;stroke-width:2.4}
 .legend{display:flex;flex-wrap:wrap;gap:.4rem .9rem;margin-top:var(--gap-xs);font-size:.8rem;color:var(--ink-2)}
 .legend span::before{content:"";display:inline-block;width:18px;height:0;border-top:2px solid;vertical-align:middle;margin-right:.35rem}
 .legend .l-hard::before{border-color:var(--hard)}
 .legend .l-soft::before{border-color:var(--soft)}
 .legend .l-minor::before{border-color:var(--minor);border-top-style:dashed}
+.legend .l-conj::before{border-color:var(--ink)}
+.legend .l-natal::before{border:0;content:"\25CF";color:var(--ink);width:auto;margin-right:.3rem}
+.legend .l-transit::before{border:0;content:"\25CF";color:var(--transit);width:auto;margin-right:.3rem}
 
-/* ---------- Cards (proximity: placement + meaning grouped) ---------- */
+/* =========================================================
+   CHART VIEW BLOCKS
+   ========================================================= */
 .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-s);margin:var(--gap-s) 0 var(--gap-m)}
 .card{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ink);padding:var(--gap-s) var(--gap-s) .4rem}
-.card .k{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.card .k{font:500 .7rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
 .card h3{margin:0 0 .5rem;font-size:1.2rem}
 .card p{font-size:.95rem}
-
-/* ---------- Dispositor chain ---------- */
 .chain{background:var(--surface);border:1px solid var(--rule);padding:var(--gap-m) var(--gap-s);margin:var(--gap-s) 0 var(--gap-m)}
 .chain-row{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem;margin-bottom:.9rem}
 .chain-row:last-child{margin-bottom:0}
@@ -126,40 +160,133 @@ td .tag{white-space:normal;line-height:1.25}
 .chip .g{font-size:1rem}
 .chip.final{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .arrow{color:var(--ink-2);font-family:var(--mono)}
-
-/* ---------- Bars ---------- */
 .balance{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-m);margin:var(--gap-s) 0 var(--gap-m)}
 .bar-row{display:grid;grid-template-columns:5.5rem 1fr 1.5rem;align-items:center;gap:.6rem;margin-bottom:.55rem;font-size:.9rem}
 .bar{height:10px;background:var(--rule-2)}
 .bar i{display:block;height:100%;background:var(--ink)}
 .bar-row b{font-family:var(--mono);font-weight:500;text-align:right}
 .bar-row small{grid-column:2/4;color:var(--ink-2);margin-top:-.35rem;font-size:.8rem}
-
-/* ---------- Callout ---------- */
 .callout{border-left:4px solid var(--accent);background:var(--surface);padding:var(--gap-s) var(--gap-m);margin:var(--gap-s) 0 var(--gap-m)}
-.callout .big{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.4rem);font-weight:700;line-height:1.1;margin-bottom:.4rem}
+.callout .big{font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.3rem);font-weight:700;line-height:1.1;margin-bottom:.4rem}
 .callout p:last-child{margin-bottom:0}
-
-/* ---------- Timeline ---------- */
-.timeline{list-style:none;margin:var(--gap-s) 0 var(--gap-m);padding:0;border-top:2px solid var(--ink)}
-.timeline li{display:grid;grid-template-columns:1fr;gap:.25rem var(--gap-m);padding:var(--gap-s) 0;border-bottom:1px solid var(--rule)}
-@media (min-width:720px){.timeline li{grid-template-columns:110px 1fr 1fr}}
-.timeline .yr{font:600 1.35rem/1.2 var(--serif)}
-.timeline .ev{font-weight:500}
-.timeline .ch{color:var(--ink-2);font-size:.95rem}
-
-/* ---------- Sources ---------- */
 .src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--gap-m);margin-top:var(--gap-s)}
 .src-grid h3{margin-top:0;font-size:1.05rem}
 .src-grid ul{margin:0;padding-left:1.1rem;font-size:.92rem}
 .src-grid li{margin-bottom:.45rem}
-a{color:var(--accent);text-underline-offset:2px}
-footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2px solid var(--ink);font-size:.85rem;color:var(--ink-2)}
+
+/* =========================================================
+   TIMELINE VIEW
+   ========================================================= */
+.tl-layout{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-l);padding-top:var(--gap-l)}
+@media (min-width:980px){.tl-layout{grid-template-columns:320px minmax(0,1fr)}}
+.tl-nav{align-self:start}
+@media (min-width:980px){.tl-nav{position:sticky;top:calc(var(--nav-h) + 16px);max-height:calc(100vh - var(--nav-h) - 32px);overflow-y:auto;padding-right:6px}}
+.era{font:500 .7rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);padding:var(--gap-m) 0 .5rem;border-bottom:2px solid var(--ink)}
+.era:first-child{padding-top:0}
+.tl-list{list-style:none;margin:0;padding:0}
+.tl-item{display:grid;grid-template-columns:4.2rem 1fr;gap:.75rem;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:.65rem .4rem .65rem 0;cursor:pointer}
+.tl-item:hover{background:var(--rule-2)}
+.tl-item .y{font:600 1.15rem/1.2 var(--serif)}
+.tl-item .t{font-weight:500;line-height:1.35}
+.tl-item .d{display:block;font:400 .75rem/1.3 var(--mono);color:var(--ink-2);margin-top:.15rem}
+.tl-item[aria-current="true"]{background:var(--ink);color:var(--bg)}
+.tl-item[aria-current="true"] .d{color:var(--bg);opacity:.75}
+.detail-head{border-bottom:2px solid var(--ink);padding-bottom:var(--gap-m);margin-bottom:var(--gap-m)}
+.detail-head h2{font-size:clamp(1.9rem,4vw,2.8rem);letter-spacing:-.01em;margin:.2rem 0 var(--gap-s)}
+.detail-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-m)}
+@media (min-width:1180px){.detail-grid{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+.reading p{font-size:1.02rem}
+.reading .claim{margin-bottom:var(--gap-s)}
+.pager{display:flex;justify-content:space-between;gap:var(--gap-s);margin-top:var(--gap-m);padding-top:var(--gap-s);border-top:1px solid var(--rule)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid var(--ink);background:var(--surface);font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;color:var(--ink)}
+.btn:hover{background:var(--ink);color:var(--bg)}
+.btn[disabled]{opacity:.35;pointer-events:none}
+
+/* =========================================================
+   FUTURE VIEW
+   ========================================================= */
+.now{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);padding:var(--gap-s) var(--gap-m);margin-top:var(--gap-l)}
+.now ul{margin:0;padding-left:1.1rem}
+.chapters{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:var(--gap-s);margin:var(--gap-s) 0 0}
+.chapter{display:flex;flex-direction:column;text-align:left;background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--ink);padding:var(--gap-s);cursor:pointer}
+.chapter:hover,.chapter[aria-pressed="true"]{border-top-color:var(--accent);background:var(--accent-soft)}
+.chapter .k{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.55rem}
+.chapter h3{margin:0 0 .45rem;font-size:1.2rem}
+.chapter p{font-size:.92rem;margin:0 0 .8rem;color:var(--ink-2)}
+.chapter .go{margin-top:auto;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink)}
+.explorer{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-m);margin-top:var(--gap-s)}
+@media (min-width:1080px){.explorer{grid-template-columns:minmax(0,520px) minmax(0,1fr);align-items:start}}
+.date-ctl{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:.6rem;margin-bottom:var(--gap-s)}
+.date-ctl output{grid-column:1/4;font:600 1.6rem/1.1 var(--serif)}
+.date-ctl input[type=range]{width:100%;accent-color:var(--accent)}
+.chapter-box{background:var(--surface);border:1px solid var(--rule);border-top:3px solid var(--accent);padding:var(--gap-s) var(--gap-m);margin-bottom:var(--gap-m)}
+.chapter-box[hidden]{display:none}
+.chapter-box .k{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.chapter-box h3{margin:0 0 .6rem}
+.chapter-box p{font-size:.98rem}
+.chapter-box .close{float:right;background:none;border:0;cursor:pointer;color:var(--ink-2);font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase}
+
+.filters{display:flex;flex-wrap:wrap;gap:.4rem;margin:var(--gap-s) 0}
+.filter{padding:.4rem .7rem;border:1px solid var(--rule);border-radius:999px;background:var(--bg);font:500 .75rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;cursor:pointer;color:var(--ink-2)}
+.filter[aria-pressed="true"]{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.gantt-wrap{overflow-x:auto;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin-bottom:var(--gap-m)}
+.gantt{min-width:780px}
+.g-row{display:grid;grid-template-columns:190px 1fr;align-items:center;border-bottom:1px solid var(--rule-2);min-height:28px}
+.g-row.head{position:sticky;top:0;background:var(--bg);border-bottom:1px solid var(--rule);min-height:32px}
+.g-row.group{background:var(--rule-2);font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);min-height:30px}
+.g-row.group > div{padding-left:.4rem}
+.g-label{font-size:.82rem;padding-right:.6rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.g-track{position:relative;height:100%;min-height:28px}
+.g-axis{position:relative;height:32px}
+.g-axis span{position:absolute;top:9px;transform:translateX(-50%);font:500 .68rem/1 var(--mono);color:var(--ink-2)}
+.g-axis i,.g-track i.yr{position:absolute;top:0;bottom:0;border-left:1px solid var(--rule-2)}
+.seg{position:absolute;top:8px;height:12px;min-width:5px;background:var(--ink);border:0;padding:0;cursor:pointer;border-radius:2px}
+.seg.hard{background:var(--hard)}
+.seg.soft{background:var(--soft)}
+.seg.conj{background:var(--ink)}
+.seg:hover,.seg.on{outline:2px solid var(--accent);outline-offset:1px}
+.dot{position:absolute;top:7px;width:14px;height:14px;margin-left:-7px;border-radius:50%;border:2px solid var(--ink);background:var(--bg);cursor:pointer;padding:0}
+.dot.solar{background:var(--ink)}
+.g-track .nowline{position:absolute;top:0;bottom:0;border-left:2px solid var(--accent);z-index:1;pointer-events:none}
+.g-track .cursor{position:absolute;top:0;bottom:0;border-left:1px dashed var(--ink);z-index:1;pointer-events:none}
+.g-legend{display:flex;flex-wrap:wrap;gap:.4rem 1rem;font-size:.8rem;color:var(--ink-2);margin-top:var(--gap-xs)}
+.g-legend b{display:inline-block;width:18px;height:10px;border-radius:2px;vertical-align:middle;margin-right:.35rem}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+footer.site{margin-top:var(--gap-xl);border-top:2px solid var(--ink);background:var(--surface)}
+footer.site .wrap{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-m);padding-top:var(--gap-l);padding-bottom:var(--gap-l)}
+@media (min-width:820px){footer.site .wrap{grid-template-columns:1.4fr 1fr 1.4fr}}
+footer.site h4{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin:0 0 .8rem}
+footer.site p,footer.site li{font-size:.9rem;color:var(--ink-2)}
+footer.site ul{list-style:none;margin:0;padding:0}
+footer.site li{margin-bottom:.35rem}
+footer.site .fbrand{font:700 1.4rem/1.1 var(--serif);color:var(--ink);margin-bottom:.5rem}
+footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:var(--gap-s);font:400 .78rem/1.5 var(--mono);color:var(--ink-2)}
 </style>
 </head>
 <body>
 
-<header>
+<!-- =========================================================
+     NAV
+     ========================================================= -->
+<nav class="nav" aria-label="Pages">
+  <div class="wrap">
+    <a class="brand" href="#/chart">South Africa, 1652<span>Mundane chart</span></a>
+    <ul>
+      <li><a class="link" href="#/chart" data-route="chart">Chart</a></li>
+      <li><a class="link" href="#/timeline" data-route="timeline">Timeline</a></li>
+      <li><a class="link" href="#/future" data-route="future">Future</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- =========================================================
+     VIEW: CHART
+     ========================================================= -->
+<div class="view" data-view="chart">
+<header class="hero">
   <div class="wrap">
     <div class="eyebrow">Mundane astrology · Event chart</div>
     <h1>South Africa, 1652</h1>
@@ -174,31 +301,26 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
 </header>
 
 <main class="wrap">
-
-  <!-- 01 WHEEL -->
-  <section id="wheel-sec">
+  <section class="sec">
     <div class="sec-label">01 · The chart</div>
     <div class="sec-body">
       <h2>The wheel and the placements</h2>
       <p class="claim">Cancer rises with Saturn in the 1st house, the Sun stands on an Aries Midheaven, and four bodies gather in the 9th house of voyages and trade.</p>
-      <div class="wheel-grid">
-        <div class="wheel-box">
-          <svg id="wheel" viewBox="0 0 600 600" role="img" aria-label="Chart wheel for 7 April 1652, 12:12 LMT, Table Bay"></svg>
-          <div class="legend"><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span><span class="l-minor">Quincunx</span></div>
-          <p class="wheel-note">Hover or tap a planet, or a row in the table, to isolate its aspects.</p>
-        </div>
-        <div class="tbl-wrap" style="margin-top:0">
-          <table>
-            <thead><tr><th>Body</th><th>Position</th><th>House</th><th>Condition</th></tr></thead>
-            <tbody id="pos-body"></tbody>
-          </table>
-        </div>
+      <div class="wheel-box">
+        <svg id="wheel-natal" class="wheel" viewBox="0 0 600 600" role="img" aria-label="Chart wheel for 7 April 1652, 12:12 LMT, Table Bay"></svg>
+        <div class="legend"><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span><span class="l-minor">Quincunx</span></div>
+        <p class="wheel-note">Hover or tap a planet, or a row in the table, to isolate its aspects.</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Body</th><th>Position</th><th>House</th><th>Condition</th></tr></thead>
+          <tbody id="pos-body"></tbody>
+        </table>
       </div>
     </div>
   </section>
 
-  <!-- 02 SHAPE -->
-  <section>
+  <section class="sec">
     <div class="sec-label">02 · Shape</div>
     <div class="sec-body">
       <h2>A chart turned outward</h2>
@@ -206,62 +328,30 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
       <p>In mundane work the upper half of the chart describes what is public, visible and directed outward, and the lower half describes the ground, the home and what is held. Here almost everything faces outward. The settlement was an outpost serving a company and a trade route whose centre lay elsewhere, and the chart puts nearly all its energy into that outward reach. The one planet left holding the ground is Saturn, the planet of walls, limits and hardship, and it sits in the house of the people themselves.</p>
       <p>The 9th house carries the heaviest concentration: Mercury, the Moon, the North Node and the Sun. The 9th is the house of long voyages, shipping, foreign trade, law and religion. The station existed to provision ships on the route between the Netherlands and the East Indies, and the chart places its centre of gravity in exactly that house.</p>
       <div class="balance">
-        <div>
-          <h3>Elements</h3>
-          <div id="elements"></div>
-        </div>
-        <div>
-          <h3>Modalities</h3>
-          <div id="modes"></div>
-        </div>
+        <div><h3>Elements</h3><div id="elements"></div></div>
+        <div><h3>Modalities</h3><div id="modes"></div></div>
       </div>
       <p>Fire and cardinality dominate: initiative, conquest of new ground, beginnings. Air is almost absent, carried by Pluto alone. Air is the element of exchange, negotiation and shared ideas, and Mercury, the planet that governs exchange, is in its detriment and fall. The founding impulse is strong on action and thin on dialogue.</p>
     </div>
   </section>
 
-  <!-- 03 ANGLES -->
-  <section>
+  <section class="sec">
     <div class="sec-label">03 · Angles</div>
     <div class="sec-body">
       <h2>The four angles</h2>
       <p class="claim">The Ascendant describes the people and the body of the nation; the Midheaven describes government and authority.</p>
       <div class="cards">
-        <div class="card">
-          <div class="k">Ascendant · 2°08′ Cancer</div>
-          <h3>A provisioning station</h3>
-          <p>Cancer is the sign of nourishment, shelter and the home port. The Company's instruction was to grow food and supply passing fleets, and its ruler, the Moon, sits in the 9th house of voyages: the people's purpose is to feed the ships.</p>
-        </div>
-        <div class="card">
-          <div class="k">1st house · Saturn 21°55′ Cancer</div>
-          <h3>Walls first</h3>
-          <p>Saturn in its detriment in the 1st marks the national body with restriction, defence and hardship. Work on the Fort of Good Hope began within the first week. Saturn had stationed direct on 23 March and was still barely moving, which concentrates its weight.</p>
-        </div>
-        <div class="card">
-          <div class="k">Midheaven · 20°54′ Aries</div>
-          <h3>Authority as conquest</h3>
-          <p>An Aries MC with the exalted Sun 2°42′ from it gives authority a solar, commanding, appointed character. Saturn squares the MC within 1°01′: the people and the governing power are set at right angles from the start.</p>
-        </div>
-        <div class="card">
-          <div class="k">10th house · Mars 4°05′ Taurus</div>
-          <h3>Force applied to land and cattle</h3>
-          <p>Mars rules the MC and sits in the 10th in Taurus, its detriment. Taurus is land, livestock and fixed property. Government in this chart acts through force over land and cattle.</p>
-        </div>
-        <div class="card">
-          <div class="k">Descendant · 2°08′ Capricorn</div>
-          <h3>The other, on the threshold</h3>
-          <p>Uranus at 26°29′ Sagittarius stands 5°39′ before the Descendant, opposing the Ascendant. The 7th house is open encounter, treaty and war; disruption arrives through the encounter with others.</p>
-        </div>
-        <div class="card">
-          <div class="k">IC · 20°54′ Libra</div>
-          <h3>The land, ruled from above</h3>
-          <p>The 4th house of land and territory is empty. Its ruler Venus sits in the 11th, the house of councils, and is the final dispositor of the whole chart (section 04).</p>
-        </div>
+        <div class="card"><div class="k">Ascendant · 2°08′ Cancer</div><h3>A provisioning station</h3><p>Cancer is the sign of nourishment, shelter and the home port. The Company's instruction was to grow food and supply passing fleets, and its ruler, the Moon, sits in the 9th house of voyages: the people's purpose is to feed the ships.</p></div>
+        <div class="card"><div class="k">1st house · Saturn 21°55′ Cancer</div><h3>Walls first</h3><p>Saturn in its detriment in the 1st marks the national body with restriction, defence and hardship. Work on the Fort of Good Hope began within the first week. Saturn had stationed direct on 23 March and was still barely moving, which concentrates its weight.</p></div>
+        <div class="card"><div class="k">Midheaven · 20°54′ Aries</div><h3>Authority as conquest</h3><p>An Aries MC with the exalted Sun 2°42′ from it gives authority a solar, commanding, appointed character. Saturn squares the MC within 1°01′: the people and the governing power are set at right angles from the start.</p></div>
+        <div class="card"><div class="k">10th house · Mars 4°05′ Taurus</div><h3>Force applied to land and cattle</h3><p>Mars rules the MC and sits in the 10th in Taurus, its detriment. Taurus is land, livestock and fixed property. Government in this chart acts through force over land and cattle.</p></div>
+        <div class="card"><div class="k">Descendant · 2°08′ Capricorn</div><h3>The other, on the threshold</h3><p>Uranus at 26°29′ Sagittarius stands 5°39′ before the Descendant, opposing the Ascendant. The 7th house is open encounter, treaty and war; disruption arrives through the encounter with others.</p></div>
+        <div class="card"><div class="k">IC · 20°54′ Libra</div><h3>The land, ruled from above</h3><p>The 4th house of land and territory is empty. Its ruler Venus sits in the 11th, the house of councils, and is the final dispositor of the whole chart (section 04).</p></div>
       </div>
     </div>
   </section>
 
-  <!-- 04 RULERS -->
-  <section>
+  <section class="sec">
     <div class="sec-label">04 · Rulership</div>
     <div class="sec-body">
       <h2>Every chain ends at the land</h2>
@@ -279,8 +369,7 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
     </div>
   </section>
 
-  <!-- 05 CONDITION -->
-  <section>
+  <section class="sec">
     <div class="sec-label">05 · Condition</div>
     <div class="sec-body">
       <h2>Two strong planets, four weakened</h2>
@@ -296,8 +385,7 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
     </div>
   </section>
 
-  <!-- 06 ASPECTS -->
-  <section>
+  <section class="sec">
     <div class="sec-label">06 · Aspects</div>
     <div class="sec-body">
       <h2>The tightest contacts</h2>
@@ -311,12 +399,11 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
           <tbody id="asp-body"></tbody>
         </table>
       </div>
-      <p style="font-size:.88rem;color:var(--ink-2)">Orbs: 8° for conjunction, square, trine and opposition; 5° for sextile; 2°30′ for quincunx.</p>
+      <p class="small muted">Orbs: 8° for conjunction, square, trine and opposition; 5° for sextile; 2°30′ for quincunx.</p>
     </div>
   </section>
 
-  <!-- 07 MOON -->
-  <section>
+  <section class="sec">
     <div class="sec-label">07 · The Moon</div>
     <div class="sec-body">
       <h2>A balsamic Moon, hours from an eclipse</h2>
@@ -330,8 +417,7 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
     </div>
   </section>
 
-  <!-- 08 HOUSES -->
-  <section>
+  <section class="sec">
     <div class="sec-label">08 · Houses</div>
     <div class="sec-body">
       <h2>House by house</h2>
@@ -342,27 +428,12 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
           <tbody id="houses-body"></tbody>
         </table>
       </div>
+      <p>The chart's story continues on the <a href="#/timeline">Timeline</a>, where each turning point in the country's history is read against these houses, and on the <a href="#/future">Future</a> page, which follows the slow planets across the chart to 2040.</p>
     </div>
   </section>
 
-  <!-- 09 HISTORY -->
-  <section>
-    <div class="sec-label">09 · History</div>
-    <div class="sec-body">
-      <h2>The first decade against the chart</h2>
-      <p class="claim">The settlement's first eight years line up with the chart's strongest signatures.</p>
-      <ol class="timeline">
-        <li><div class="yr">1652</div><div class="ev">A refreshment station to supply VOC ships; the Fort of Good Hope begun within a week.</div><div class="ch">Cancer rising; Moon (chart ruler) in the 9th of shipping; 9th house stellium; Saturn in the 1st.</div></li>
-        <li><div class="yr">1657</div><div class="ev">The Company releases its first free burghers and grants them farms along the Liesbeek River.</div><div class="ch">Venus, ruler of the 4th (land) and final dispositor, in the 11th (council).</div></li>
-        <li><div class="yr">1658</div><div class="ev">The first large shipments of enslaved people arrive: the <i>Amersfoort</i> with captives taken from a Portuguese slaver bound from Angola, then the <i>Hasselt</i> from West Africa.</div><div class="ch">Uranus and Neptune in the 6th (servants, labour); 6th ruler Jupiter in fall in the 7th (foreign); Saturn quincunx Neptune.</div></li>
-        <li><div class="yr">1659–60</div><div class="ev">The first Khoikhoi–Dutch War, fought over grazing land and cattle.</div><div class="ch">Mars in Taurus in the 10th; 7th ruler (open enemies) Saturn in the 1st; Mars quincunx Chiron.</div></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 10 SOURCES -->
-  <section>
-    <div class="sec-label">10 · Sources</div>
+  <section class="sec">
+    <div class="sec-label">09 · Sources</div>
     <div class="sec-body">
       <h2>What is computed, borrowed and divined</h2>
       <p class="claim">The positions are calculated, the interpretive frameworks are inherited from named traditions, and the time is Dlozi's own.</p>
@@ -373,7 +444,7 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
             <li>Date from the historical record: the ships anchored on 6 April 1652 and Van Riebeeck's command began on 7 April.</li>
             <li>Time of 12:12 LMT divined by Dlozi Mthethwa.</li>
             <li>Positions from the Swiss Ephemeris (Astrodienst AG), matched against the Astro.com chart and the Astrodienst ephemeris for 1652.</li>
-            <li>Eclipse and New Moon timings computed with the Swiss Ephemeris.</li>
+            <li>Eclipse, New Moon and transit timings computed with the Swiss Ephemeris.</li>
           </ul>
         </div>
         <div>
@@ -399,30 +470,159 @@ footer{margin-top:var(--gap-xl);padding:var(--gap-m) 0 var(--gap-l);border-top:2
       </div>
     </div>
   </section>
-
 </main>
+</div>
 
-<footer><div class="wrap">Prepared for Dlozi Mthethwa · 12 October 2026</div></footer>
+<!-- =========================================================
+     VIEW: TIMELINE
+     ========================================================= -->
+<div class="view" data-view="timeline" hidden>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Timeline · 1657 to 2024</div>
+    <h1>History against the chart</h1>
+    <p class="lede">Twenty-six turning points in the country's history, each read through the slow planets that were touching the 1652 chart on the day.</p>
+  </div>
+</header>
+<main class="wrap">
+  <div class="tl-layout">
+    <aside class="tl-nav" aria-label="Events" id="tl-nav"></aside>
+    <article id="tl-detail" aria-live="polite"></article>
+  </div>
+  <section class="sec">
+    <div class="sec-label">Method</div>
+    <div class="sec-body">
+      <h2>How each event is read</h2>
+      <p class="claim">The inner wheel is the 1652 chart; the outer ring is the sky on the day of the event.</p>
+      <p>Positions are cast for 12:00 SAST (10:00 UT) on each date. The Moon is left out of the outer ring because the hour of most events is not recorded and the Moon moves about 13° a day. The contacts table lists the slow planets, Jupiter to Pluto, in major aspect to the 1652 chart: within 2° for Jupiter and within 3° for Saturn, Uranus, Neptune and Pluto, with sextiles held to two thirds of that. The readings use the same mundane house meanings as the Chart page.</p>
+      <p class="small muted">Event dates and details: SA History Online and Wikipedia, cross-checked. Where the record gives a month but no day, the day used is the one the record names for the event's first formal act.</p>
+    </div>
+  </section>
+</main>
+</div>
 
-<!-- ========== DATA ========== -->
+<!-- =========================================================
+     VIEW: FUTURE
+     ========================================================= -->
+<div class="view" data-view="future" hidden>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Future · 2026 to 2040</div>
+    <h1>The road ahead</h1>
+    <p class="lede">The slow planets' path across the 1652 chart for the next fifteen years, and what each crossing means for South Africa.</p>
+    <div class="now" id="now-box"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="sec">
+    <div class="sec-label">01 · Chapters</div>
+    <div class="sec-body">
+      <h2>Seven movements</h2>
+      <p class="claim">Neptune's walk through the 9th house frames the whole period; the other planets write the chapters inside it.</p>
+      <div class="chapters" id="chapters"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="explorer-sec">
+    <div class="sec-label">02 · Explorer</div>
+    <div class="sec-body">
+      <h2>Move through the years</h2>
+      <p class="claim">Pick a month to see the sky against the 1652 chart, and every contact the slow planets make.</p>
+      <div class="explorer">
+        <div>
+          <div class="date-ctl">
+            <output id="month-label" for="month-range"></output>
+            <button class="btn" id="month-prev" aria-label="Previous month">◀</button>
+            <input type="range" id="month-range" min="0" max="179" step="1" aria-label="Month">
+            <button class="btn" id="month-next" aria-label="Next month">▶</button>
+          </div>
+          <div class="wheel-box">
+            <svg id="wheel-future" class="wheel" viewBox="0 0 600 600" role="img" aria-label="1652 chart with the sky for the chosen month"></svg>
+            <div class="legend"><span class="l-natal">1652 chart</span><span class="l-transit">Sky that month</span><span class="l-conj">Conjunction</span><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="chapter-box" id="chapter-box" hidden></div>
+          <h3 style="margin-top:0">Contacts this month</h3>
+          <div class="tbl-wrap" style="margin-top:.5rem">
+            <table>
+              <thead><tr><th>Transit</th><th>Aspect</th><th>1652 point</th><th>Orb</th></tr></thead>
+              <tbody id="month-contacts"></tbody>
+            </table>
+          </div>
+          <p class="small muted">Positions on the 1st of each month at 12:00 SAST. Orbs as on the Timeline.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">03 · Calendar</div>
+    <div class="sec-body">
+      <h2>Every crossing, 2026 to 2040</h2>
+      <p class="claim">Each bar is a window within 1° of exact; click any bar or eclipse to move the explorer there.</p>
+      <div class="filters" id="filters" role="group" aria-label="Filter by planet"></div>
+      <div class="gantt-wrap"><div class="gantt" id="gantt"></div></div>
+      <div class="g-legend"><span><b style="background:var(--ink)"></b>Conjunction</span><span><b style="background:var(--hard)"></b>Square, opposition</span><span><b style="background:var(--soft)"></b>Trine, sextile</span><span><b style="background:var(--accent);width:2px"></b>Today</span></div>
+      <h3>Eclipses on the 1652 chart</h3>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>Date</th><th>Eclipse</th><th>Degree</th><th>Falls on</th></tr></thead>
+          <tbody id="eclipse-body"></tbody>
+        </table>
+      </div>
+      <p class="small muted">Eclipses within 3° of a 1652 point by conjunction or opposition. For lunar eclipses the degree given is the Moon's.</p>
+    </div>
+  </section>
+</main>
+</div>
+
+<!-- =========================================================
+     FOOTER
+     ========================================================= -->
+<footer class="site">
+  <div class="wrap">
+    <div>
+      <div class="fbrand">South Africa, 1652</div>
+      <p>The mundane chart of what-will-be South Africa, cast for the founding of the Dutch East India Company station at Table Bay.</p>
+    </div>
+    <div>
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="#/chart">Chart: the 1652 wheel in depth</a></li>
+        <li><a href="#/timeline">Timeline: history against the chart</a></li>
+        <li><a href="#/future">Future: the road to 2040</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Data</h4>
+      <p>7 April 1652, 12:12 LMT, Table Bay (33°55′S, 18°22′E). Time divined by Dlozi Mthethwa. Positions from the Swiss Ephemeris (Astrodienst AG). Tropical zodiac, Placidus houses, True Node.</p>
+    </div>
+    <div class="base">Version 2.0 · 12 October 2026</div>
+  </div>
+</footer>
+
+<!-- =========================================================
+     DATA: 1652 CHART
+     ========================================================= -->
 <script>
 const CHART = {
   asc: 92.1356,
   mc: 20.9,
   cusps: [92.1356, 128.35, 167.117, 200.9, 227.783, 250.383, 272.1356, 308.35, 347.117, 20.9, 47.783, 70.383],
   bodies: [
-    { id:"Sun",     glyph:"☉", lon:18.208,  house:9,  motion:"Direct",            state:"Exaltation · day triplicity", tone:"strong" },
-    { id:"Moon",    glyph:"☽", lon:4.698,   house:9,  motion:"Direct · fast",     state:"Peregrine · under the beams", tone:"" },
-    { id:"Mercury", glyph:"☿", lon:359.817, house:9,  motion:"Direct",            state:"Detriment and fall", tone:"weak" },
-    { id:"Venus",   glyph:"♀", lon:49.067,  house:11, motion:"Direct",            state:"Domicile", tone:"strong" },
-    { id:"Mars",    glyph:"♂", lon:34.083,  house:10, motion:"Direct",            state:"Detriment", tone:"weak" },
+    { id:"Sun",     glyph:"☉", lon:18.208,  house:9,  motion:"Direct",             state:"Exaltation · day triplicity", tone:"strong" },
+    { id:"Moon",    glyph:"☽", lon:4.698,   house:9,  motion:"Direct · fast",      state:"Peregrine · under the beams", tone:"" },
+    { id:"Mercury", glyph:"☿", lon:359.817, house:9,  motion:"Direct",             state:"Detriment and fall", tone:"weak" },
+    { id:"Venus",   glyph:"♀", lon:49.067,  house:11, motion:"Direct",             state:"Domicile", tone:"strong" },
+    { id:"Mars",    glyph:"♂", lon:34.083,  house:10, motion:"Direct",             state:"Detriment", tone:"weak" },
     { id:"Jupiter", glyph:"♃", lon:282.033, house:7,  motion:"Slowing to station", state:"Fall", tone:"weak" },
     { id:"Saturn",  glyph:"♄", lon:111.917, house:1,  motion:"Slow · just direct", state:"Detriment", tone:"weak" },
-    { id:"Uranus",  glyph:"♅", lon:266.483, house:6,  motion:"Retrograde",        state:"Modern body", tone:"" },
-    { id:"Neptune", glyph:"♆", lon:261.45,  house:6,  motion:"Retrograde",        state:"Modern body", tone:"" },
-    { id:"Pluto",   glyph:"♇", lon:71.4,    house:12, motion:"Direct",            state:"Modern body", tone:"" },
-    { id:"Node",    glyph:"☊", lon:10.733,  house:9,  motion:"Direct (true)",     state:"North Node", tone:"" },
-    { id:"Chiron",  glyph:"⚷", lon:183.25,  house:3,  motion:"Retrograde",        state:"Modern body", tone:"" }
+    { id:"Uranus",  glyph:"♅", lon:266.483, house:6,  motion:"Retrograde",         state:"Modern body", tone:"" },
+    { id:"Neptune", glyph:"♆", lon:261.45,  house:6,  motion:"Retrograde",         state:"Modern body", tone:"" },
+    { id:"Pluto",   glyph:"♇", lon:71.4,    house:12, motion:"Direct",             state:"Modern body", tone:"" },
+    { id:"Node",    glyph:"☊", lon:10.733,  house:9,  motion:"Direct (true)",      state:"North Node", tone:"" },
+    { id:"Chiron",  glyph:"⚷", lon:183.25,  house:3,  motion:"Retrograde",         state:"Modern body", tone:"" }
   ],
   aspects: [
     ["Saturn","Neptune","quincunx",0.47,"sep"], ["Neptune","MC","trine",0.55,"sep"], ["Jupiter","Pluto","quincunx",0.62,"sep"],
@@ -438,26 +638,28 @@ const CHART = {
     ["Mars","Uranus","trine",7.6,"sep"], ["Mercury","Saturn","trine",7.91,"sep"], ["Mars","Jupiter","trine",7.95,"app"]
   ],
   houses: [
-    [1,"Cancer","The people, national character, the nation as a whole","Moon (9th)","Saturn"],
-    [2,"Leo","National wealth, resources, the economy","Sun (9th)","None"],
-    [3,"Virgo","Communication, transport, neighbours, local movement","Mercury (9th)","Chiron"],
-    [4,"Libra","The land, territory, agriculture, the soil","Venus (11th)","None"],
-    [5,"Scorpio","Children, pleasure, culture, speculation","Mars (10th)","None"],
-    [6,"Sagittarius","Workers, servants, labour, public health","Jupiter (7th)","Uranus, Neptune"],
-    [7,"Capricorn","Foreign relations, treaties, open enemies, war","Saturn (1st)","Jupiter"],
-    [8,"Aquarius","Death, debt, the resources of others","Saturn (1st)","None"],
-    [9,"Pisces","Voyages, shipping, foreign trade, law, religion","Jupiter (7th)","Mercury, Moon, Node, Sun"],
-    [10,"Aries","Government, authority, the head of state","Mars (10th)","Mars"],
-    [11,"Taurus","Councils, the legislature, allies","Venus (11th)","Venus"],
-    [12,"Gemini","Hidden enemies, prisons, institutions, the hidden","Mercury (9th)","Pluto"]
+    [1,"The people, national character, the nation as a whole","Moon (9th)","Saturn"],
+    [2,"National wealth, resources, the economy","Sun (9th)","None"],
+    [3,"Communication, transport, neighbours, local movement","Mercury (9th)","Chiron"],
+    [4,"The land, territory, agriculture, the soil","Venus (11th)","None"],
+    [5,"Children, the young, pleasure, culture, speculation","Mars (10th)","None"],
+    [6,"Workers, servants, labour, public health","Jupiter (7th)","Uranus, Neptune"],
+    [7,"Foreign relations, treaties, open enemies, war","Saturn (1st)","Jupiter"],
+    [8,"Death, debt, the resources of others","Saturn (1st)","None"],
+    [9,"Voyages, shipping, foreign trade, law, religion","Jupiter (7th)","Mercury, Moon, Node, Sun"],
+    [10,"Government, authority, the head of state","Mars (10th)","Mars"],
+    [11,"Councils, the legislature, allies","Venus (11th)","Venus"],
+    [12,"Hidden enemies, prisons, institutions, the hidden","Mercury (9th)","Pluto"]
   ],
   rulers: [
     ["1st","The people","Moon","9th · voyages, shipping"],
     ["2nd","National wealth","Sun","9th · foreign trade"],
     ["4th","The land","Venus","11th · councils (own sign)"],
+    ["5th","Children, the young","Mars","10th · government (detriment)"],
     ["6th","Labour, servants","Jupiter","7th · foreigners (fall)"],
     ["7th","Foreigners, open enemies","Saturn","1st · the people (detriment)"],
-    ["10th","Government","Mars","10th · its own house (detriment)"]
+    ["10th","Government","Mars","10th · its own house (detriment)"],
+    ["12th","Prisons, the hidden","Mercury","9th · law (detriment and fall)"]
   ],
   condition: [
     ["Sun","Exaltation, day triplicity","On the MC (9th by Placidus)","Light of the sect","strong"],
@@ -479,23 +681,256 @@ const CHART = {
 };
 </script>
 
-<!-- ========== UTILITIES ========== -->
+<!-- =========================================================
+     DATA: COMPUTED SKY (generated from the Swiss Ephemeris)
+     ========================================================= -->
+<script>
+const SKY = {"events":{"1657-02-21":{"transits":{"Sun":333.31,"Mercury":349.6,"Venus":10.94,"Mars":272.25,"Jupiter":58.19,"Saturn":184.25,"Uranus":286.25,"Neptune":271.99,"Pluto":76.11,"Node":277.36,"Chiron":261.61},"contacts":[{"t":"Neptune","n":"ASC","type":"opposition","orb":0.14},{"t":"Saturn","n":"Moon","type":"opposition","orb":0.45},{"t":"Saturn","n":"Chiron","type":"conjunction","orb":1.0},{"t":"Neptune","n":"Chiron","type":"square","orb":1.26},{"t":"Uranus","n":"Sun","type":"square","orb":1.96},{"t":"Neptune","n":"Mars","type":"trine","orb":2.09},{"t":"Saturn","n":"ASC","type":"square","orb":2.11},{"t":"Neptune","n":"Mercury","type":"square","orb":2.18},{"t":"Neptune","n":"Moon","type":"square","orb":2.7},{"t":"Uranus","n":"Venus","type":"trine","orb":2.81}]},"1658-03-28":{"transits":{"Sun":7.9,"Mercury":340.26,"Venus":359.96,"Mars":71.79,"Jupiter":92.4,"Saturn":195.14,"Uranus":291.46,"Neptune":274.62,"Pluto":77.25,"Node":254.05,"Chiron":272.99},"contacts":[{"t":"Neptune","n":"Moon","type":"square","orb":0.08},{"t":"Jupiter","n":"ASC","type":"conjunction","orb":0.26},{"t":"Uranus","n":"Saturn","type":"opposition","orb":0.46},{"t":"Neptune","n":"Mars","type":"trine","orb":0.54},{"t":"Uranus","n":"MC","type":"square","orb":0.56},{"t":"Jupiter","n":"Chiron","type":"square","orb":0.85},{"t":"Pluto","n":"Sun","type":"sextile","orb":0.95},{"t":"Neptune","n":"Chiron","type":"square","orb":1.37},{"t":"Uranus","n":"Venus","type":"trine","orb":2.39},{"t":"Neptune","n":"ASC","type":"opposition","orb":2.48}]},"1659-05-19":{"transits":{"Sun":58.2,"Mercury":80.76,"Venus":13.96,"Mars":354.4,"Jupiter":126.79,"Saturn":204.52,"Uranus":295.77,"Neptune":276.4,"Pluto":79.14,"Node":233.25,"Chiron":281.64},"contacts":[{"t":"Pluto","n":"Sun","type":"sextile","orb":0.93},{"t":"Neptune","n":"Moon","type":"square","orb":1.7},{"t":"Pluto","n":"MC","type":"sextile","orb":1.76},{"t":"Saturn","n":"Uranus","type":"sextile","orb":1.96},{"t":"Neptune","n":"Mars","type":"trine","orb":2.31},{"t":"Pluto","n":"Neptune","type":"opposition","orb":2.31},{"t":"Saturn","n":"Saturn","type":"square","orb":2.6}]},"1795-09-16":{"transits":{"Sun":173.46,"Mercury":180.24,"Venus":165.67,"Mars":149.18,"Jupiter":297.62,"Saturn":73.64,"Uranus":154.87,"Neptune":214.6,"Pluto":326.03,"Node":117.59,"Chiron":157.26},"contacts":[{"t":"Pluto","n":"Uranus","type":"sextile","orb":0.46},{"t":"Neptune","n":"Mars","type":"opposition","orb":0.52},{"t":"Uranus","n":"Mars","type":"trine","orb":0.79},{"t":"Saturn","n":"Pluto","type":"conjunction","orb":2.24},{"t":"Neptune","n":"ASC","type":"trine","orb":2.47}]},"1806-01-08":{"transits":{"Sun":287.53,"Mercury":280.28,"Venus":334.6,"Mars":294.54,"Jupiter":263.96,"Saturn":207.7,"Uranus":205.45,"Neptune":239.54,"Pluto":339.17,"Node":277.35,"Chiron":290.71},"contacts":[{"t":"Neptune","n":"Mercury","type":"trine","orb":0.27},{"t":"Uranus","n":"Uranus","type":"sextile","orb":1.04},{"t":"Saturn","n":"Uranus","type":"sextile","orb":1.22},{"t":"Pluto","n":"Pluto","type":"square","orb":2.23}]},"1834-12-01":{"transits":{"Sun":248.79,"Mercury":233.34,"Venus":277.08,"Mars":111.13,"Jupiter":66.33,"Saturn":199.99,"Uranus":323.0,"Neptune":299.53,"Pluto":11.9,"Node":77.47,"Chiron":59.08},"contacts":[{"t":"Pluto","n":"Jupiter","type":"square","orb":0.13},{"t":"Neptune","n":"Mercury","type":"sextile","orb":0.29},{"t":"Pluto","n":"Pluto","type":"sextile","orb":0.5},{"t":"Saturn","n":"MC","type":"opposition","orb":0.91},{"t":"Pluto","n":"Node","type":"conjunction","orb":1.17},{"t":"Saturn","n":"Neptune","type":"sextile","orb":1.46},{"t":"Uranus","n":"Neptune","type":"sextile","orb":1.55},{"t":"Saturn","n":"Sun","type":"opposition","orb":1.78},{"t":"Saturn","n":"Saturn","type":"square","orb":1.92}]},"1838-12-16":{"transits":{"Sun":264.08,"Mercury":284.15,"Venus":263.54,"Mars":169.75,"Jupiter":195.28,"Saturn":243.99,"Uranus":338.87,"Neptune":308.52,"Pluto":15.94,"Node":0.24,"Chiron":87.83},"contacts":[{"t":"Saturn","n":"Moon","type":"trine","orb":0.71},{"t":"Saturn","n":"Chiron","type":"sextile","orb":0.74},{"t":"Pluto","n":"Sun","type":"conjunction","orb":2.26},{"t":"Uranus","n":"Pluto","type":"square","orb":2.53},{"t":"Neptune","n":"Pluto","type":"trine","orb":2.88}]},"1879-01-22":{"transits":{"Sun":302.06,"Mercury":278.69,"Venus":313.44,"Mars":260.27,"Jupiter":315.42,"Saturn":358.62,"Uranus":153.41,"Neptune":37.02,"Pluto":54.55,"Node":304.02,"Chiron":33.87},"contacts":[{"t":"Uranus","n":"Mars","type":"trine","orb":0.67},{"t":"Saturn","n":"Mercury","type":"conjunction","orb":1.2},{"t":"Uranus","n":"ASC","type":"sextile","orb":1.28},{"t":"Saturn","n":"Uranus","type":"square","orb":2.13},{"t":"Neptune","n":"Mars","type":"conjunction","orb":2.93}]},"1886-09-20":{"transits":{"Sun":177.34,"Mercury":170.8,"Venus":158.68,"Mars":229.38,"Jupiter":192.18,"Saturn":110.76,"Uranus":187.42,"Neptune":57.73,"Pluto":64.02,"Node":157.06,"Chiron":83.84},"contacts":[{"t":"Saturn","n":"MC","type":"square","orb":0.14},{"t":"Jupiter","n":"Jupiter","type":"square","orb":0.15},{"t":"Pluto","n":"Moon","type":"sextile","orb":0.68},{"t":"Pluto","n":"Chiron","type":"trine","orb":0.77},{"t":"Jupiter","n":"Pluto","type":"trine","orb":0.78},{"t":"Saturn","n":"Saturn","type":"conjunction","orb":1.16},{"t":"Jupiter","n":"Node","type":"opposition","orb":1.45},{"t":"Saturn","n":"Venus","type":"sextile","orb":1.69},{"t":"Saturn","n":"Sun","type":"square","orb":2.55},{"t":"Uranus","n":"Moon","type":"opposition","orb":2.72}]},"1899-10-11":{"transits":{"Sun":197.87,"Mercury":205.13,"Venus":204.49,"Mars":223.84,"Jupiter":223.63,"Saturn":259.07,"Uranus":245.45,"Neptune":86.99,"Pluto":76.6,"Node":262.44,"Chiron":249.87},"contacts":[{"t":"Neptune","n":"Uranus","type":"opposition","orb":0.51},{"t":"Uranus","n":"Moon","type":"trine","orb":0.75},{"t":"Saturn","n":"Sun","type":"trine","orb":0.86},{"t":"Pluto","n":"Sun","type":"sextile","orb":1.61},{"t":"Saturn","n":"MC","type":"trine","orb":1.83},{"t":"Saturn","n":"Neptune","type":"conjunction","orb":2.38},{"t":"Neptune","n":"Mercury","type":"square","orb":2.82}]},"1902-05-31":{"transits":{"Sun":69.0,"Mercury":91.78,"Venus":26.0,"Mars":54.95,"Jupiter":317.2,"Saturn":297.38,"Uranus":259.73,"Neptune":90.34,"Pluto":77.95,"Node":213.82,"Chiron":283.71},"contacts":[{"t":"Pluto","n":"Sun","type":"sextile","orb":0.26},{"t":"Neptune","n":"Mercury","type":"square","orb":0.52},{"t":"Jupiter","n":"Sun","type":"sextile","orb":1.0},{"t":"Uranus","n":"MC","type":"trine","orb":1.17},{"t":"Uranus","n":"Sun","type":"trine","orb":1.52},{"t":"Uranus","n":"Neptune","type":"conjunction","orb":1.72},{"t":"Neptune","n":"ASC","type":"conjunction","orb":1.8},{"t":"Jupiter","n":"Venus","type":"square","orb":1.86},{"t":"Neptune","n":"Chiron","type":"square","orb":2.91}]},"1910-05-31":{"transits":{"Sun":69.06,"Mercury":60.61,"Venus":26.4,"Mars":108.35,"Jupiter":184.62,"Saturn":31.62,"Uranus":294.84,"Neptune":107.59,"Pluto":85.95,"Node":58.18,"Chiron":332.7},"contacts":[{"t":"Jupiter","n":"Moon","type":"opposition","orb":0.08},{"t":"Saturn","n":"ASC","type":"sextile","orb":0.52},{"t":"Pluto","n":"Uranus","type":"opposition","orb":0.53},{"t":"Neptune","n":"Sun","type":"square","orb":0.61},{"t":"Jupiter","n":"Chiron","type":"conjunction","orb":1.37},{"t":"Neptune","n":"Venus","type":"sextile","orb":1.47},{"t":"Saturn","n":"Mars","type":"conjunction","orb":2.46},{"t":"Uranus","n":"Saturn","type":"opposition","orb":2.93}]},"1912-01-08":{"transits":{"Sun":286.78,"Mercury":264.93,"Venus":244.28,"Mars":54.9,"Jupiter":246.0,"Saturn":43.36,"Uranus":298.68,"Neptune":112.56,"Pluto":87.62,"Node":27.14,"Chiron":333.71},"contacts":[{"t":"Neptune","n":"Saturn","type":"conjunction","orb":0.64},{"t":"Uranus","n":"Mercury","type":"sextile","orb":1.14},{"t":"Pluto","n":"Uranus","type":"opposition","orb":1.14},{"t":"Jupiter","n":"Moon","type":"trine","orb":1.3},{"t":"Saturn","n":"Jupiter","type":"trine","orb":1.32},{"t":"Neptune","n":"MC","type":"square","orb":1.66},{"t":"Pluto","n":"Mercury","type":"square","orb":2.2}]},"1913-06-19":{"transits":{"Sun":87.49,"Mercury":106.2,"Venus":42.77,"Mars":31.75,"Jupiter":284.96,"Saturn":70.22,"Uranus":307.0,"Neptune":114.67,"Pluto":89.51,"Node":358.69,"Chiron":345.12},"contacts":[{"t":"Pluto","n":"Mercury","type":"square","orb":0.31},{"t":"Saturn","n":"Node","type":"sextile","orb":0.52},{"t":"Saturn","n":"Pluto","type":"conjunction","orb":1.18},{"t":"Pluto","n":"ASC","type":"conjunction","orb":2.63},{"t":"Neptune","n":"Saturn","type":"conjunction","orb":2.75},{"t":"Uranus","n":"Mars","type":"square","orb":2.91}]},"1948-05-26":{"transits":{"Sun":65.04,"Mercury":87.83,"Venus":100.06,"Mars":153.19,"Jupiter":266.49,"Saturn":137.09,"Uranus":85.01,"Neptune":190.39,"Pluto":132.78,"Node":43.93,"Chiron":230.55},"contacts":[{"t":"Jupiter","n":"Uranus","type":"conjunction","orb":0.0},{"t":"Neptune","n":"Node","type":"opposition","orb":0.34},{"t":"Neptune","n":"Pluto","type":"trine","orb":1.01},{"t":"Saturn","n":"Sun","type":"trine","orb":1.12},{"t":"Pluto","n":"Pluto","type":"sextile","orb":1.38},{"t":"Uranus","n":"Uranus","type":"opposition","orb":1.48},{"t":"Neptune","n":"Jupiter","type":"square","orb":1.65},{"t":"Saturn","n":"Venus","type":"square","orb":1.98},{"t":"Pluto","n":"Node","type":"trine","orb":2.05}]},"1955-06-26":{"transits":{"Sun":94.03,"Mercury":80.25,"Venus":75.87,"Mars":110.38,"Jupiter":122.69,"Saturn":224.92,"Uranus":116.47,"Neptune":205.5,"Pluto":144.89,"Node":266.35,"Chiron":304.37},"contacts":[{"t":"Jupiter","n":"Chiron","type":"sextile","orb":0.56},{"t":"Neptune","n":"Uranus","type":"sextile","orb":0.98},{"t":"Jupiter","n":"Mars","type":"square","orb":1.39},{"t":"Pluto","n":"Uranus","type":"trine","orb":1.59}]},"1960-03-21":{"transits":{"Sun":0.8,"Mercury":342.52,"Venus":336.57,"Mars":320.87,"Jupiter":272.26,"Saturn":287.32,"Uranus":137.43,"Neptune":218.71,"Pluto":154.26,"Node":174.64,"Chiron":329.69},"contacts":[{"t":"Jupiter","n":"ASC","type":"opposition","orb":0.13},{"t":"Pluto","n":"Mars","type":"trine","orb":0.18},{"t":"Uranus","n":"Sun","type":"trine","orb":0.78},{"t":"Saturn","n":"Sun","type":"square","orb":0.89},{"t":"Jupiter","n":"Chiron","type":"square","orb":0.99},{"t":"Uranus","n":"Venus","type":"square","orb":1.64},{"t":"Saturn","n":"Venus","type":"trine","orb":1.75},{"t":"Jupiter","n":"Mars","type":"trine","orb":1.82}]},"1961-05-31":{"transits":{"Sun":69.7,"Mercury":92.95,"Venus":25.72,"Mars":133.63,"Jupiter":307.1,"Saturn":299.48,"Uranus":142.11,"Neptune":219.16,"Pluto":155.59,"Node":150.73,"Chiron":336.65},"contacts":[{"t":"Saturn","n":"Mercury","type":"sextile","orb":0.34},{"t":"Uranus","n":"Neptune","type":"trine","orb":0.66},{"t":"Uranus","n":"MC","type":"trine","orb":1.21},{"t":"Pluto","n":"Mars","type":"trine","orb":1.51}]},"1964-06-12":{"transits":{"Sun":81.45,"Mercury":64.88,"Venus":93.08,"Mars":56.36,"Jupiter":44.21,"Saturn":335.03,"Uranus":156.31,"Neptune":225.56,"Pluto":161.7,"Node":92.06,"Chiron":348.76},"contacts":[{"t":"Pluto","n":"Pluto","type":"square","orb":0.3},{"t":"Pluto","n":"Jupiter","type":"trine","orb":0.34},{"t":"Saturn","n":"Mars","type":"sextile","orb":0.95},{"t":"Uranus","n":"Mars","type":"trine","orb":2.23},{"t":"Saturn","n":"ASC","type":"trine","orb":2.9}]},"1976-06-16":{"transits":{"Sun":85.37,"Mercury":62.41,"Venus":84.89,"Mars":137.75,"Jupiter":49.09,"Saturn":121.21,"Uranus":213.3,"Neptune":252.24,"Pluto":188.93,"Node":221.61,"Chiron":30.87},"contacts":[{"t":"Jupiter","n":"Venus","type":"conjunction","orb":0.03},{"t":"Uranus","n":"Mars","type":"opposition","orb":0.79},{"t":"Neptune","n":"Pluto","type":"opposition","orb":0.84},{"t":"Uranus","n":"ASC","type":"trine","orb":1.16},{"t":"Saturn","n":"Mercury","type":"trine","orb":1.4},{"t":"Neptune","n":"Node","type":"trine","orb":1.51},{"t":"Pluto","n":"Node","type":"opposition","orb":1.81},{"t":"Pluto","n":"Pluto","type":"trine","orb":2.47},{"t":"Saturn","n":"Mars","type":"square","orb":2.87}]},"1990-02-11":{"transits":{"Sun":322.42,"Mercury":299.15,"Venus":291.1,"Mars":279.28,"Jupiter":91.11,"Saturn":290.37,"Uranus":278.04,"Neptune":283.5,"Pluto":227.77,"Node":316.49,"Chiron":101.31},"contacts":[{"t":"Saturn","n":"MC","type":"square","orb":0.53},{"t":"Jupiter","n":"ASC","type":"conjunction","orb":1.03},{"t":"Jupiter","n":"Mercury","type":"square","orb":1.29},{"t":"Saturn","n":"Venus","type":"trine","orb":1.3},{"t":"Pluto","n":"Venus","type":"opposition","orb":1.3},{"t":"Neptune","n":"Jupiter","type":"conjunction","orb":1.47},{"t":"Saturn","n":"Saturn","type":"opposition","orb":1.55},{"t":"Saturn","n":"Sun","type":"square","orb":2.16},{"t":"Uranus","n":"Node","type":"square","orb":2.69},{"t":"Neptune","n":"Node","type":"square","orb":2.77}]},"1994-04-27":{"transits":{"Sun":36.92,"Mercury":33.44,"Venus":61.4,"Mars":9.8,"Jupiter":220.16,"Saturn":339.88,"Uranus":296.34,"Neptune":293.35,"Pluto":237.25,"Node":233.81,"Chiron":152.87},"contacts":[{"t":"Neptune","n":"Saturn","type":"opposition","orb":1.43},{"t":"Saturn","n":"Pluto","type":"square","orb":1.52},{"t":"Neptune","n":"MC","type":"square","orb":2.45},{"t":"Pluto","n":"Mercury","type":"trine","orb":2.57}]},"1996-12-10":{"transits":{"Sun":258.63,"Mercury":278.09,"Venus":231.51,"Mars":170.79,"Jupiter":290.32,"Saturn":0.65,"Uranus":302.16,"Neptune":296.08,"Pluto":243.6,"Node":185.08,"Chiron":208.1},"contacts":[{"t":"Pluto","n":"Chiron","type":"sextile","orb":0.35},{"t":"Jupiter","n":"MC","type":"square","orb":0.58},{"t":"Saturn","n":"Mercury","type":"conjunction","orb":0.83},{"t":"Uranus","n":"Chiron","type":"trine","orb":1.09},{"t":"Pluto","n":"Moon","type":"trine","orb":1.1},{"t":"Jupiter","n":"Venus","type":"trine","orb":1.26},{"t":"Saturn","n":"ASC","type":"square","orb":1.48},{"t":"Jupiter","n":"Saturn","type":"opposition","orb":1.59},{"t":"Uranus","n":"Mars","type":"square","orb":1.92},{"t":"Saturn","n":"Chiron","type":"opposition","orb":2.6}]},"2010-06-11":{"transits":{"Sun":80.39,"Mercury":62.01,"Venus":116.54,"Mars":152.19,"Jupiter":0.67,"Saturn":177.95,"Uranus":0.35,"Neptune":328.67,"Pluto":274.47,"Node":282.01,"Chiron":330.97},"contacts":[{"t":"Pluto","n":"Moon","type":"square","orb":0.22},{"t":"Pluto","n":"Mars","type":"trine","orb":0.39},{"t":"Uranus","n":"Mercury","type":"conjunction","orb":0.54},{"t":"Jupiter","n":"Mercury","type":"conjunction","orb":0.85},{"t":"Pluto","n":"Chiron","type":"square","orb":1.22},{"t":"Jupiter","n":"ASC","type":"square","orb":1.47},{"t":"Saturn","n":"Uranus","type":"square","orb":1.47},{"t":"Uranus","n":"ASC","type":"square","orb":1.78},{"t":"Saturn","n":"Mercury","type":"opposition","orb":1.87},{"t":"Pluto","n":"ASC","type":"opposition","orb":2.34},{"t":"Uranus","n":"Chiron","type":"opposition","orb":2.9}]},"2021-07-09":{"transits":{"Sun":107.42,"Mercury":86.73,"Venus":134.81,"Mars":137.23,"Jupiter":331.62,"Saturn":311.87,"Uranus":44.09,"Neptune":353.15,"Pluto":295.76,"Node":70.4,"Chiron":12.91},"contacts":[{"t":"Saturn","n":"Pluto","type":"trine","orb":0.47},{"t":"Jupiter","n":"ASC","type":"trine","orb":0.51},{"t":"Saturn","n":"Node","type":"sextile","orb":1.14},{"t":"Neptune","n":"Saturn","type":"trine","orb":1.23},{"t":"Neptune","n":"Neptune","type":"square","orb":1.7},{"t":"Uranus","n":"Jupiter","type":"trine","orb":2.06}]},"2024-05-29":{"transits":{"Sun":68.52,"Mercury":50.8,"Venus":66.84,"Mars":21.94,"Jupiter":60.81,"Saturn":348.62,"Uranus":54.03,"Neptune":359.62,"Pluto":301.94,"Node":14.05,"Chiron":22.15},"contacts":[{"t":"Neptune","n":"Mercury","type":"conjunction","orb":0.2},{"t":"Saturn","n":"Venus","type":"sextile","orb":0.44},{"t":"Jupiter","n":"Mercury","type":"sextile","orb":0.99},{"t":"Pluto","n":"Chiron","type":"trine","orb":1.31},{"t":"Pluto","n":"Mars","type":"square","orb":2.14},{"t":"Neptune","n":"ASC","type":"square","orb":2.51},{"t":"Saturn","n":"Neptune","type":"square","orb":2.83}]}},"eclipses":[{"kind":"lunar","sub":"partial","date":"2028-01-12","lon":111.56,"hits":[{"n":"Saturn","orb":0.35,"via":"conj"}]},{"kind":"lunar","sub":"total","date":"2028-12-31","lon":100.58,"hits":[{"n":"Jupiter","orb":1.45,"via":"opp"}]},{"kind":"solar","sub":"partial","date":"2029-01-14","lon":294.73,"hits":[{"n":"Saturn","orb":2.82,"via":"opp"}]},{"kind":"solar","sub":"partial","date":"2029-06-12","lon":81.61,"hits":[{"n":"Neptune","orb":0.16,"via":"opp"}]},{"kind":"lunar","sub":"total","date":"2029-06-26","lon":274.83,"hits":[{"n":"ASC","orb":2.69,"via":"opp"}]},{"kind":"solar","sub":"partial","date":"2029-07-11","lon":109.49,"hits":[{"n":"Saturn","orb":2.43,"via":"conj"}]},{"kind":"solar","sub":"partial","date":"2029-12-05","lon":253.87,"hits":[{"n":"Pluto","orb":2.47,"via":"opp"}]},{"kind":"lunar","sub":"total","date":"2029-12-20","lon":89.31,"hits":[{"n":"ASC","orb":2.83,"via":"conj"},{"n":"Uranus","orb":2.82,"via":"opp"}]},{"kind":"solar","sub":"annular","date":"2030-06-01","lon":70.89,"hits":[{"n":"Pluto","orb":0.51,"via":"conj"}]},{"kind":"lunar","sub":"partial","date":"2030-06-15","lon":264.64,"hits":[{"n":"Uranus","orb":1.85,"via":"conj"}]},{"kind":"lunar","sub":"penumbral","date":"2031-05-07","lon":226.53,"hits":[{"n":"Venus","orb":2.54,"via":"opp"}]},{"kind":"lunar","sub":"penumbral","date":"2031-10-30","lon":36.79,"hits":[{"n":"Mars","orb":2.71,"via":"conj"}]},{"kind":"lunar","sub":"total","date":"2032-04-25","lon":216.0,"hits":[{"n":"Mars","orb":1.92,"via":"opp"}]},{"kind":"solar","sub":"annular","date":"2032-05-09","lon":49.39,"hits":[{"n":"Venus","orb":0.32,"via":"conj"}]},{"kind":"solar","sub":"total","date":"2033-03-30","lon":10.45,"hits":[{"n":"Node","orb":0.29,"via":"conj"}]},{"kind":"solar","sub":"partial","date":"2033-09-23","lon":180.96,"hits":[{"n":"Chiron","orb":2.29,"via":"conj"},{"n":"Mercury","orb":1.14,"via":"opp"}]},{"kind":"lunar","sub":"total","date":"2033-10-08","lon":15.45,"hits":[{"n":"Sun","orb":2.76,"via":"conj"}]},{"kind":"solar","sub":"total","date":"2034-03-20","lon":359.9,"hits":[{"n":"Mercury","orb":0.09,"via":"conj"}]},{"kind":"lunar","sub":"partial","date":"2034-09-28","lon":4.97,"hits":[{"n":"Moon","orb":0.27,"via":"conj"},{"n":"Chiron","orb":1.72,"via":"opp"}]},{"kind":"solar","sub":"total","date":"2037-07-13","lon":111.14,"hits":[{"n":"Saturn","orb":0.78,"via":"conj"}]},{"kind":"lunar","sub":"penumbral","date":"2038-06-17","lon":266.17,"hits":[{"n":"Uranus","orb":0.31,"via":"conj"}]},{"kind":"solar","sub":"annular","date":"2038-07-02","lon":100.78,"hits":[{"n":"Jupiter","orb":1.25,"via":"opp"}]},{"kind":"lunar","sub":"penumbral","date":"2038-07-16","lon":293.94,"hits":[{"n":"Saturn","orb":2.02,"via":"opp"}]},{"kind":"lunar","sub":"penumbral","date":"2038-12-11","lon":79.88,"hits":[{"n":"Neptune","orb":1.57,"via":"opp"}]},{"kind":"solar","sub":"total","date":"2038-12-26","lon":274.3,"hits":[{"n":"ASC","orb":2.16,"via":"opp"}]},{"kind":"solar","sub":"annular","date":"2039-06-21","lon":90.13,"hits":[{"n":"ASC","orb":2.0,"via":"conj"}]},{"kind":"solar","sub":"total","date":"2039-12-15","lon":263.45,"hits":[{"n":"Neptune","orb":2.0,"via":"conj"}]},{"kind":"solar","sub":"partial","date":"2040-05-11","lon":51.18,"hits":[{"n":"Venus","orb":2.12,"via":"conj"}]}],"today":{"transits":{"Sun":199.099,"Mercury":224.102,"Venus":216.855,"Mars":128.204,"Jupiter":141.537,"Saturn":10.684,"Uranus":65.286,"Neptune":2.553,"Pluto":303.072,"Node":328.632,"Chiron":28.983},"contacts":[{"t":"Saturn","n":"Node","type":"conjunction","orb":0.05},{"t":"Jupiter","n":"Neptune","type":"trine","orb":0.09},{"t":"Pluto","n":"Chiron","type":"trine","orb":0.18},{"t":"Neptune","n":"ASC","type":"square","orb":0.42},{"t":"Uranus","n":"Moon","type":"sextile","orb":0.59},{"t":"Jupiter","n":"MC","type":"trine","orb":0.64},{"t":"Neptune","n":"Chiron","type":"opposition","orb":0.7},{"t":"Saturn","n":"Pluto","type":"sextile","orb":0.72},{"t":"Pluto","n":"Mars","type":"square","orb":1.01},{"t":"Saturn","n":"Jupiter","type":"square","orb":1.35},{"t":"Pluto","n":"Moon","type":"sextile","orb":1.63},{"t":"Uranus","n":"Chiron","type":"trine","orb":2.04},{"t":"Neptune","n":"Moon","type":"conjunction","orb":2.15},{"t":"Neptune","n":"Mercury","type":"conjunction","orb":2.74}]},"months":{"2026-01":{"Sun":280.99,"Mercury":269.29,"Venus":279.73,"Mars":283.01,"Jupiter":111.3,"Saturn":356.19,"Uranus":57.94,"Neptune":359.51,"Pluto":302.73,"Node":340.9,"Chiron":22.6},"2026-02":{"Sun":312.55,"Mercury":320.21,"Venus":318.7,"Mars":307.05,"Jupiter":107.31,"Saturn":358.68,"Uranus":57.46,"Neptune":0.15,"Pluto":303.71,"Node":339.1,"Chiron":23.01},"2026-03":{"Sun":340.82,"Mercury":351.78,"Venus":353.73,"Mars":329.07,"Jupiter":105.24,"Saturn":1.77,"Uranus":57.74,"Neptune":1.06,"Pluto":304.54,"Node":338.98,"Chiron":24.06},"2026-04":{"Sun":11.69,"Mercury":344.05,"Venus":32.15,"Mars":353.44,"Jupiter":105.81,"Saturn":5.6,"Uranus":58.78,"Neptune":2.22,"Pluto":305.22,"Node":338.75,"Chiron":25.73},"2026-05":{"Sun":41.05,"Mercury":26.75,"Venus":68.79,"Mars":16.69,"Jupiter":108.97,"Saturn":9.19,"Uranus":60.3,"Neptune":3.27,"Pluto":305.5,"Node":336.94,"Chiron":27.52},"2026-06":{"Sun":70.94,"Mercury":89.86,"Venus":105.89,"Mars":40.07,"Jupiter":114.15,"Saturn":12.28,"Uranus":62.09,"Neptune":4.07,"Pluto":305.36,"Node":333.51,"Chiron":29.21},"2026-07":{"Sun":99.6,"Mercury":116.15,"Venus":140.67,"Mars":61.85,"Jupiter":120.25,"Saturn":14.2,"Uranus":63.73,"Neptune":4.41,"Pluto":304.87,"Node":330.83,"Chiron":30.38},"2026-08":{"Sun":129.19,"Mercury":109.86,"Venus":174.49,"Mars":83.35,"Jupiter":127.05,"Saturn":14.72,"Uranus":65.02,"Neptune":4.25,"Pluto":304.17,"Node":329.83,"Chiron":30.86},"2026-09":{"Sun":159.0,"Mercury":163.48,"Venus":203.5,"Mars":103.66,"Jupiter":133.79,"Saturn":13.66,"Uranus":65.66,"Neptune":3.66,"Pluto":303.5,"Node":329.79,"Chiron":30.51},"2026-10":{"Sun":188.25,"Mercury":211.23,"Venus":218.42,"Mars":121.93,"Jupiter":139.67,"Saturn":11.55,"Uranus":65.52,"Neptune":2.85,"Pluto":303.12,"Node":329.12,"Chiron":29.47},"2026-11":{"Sun":218.99,"Mercury":226.19,"Venus":206.04,"Mars":138.83,"Jupiter":144.37,"Saturn":9.26,"Uranus":64.66,"Neptune":2.08,"Pluto":303.13,"Node":326.93,"Chiron":28.06},"2026-12":{"Sun":249.21,"Mercury":232.65,"Venus":208.23,"Mars":152.09,"Jupiter":146.8,"Saturn":8.01,"Uranus":63.45,"Neptune":1.65,"Pluto":303.57,"Node":323.86,"Chiron":26.86},"2027-01":{"Sun":280.75,"Mercury":280.57,"Venus":233.91,"Mars":159.92,"Jupiter":146.42,"Saturn":8.35,"Uranus":62.29,"Neptune":1.72,"Pluto":304.36,"Node":321.44,"Chiron":26.28},"2027-02":{"Sun":312.3,"Mercury":330.44,"Venus":267.5,"Mars":157.3,"Jupiter":143.3,"Saturn":10.31,"Uranus":61.7,"Neptune":2.32,"Pluto":305.33,"Node":320.59,"Chiron":26.58},"2027-03":{"Sun":340.58,"Mercury":321.17,"Venus":300.17,"Mars":146.99,"Jupiter":139.7,"Saturn":13.12,"Uranus":61.88,"Neptune":3.21,"Pluto":306.17,"Node":320.4,"Chiron":27.57},"2027-04":{"Sun":11.45,"Mercury":348.03,"Venus":337.32,"Mars":140.93,"Jupiter":137.21,"Saturn":16.87,"Uranus":62.82,"Neptune":4.37,"Pluto":306.86,"Node":319.32,"Chiron":29.21},"2027-05":{"Sun":40.82,"Mercury":43.8,"Venus":13.65,"Mars":145.63,"Jupiter":137.51,"Saturn":20.62,"Uranus":64.28,"Neptune":5.43,"Pluto":307.17,"Node":316.74,"Chiron":31.02},"2027-06":{"Sun":70.71,"Mercury":93.06,"Venus":51.34,"Mars":157.34,"Jupiter":140.47,"Saturn":24.09,"Uranus":66.06,"Neptune":6.26,"Pluto":307.05,"Node":313.68,"Chiron":32.77},"2027-07":{"Sun":99.37,"Mercury":87.92,"Venus":87.96,"Mars":172.31,"Jupiter":145.2,"Saturn":26.58,"Uranus":67.74,"Neptune":6.64,"Pluto":306.58,"Node":311.88,"Chiron":34.04},"2027-08":{"Sun":128.96,"Mercury":117.92,"Venus":126.03,"Mars":190.09,"Jupiter":151.28,"Saturn":27.82,"Uranus":69.12,"Neptune":6.53,"Pluto":305.89,"Node":311.49,"Chiron":34.65},"2027-09":{"Sun":158.76,"Mercury":176.76,"Venus":164.37,"Mars":209.57,"Jupiter":157.93,"Saturn":27.44,"Uranus":69.87,"Neptune":5.96,"Pluto":305.22,"Node":311.33,"Chiron":34.4},"2027-10":{"Sun":188.01,"Mercury":212.94,"Venus":201.61,"Mars":229.77,"Jupiter":164.35,"Saturn":25.7,"Uranus":69.85,"Neptune":5.16,"Pluto":304.81,"Node":309.8,"Chiron":33.43},"2027-11":{"Sun":218.75,"Mercury":200.6,"Venus":240.13,"Mars":251.87,"Jupiter":170.36,"Saturn":23.29,"Uranus":69.08,"Neptune":4.37,"Pluto":304.8,"Node":306.51,"Chiron":32.02},"2027-12":{"Sun":248.97,"Mercury":243.13,"Venus":277.33,"Mars":274.28,"Jupiter":174.86,"Saturn":21.49,"Uranus":67.89,"Neptune":3.91,"Pluto":305.2,"Node":303.59,"Chiron":30.75},"2028-01":{"Sun":280.5,"Mercury":292.28,"Venus":315.52,"Mars":298.24,"Jupiter":177.32,"Saturn":21.08,"Uranus":66.68,"Neptune":3.94,"Pluto":305.98,"Node":302.42,"Chiron":30.06},"2028-02":{"Sun":312.06,"Mercury":314.18,"Venus":352.93,"Mars":322.66,"Jupiter":176.87,"Saturn":22.41,"Uranus":65.99,"Neptune":4.5,"Pluto":306.93,"Node":302.29,"Chiron":30.25},"2028-03":{"Sun":341.35,"Mercury":314.61,"Venus":26.25,"Mars":345.58,"Jupiter":174.03,"Saturn":24.94,"Uranus":66.07,"Neptune":5.4,"Pluto":307.8,"Node":301.54,"Chiron":31.21},"2028-04":{"Sun":12.2,"Mercury":1.67,"Venus":57.83,"Mars":9.78,"Jupiter":170.13,"Saturn":28.52,"Uranus":66.93,"Neptune":6.55,"Pluto":308.5,"Node":299.15,"Chiron":32.84},"2028-05":{"Sun":41.56,"Mercury":60.53,"Venus":78.0,"Mars":32.62,"Jupiter":167.77,"Saturn":32.32,"Uranus":68.34,"Neptune":7.62,"Pluto":308.81,"Node":296.2,"Chiron":34.67},"2028-06":{"Sun":71.44,"Mercury":72.5,"Venus":71.44,"Mars":55.44,"Jupiter":168.06,"Saturn":36.06,"Uranus":70.12,"Neptune":8.47,"Pluto":308.71,"Node":294.07,"Chiron":36.48},"2028-07":{"Sun":100.1,"Mercury":78.71,"Venus":64.49,"Mars":76.68,"Jupiter":170.84,"Saturn":39.02,"Uranus":71.83,"Neptune":8.87,"Pluto":308.25,"Node":293.28,"Chiron":37.83},"2028-08":{"Sun":129.68,"Mercury":137.19,"Venus":84.37,"Mars":97.77,"Jupiter":175.65,"Saturn":40.91,"Uranus":73.27,"Neptune":8.78,"Pluto":307.56,"Node":293.22,"Chiron":38.54},"2028-09":{"Sun":159.5,"Mercury":185.99,"Venus":115.06,"Mars":117.97,"Jupiter":181.68,"Saturn":41.23,"Uranus":74.11,"Neptune":8.23,"Pluto":306.89,"Node":292.46,"Chiron":38.39},"2028-10":{"Sun":188.76,"Mercury":190.94,"Venus":148.83,"Mars":136.62,"Jupiter":188.08,"Saturn":40.01,"Uranus":74.18,"Neptune":7.44,"Pluto":306.48,"Node":289.98,"Chiron":37.48},"2028-11":{"Sun":219.51,"Mercury":208.01,"Venus":185.88,"Mars":154.76,"Jupiter":194.69,"Saturn":37.69,"Uranus":73.48,"Neptune":6.64,"Pluto":306.45,"Node":286.4,"Chiron":36.06},"2028-12":{"Sun":249.74,"Mercury":256.06,"Venus":222.87,"Mars":170.72,"Jupiter":200.45,"Saturn":35.51,"Uranus":72.32,"Neptune":6.16,"Pluto":306.84,"Node":284.31,"Chiron":34.74},"2029-01":{"Sun":281.28,"Mercury":300.75,"Venus":261.6,"Mars":184.46,"Jupiter":205.01,"Saturn":34.43,"Uranus":71.08,"Neptune":6.16,"Pluto":307.6,"Node":283.98,"Chiron":33.95},"2029-02":{"Sun":312.83,"Mercury":288.81,"Venus":300.47,"Mars":192.95,"Jupiter":207.29,"Saturn":35.09,"Uranus":70.3,"Neptune":6.7,"Pluto":308.55,"Node":283.73,"Chiron":34.07},"2029-03":{"Sun":341.1,"Mercury":321.55,"Venus":335.52,"Mars":192.48,"Jupiter":206.87,"Saturn":37.06,"Uranus":70.28,"Neptune":7.55,"Pluto":309.38,"Node":282.22,"Chiron":34.93},"2029-04":{"Sun":11.96,"Mercury":17.99,"Venus":14.14,"Mars":182.21,"Jupiter":203.9,"Saturn":40.34,"Uranus":71.04,"Neptune":8.69,"Pluto":310.1,"Node":278.89,"Chiron":36.52},"2029-05":{"Sun":41.32,"Mercury":56.66,"Venus":51.24,"Mars":175.05,"Jupiter":200.17,"Saturn":44.09,"Uranus":72.39,"Neptune":9.78,"Pluto":310.43,"Node":276.07,"Chiron":38.37},"2029-06":{"Sun":71.2,"Mercury":49.19,"Venus":89.28,"Mars":178.9,"Jupiter":197.74,"Saturn":48.01,"Uranus":74.14,"Neptune":10.66,"Pluto":310.35,"Node":274.87,"Chiron":40.25},"2029-07":{"Sun":99.86,"Mercury":89.83,"Venus":125.77,"Mars":190.22,"Jupiter":197.96,"Saturn":51.37,"Uranus":75.87,"Neptune":11.1,"Pluto":309.91,"Node":274.67,"Chiron":41.71},"2029-08":{"Sun":129.45,"Mercury":150.69,"Venus":163.04,"Mars":206.37,"Jupiter":200.79,"Saturn":53.89,"Uranus":77.39,"Neptune":11.05,"Pluto":309.24,"Node":274.1,"Chiron":42.56},"2029-09":{"Sun":159.26,"Mercury":181.77,"Venus":199.56,"Mars":225.34,"Jupiter":205.6,"Saturn":55.0,"Uranus":78.34,"Neptune":10.53,"Pluto":308.57,"Node":272.2,"Chiron":42.54},"2029-10":{"Sun":188.51,"Mercury":170.66,"Venus":233.66,"Mars":245.61,"Jupiter":211.47,"Saturn":54.47,"Uranus":78.53,"Neptune":9.75,"Pluto":308.13,"Node":269.25,"Chiron":41.71},"2029-11":{"Sun":219.27,"Mercury":220.18,"Venus":266.08,"Mars":268.06,"Jupiter":218.16,"Saturn":52.5,"Uranus":77.94,"Neptune":8.94,"Pluto":308.08,"Node":266.67,"Chiron":40.31},"2029-12":{"Sun":249.49,"Mercury":266.37,"Venus":289.63,"Mars":290.84,"Jupiter":224.63,"Saturn":50.12,"Uranus":76.82,"Neptune":8.42,"Pluto":308.44,"Node":265.61,"Chiron":38.92},"2030-01":{"Sun":281.03,"Mercury":278.89,"Venus":289.32,"Mars":315.03,"Jupiter":230.65,"Saturn":48.38,"Uranus":75.54,"Neptune":8.38,"Pluto":309.18,"Node":265.52,"Chiron":38.02},"2030-02":{"Sun":312.58,"Mercury":290.0,"Venus":279.23,"Mars":339.42,"Jupiter":235.22,"Saturn":48.26,"Uranus":74.67,"Neptune":8.88,"Pluto":310.11,"Node":264.66,"Chiron":38.01},"2030-03":{"Sun":340.86,"Mercury":333.6,"Venus":295.54,"Mars":1.25,"Jupiter":237.4,"Saturn":49.63,"Uranus":74.54,"Neptune":9.7,"Pluto":310.95,"Node":262.3,"Chiron":38.79},"2030-04":{"Sun":11.72,"Mercury":30.28,"Venus":325.74,"Mars":24.9,"Jupiter":237.09,"Saturn":52.48,"Uranus":75.18,"Neptune":10.84,"Pluto":311.67,"Node":258.82,"Chiron":40.34},"2030-05":{"Sun":41.09,"Mercury":28.58,"Venus":359.02,"Mars":47.08,"Jupiter":234.28,"Saturn":56.05,"Uranus":76.46,"Neptune":11.94,"Pluto":312.03,"Node":256.73,"Chiron":42.21},"2030-06":{"Sun":70.98,"Mercury":48.76,"Venus":35.02,"Mars":69.19,"Jupiter":230.45,"Saturn":60.04,"Uranus":78.18,"Neptune":12.84,"Pluto":311.98,"Node":256.32,"Chiron":44.16},"2030-07":{"Sun":99.64,"Mercury":108.1,"Venus":70.63,"Mars":89.85,"Jupiter":228.04,"Saturn":63.7,"Uranus":79.94,"Neptune":13.32,"Pluto":311.56,"Node":256.3,"Chiron":45.74},"2030-08":{"Sun":129.22,"Mercury":156.45,"Venus":108.04,"Mars":110.5,"Jupiter":228.21,"Saturn":66.76,"Uranus":81.52,"Neptune":13.32,"Pluto":310.9,"Node":254.91,"Chiron":46.72},"2030-09":{"Sun":159.03,"Mercury":154.28,"Venus":146.04,"Mars":130.54,"Jupiter":231.07,"Saturn":68.6,"Uranus":82.58,"Neptune":12.83,"Pluto":310.22,"Node":251.93,"Chiron":46.85},"2030-10":{"Sun":188.28,"Mercury":179.94,"Venus":183.3,"Mars":149.39,"Jupiter":235.79,"Saturn":68.84,"Uranus":82.89,"Neptune":12.06,"Pluto":309.77,"Node":249.1,"Chiron":46.12},"2030-11":{"Sun":219.03,"Mercury":231.61,"Venus":222.08,"Mars":168.27,"Jupiter":241.99,"Saturn":67.46,"Uranus":82.41,"Neptune":11.24,"Pluto":309.69,"Node":247.63,"Chiron":44.75},"2030-12":{"Sun":249.25,"Mercury":270.21,"Venus":259.71,"Mars":185.79,"Jupiter":248.61,"Saturn":65.14,"Uranus":81.34,"Neptune":10.69,"Pluto":310.02,"Node":247.31,"Chiron":43.3},"2031-01":{"Sun":280.78,"Mercury":258.38,"Venus":298.58,"Mars":202.71,"Jupiter":255.46,"Saturn":62.91,"Uranus":80.05,"Neptune":10.61,"Pluto":310.74,"Node":246.86,"Chiron":42.28},"2031-02":{"Sun":312.34,"Mercury":299.26,"Venus":337.26,"Mars":217.52,"Jupiter":261.63,"Saturn":61.99,"Uranus":79.09,"Neptune":11.06,"Pluto":311.66,"Node":244.99,"Chiron":42.13},"2031-03":{"Sun":340.62,"Mercury":348.33,"Venus":11.77,"Mars":227.55,"Jupiter":265.98,"Saturn":62.69,"Uranus":78.85,"Neptune":11.86,"Pluto":312.5,"Node":241.92,"Chiron":42.83},"2031-04":{"Sun":11.49,"Mercury":17.42,"Venus":49.06,"Mars":231.57,"Jupiter":268.68,"Saturn":64.97,"Uranus":79.37,"Neptune":12.99,"Pluto":313.23,"Node":239.32,"Chiron":44.33},"2031-05":{"Sun":40.86,"Mercury":14.18,"Venus":83.56,"Mars":224.97,"Jupiter":268.59,"Saturn":68.23,"Uranus":80.57,"Neptune":14.09,"Pluto":313.61,"Node":238.25,"Chiron":46.22},"2031-06":{"Sun":70.75,"Mercury":61.87,"Venus":116.09,"Mars":215.42,"Jupiter":265.85,"Saturn":72.16,"Uranus":82.26,"Neptune":15.02,"Pluto":313.58,"Node":238.09,"Chiron":48.24},"2031-07":{"Sun":99.41,"Mercury":121.67,"Venus":140.29,"Mars":216.47,"Jupiter":262.12,"Saturn":76.0,"Uranus":84.02,"Neptune":15.54,"Pluto":313.19,"Node":237.44,"Chiron":49.93},"2031-08":{"Sun":128.99,"Mercury":146.01,"Venus":143.75,"Mars":227.43,"Jupiter":259.48,"Saturn":79.49,"Uranus":85.67,"Neptune":15.58,"Pluto":312.53,"Node":235.23,"Chiron":51.08},"2031-09":{"Sun":158.79,"Mercury":140.95,"Venus":130.02,"Mars":244.19,"Jupiter":259.55,"Saturn":81.99,"Uranus":86.83,"Neptune":15.13,"Pluto":311.85,"Node":231.88,"Chiron":51.36},"2031-10":{"Sun":188.04,"Mercury":193.77,"Venus":143.46,"Mars":263.64,"Jupiter":262.28,"Saturn":83.01,"Uranus":87.26,"Neptune":14.38,"Pluto":311.39,"Node":229.56,"Chiron":50.75},"2031-11":{"Sun":218.78,"Mercury":240.4,"Venus":172.75,"Mars":285.77,"Jupiter":267.25,"Saturn":82.37,"Uranus":86.9,"Neptune":13.54,"Pluto":311.28,"Node":228.96,"Chiron":49.42},"2031-12":{"Sun":249.0,"Mercury":245.9,"Venus":206.52,"Mars":308.33,"Jupiter":273.4,"Saturn":80.38,"Uranus":85.9,"Neptune":12.97,"Pluto":311.59,"Node":228.91,"Chiron":47.92},"2032-01":{"Sun":280.53,"Mercury":262.77,"Venus":243.69,"Mars":332.14,"Jupiter":280.45,"Saturn":77.89,"Uranus":84.6,"Neptune":12.84,"Pluto":312.28,"Node":227.42,"Chiron":46.77},"2032-02":{"Sun":312.09,"Mercury":311.45,"Venus":281.77,"Mars":355.91,"Jupiter":287.53,"Saturn":76.27,"Uranus":83.56,"Neptune":13.25,"Pluto":313.19,"Node":224.19,"Chiron":46.48},"2032-03":{"Sun":341.38,"Mercury":359.44,"Venus":317.66,"Mars":17.74,"Jupiter":293.57,"Saturn":76.25,"Uranus":83.2,"Neptune":14.06,"Pluto":314.05,"Node":221.24,"Chiron":47.11},"2032-04":{"Sun":12.24,"Mercury":349.19,"Venus":356.04,"Mars":40.45,"Jupiter":298.69,"Saturn":77.89,"Uranus":83.63,"Neptune":15.17,"Pluto":314.79,"Node":219.85,"Chiron":48.58},"2032-05":{"Sun":41.59,"Mercury":20.2,"Venus":33.07,"Mars":61.72,"Jupiter":301.63,"Saturn":80.76,"Uranus":84.76,"Neptune":16.28,"Pluto":315.18,"Node":219.63,"Chiron":50.49},"2032-06":{"Sun":71.47,"Mercury":82.41,"Venus":71.21,"Mars":83.01,"Jupiter":301.89,"Saturn":84.51,"Uranus":86.42,"Neptune":17.23,"Pluto":315.16,"Node":219.26,"Chiron":52.59},"2032-07":{"Sun":100.13,"Mercury":124.68,"Venus":108.07,"Mars":103.03,"Jupiter":299.46,"Saturn":88.4,"Uranus":88.19,"Neptune":17.77,"Pluto":314.77,"Node":217.72,"Chiron":54.39},"2032-08":{"Sun":129.71,"Mercury":117.0,"Venus":146.15,"Mars":123.25,"Jupiter":295.58,"Saturn":92.18,"Uranus":89.89,"Neptune":17.84,"Pluto":314.13,"Node":214.92,"Chiron":55.68},"2032-09":{"Sun":159.52,"Mercury":155.12,"Venus":184.15,"Mars":143.11,"Jupiter":292.74,"Saturn":95.19,"Uranus":91.13,"Neptune":17.41,"Pluto":313.45,"Node":211.99,"Chiron":56.11},"2032-10":{"Sun":188.78,"Mercury":206.91,"Venus":220.72,"Mars":162.08,"Jupiter":292.61,"Saturn":96.9,"Uranus":91.65,"Neptune":16.67,"Pluto":312.98,"Node":210.64,"Chiron":55.61},"2032-11":{"Sun":219.53,"Mercury":240.13,"Venus":258.15,"Mars":181.49,"Jupiter":295.37,"Saturn":97.01,"Uranus":91.39,"Neptune":15.82,"Pluto":312.86,"Node":210.55,"Chiron":54.32},"2032-12":{"Sun":249.76,"Mercury":229.7,"Venus":293.65,"Mars":200.05,"Jupiter":300.24,"Saturn":95.54,"Uranus":90.44,"Neptune":15.23,"Pluto":313.15,"Node":210.05,"Chiron":52.77},"2033-01":{"Sun":281.3,"Mercury":274.52,"Venus":328.35,"Mars":218.89,"Jupiter":306.75,"Saturn":93.08,"Uranus":89.14,"Neptune":15.08,"Pluto":313.83,"Node":207.53,"Chiron":51.52},"2033-02":{"Sun":312.86,"Mercury":326.23,"Venus":357.27,"Mars":237.12,"Jupiter":314.01,"Saturn":90.94,"Uranus":88.04,"Neptune":15.47,"Pluto":314.73,"Node":203.91,"Chiron":51.11},"2033-03":{"Sun":341.13,"Mercury":338.11,"Venus":8.47,"Mars":252.65,"Jupiter":320.61,"Saturn":90.21,"Uranus":87.6,"Neptune":16.22,"Pluto":315.56,"Node":201.83,"Chiron":51.62},"2033-04":{"Sun":11.99,"Mercury":344.85,"Venus":354.07,"Mars":267.9,"Jupiter":327.39,"Saturn":91.08,"Uranus":87.91,"Neptune":17.33,"Pluto":316.31,"Node":201.23,"Chiron":53.02},"2033-05":{"Sun":41.35,"Mercury":34.21,"Venus":359.55,"Mars":278.84,"Jupiter":332.77,"Saturn":93.39,"Uranus":88.95,"Neptune":18.44,"Pluto":316.72,"Node":201.16,"Chiron":54.94},"2033-06":{"Sun":71.24,"Mercury":93.85,"Venus":25.41,"Mars":282.32,"Jupiter":336.38,"Saturn":96.82,"Uranus":90.55,"Neptune":19.41,"Pluto":316.72,"Node":199.89,"Chiron":57.12},"2033-07":{"Sun":99.9,"Mercury":104.62,"Venus":56.85,"Mars":275.67,"Jupiter":337.27,"Saturn":100.64,"Uranus":92.33,"Neptune":19.99,"Pluto":316.36,"Node":197.25,"Chiron":59.05},"2033-08":{"Sun":129.48,"Mercury":111.46,"Venus":91.98,"Mars":269.79,"Jupiter":335.28,"Saturn":104.6,"Uranus":94.07,"Neptune":20.1,"Pluto":315.73,"Node":194.36,"Chiron":60.52},"2033-09":{"Sun":159.29,"Mercury":170.26,"Venus":128.67,"Mars":275.87,"Jupiter":331.42,"Saturn":108.05,"Uranus":95.41,"Neptune":19.71,"Pluto":315.05,"Node":192.71,"Chiron":61.15},"2033-10":{"Sun":188.55,"Mercury":213.87,"Venus":165.23,"Mars":290.16,"Jupiter":328.25,"Saturn":110.4,"Uranus":96.06,"Neptune":18.98,"Pluto":314.56,"Node":192.28,"Chiron":60.81},"2033-11":{"Sun":219.3,"Mercury":210.93,"Venus":203.76,"Mars":309.36,"Jupiter":327.6,"Saturn":111.33,"Uranus":95.91,"Neptune":18.14,"Pluto":314.41,"Node":191.98,"Chiron":59.6},"2033-12":{"Sun":249.52,"Mercury":237.37,"Venus":241.4,"Mars":329.94,"Jupiter":329.94,"Saturn":110.56,"Uranus":95.06,"Neptune":17.51,"Pluto":314.68,"Node":190.49,"Chiron":58.02},"2034-01":{"Sun":281.05,"Mercury":286.2,"Venus":280.41,"Mars":351.98,"Jupiter":334.81,"Saturn":108.4,"Uranus":93.77,"Neptune":17.32,"Pluto":315.34,"Node":187.47,"Chiron":56.63},"2034-02":{"Sun":312.6,"Mercury":329.01,"Venus":319.38,"Mars":14.09,"Jupiter":341.32,"Saturn":105.95,"Uranus":92.6,"Neptune":17.66,"Pluto":316.23,"Node":184.34,"Chiron":56.05},"2034-03":{"Sun":340.88,"Mercury":315.26,"Venus":354.4,"Mars":33.8,"Jupiter":347.92,"Saturn":104.56,"Uranus":92.06,"Neptune":18.39,"Pluto":317.06,"Node":183.19,"Chiron":56.43},"2034-04":{"Sun":11.75,"Mercury":352.95,"Venus":32.81,"Mars":55.17,"Jupiter":355.38,"Saturn":104.61,"Uranus":92.24,"Neptune":19.48,"Pluto":317.81,"Node":183.08,"Chiron":57.76},"2034-05":{"Sun":41.12,"Mercury":52.06,"Venus":69.42,"Mars":75.36,"Jupiter":2.19,"Saturn":106.26,"Uranus":93.18,"Neptune":20.6,"Pluto":318.24,"Node":182.67,"Chiron":59.68},"2034-06":{"Sun":71.01,"Mercury":87.89,"Venus":106.45,"Mars":95.76,"Jupiter":8.17,"Saturn":109.23,"Uranus":94.72,"Neptune":21.59,"Pluto":318.27,"Node":180.48,"Chiron":61.94},"2034-07":{"Sun":99.67,"Mercury":80.35,"Venus":141.12,"Mars":115.17,"Jupiter":12.26,"Saturn":112.85,"Uranus":96.49,"Neptune":22.21,"Pluto":317.93,"Node":177.26,"Chiron":64.01},"2034-08":{"Sun":129.25,"Mercury":125.93,"Venus":174.7,"Mars":134.99,"Jupiter":13.95,"Saturn":116.85,"Uranus":98.28,"Neptune":22.36,"Pluto":317.31,"Node":174.69,"Chiron":65.68},"2034-09":{"Sun":159.06,"Mercury":181.54,"Venus":203.07,"Mars":154.73,"Jupiter":12.57,"Saturn":120.6,"Uranus":99.7,"Neptune":22.01,"Pluto":316.63,"Node":173.98,"Chiron":66.53},"2034-10":{"Sun":188.31,"Mercury":208.02,"Venus":216.12,"Mars":173.85,"Jupiter":9.0,"Saturn":123.48,"Uranus":100.47,"Neptune":21.3,"Pluto":316.13,"Node":173.94,"Chiron":66.38},"2034-11":{"Sun":219.05,"Mercury":201.54,"Venus":202.57,"Mars":193.73,"Jupiter":5.31,"Saturn":125.16,"Uranus":100.46,"Neptune":20.45,"Pluto":315.95,"Node":172.93,"Chiron":65.28},"2034-12":{"Sun":249.27,"Mercury":248.55,"Venus":207.27,"Mars":213.13,"Jupiter":4.03,"Saturn":125.17,"Uranus":99.7,"Neptune":19.8,"Pluto":316.2,"Node":170.36,"Chiron":63.69},"2035-01":{"Sun":280.8,"Mercury":297.2,"Venus":233.94,"Mars":233.36,"Jupiter":5.88,"Saturn":123.55,"Uranus":98.44,"Neptune":19.56,"Pluto":316.83,"Node":167.19,"Chiron":62.16},"2035-02":{"Sun":312.36,"Mercury":299.19,"Venus":267.87,"Mars":253.73,"Jupiter":10.41,"Saturn":121.08,"Uranus":97.21,"Neptune":19.87,"Pluto":317.7,"Node":165.16,"Chiron":61.39},"2035-03":{"Sun":340.64,"Mercury":315.84,"Venus":300.68,"Mars":272.2,"Jupiter":16.04,"Saturn":119.18,"Uranus":96.57,"Neptune":20.56,"Pluto":318.53,"Node":164.63,"Chiron":61.62},"2035-04":{"Sun":11.51,"Mercury":7.01,"Venus":337.9,"Mars":292.58,"Jupiter":23.19,"Saturn":118.43,"Uranus":96.62,"Neptune":21.64,"Pluto":319.3,"Node":164.29,"Chiron":62.86},"2035-05":{"Sun":40.88,"Mercury":61.48,"Venus":14.27,"Mars":311.93,"Jupiter":30.39,"Saturn":119.34,"Uranus":97.46,"Neptune":22.76,"Pluto":319.74,"Node":162.8,"Chiron":64.77},"2035-06":{"Sun":70.77,"Mercury":60.25,"Venus":51.99,"Mars":330.87,"Jupiter":37.53,"Saturn":121.74,"Uranus":98.93,"Neptune":23.77,"Pluto":319.79,"Node":160.05,"Chiron":67.1},"2035-07":{"Sun":99.44,"Mercury":80.68,"Venus":88.63,"Mars":346.69,"Jupiter":43.6,"Saturn":125.04,"Uranus":100.68,"Neptune":24.42,"Pluto":319.47,"Node":157.26,"Chiron":69.32},"2035-08":{"Sun":129.02,"Mercury":142.48,"Venus":126.71,"Mars":357.13,"Jupiter":48.3,"Saturn":128.95,"Uranus":102.51,"Neptune":24.62,"Pluto":318.87,"Node":155.67,"Chiron":71.2},"2035-09":{"Sun":158.82,"Mercury":185.9,"Venus":165.04,"Mars":356.53,"Jupiter":50.61,"Saturn":132.86,"Uranus":104.02,"Neptune":24.3,"Pluto":318.18,"Node":155.48,"Chiron":72.3},"2035-10":{"Sun":188.06,"Mercury":178.02,"Venus":202.28,"Mars":349.03,"Jupiter":49.93,"Saturn":136.14,"Uranus":104.9,"Neptune":23.62,"Pluto":317.67,"Node":155.23,"Chiron":72.38},"2035-11":{"Sun":218.8,"Mercury":212.07,"Venus":240.77,"Mars":349.59,"Jupiter":46.56,"Saturn":138.47,"Uranus":105.02,"Neptune":22.77,"Pluto":317.47,"Node":153.16,"Chiron":71.43},"2035-12":{"Sun":249.02,"Mercury":259.73,"Venus":277.95,"Mars":359.82,"Jupiter":42.71,"Saturn":139.25,"Uranus":104.36,"Neptune":22.09,"Pluto":317.69,"Node":149.75,"Chiron":69.85},"2036-01":{"Sun":280.55,"Mercury":296.93,"Venus":316.09,"Mars":15.58,"Jupiter":40.73,"Saturn":138.33,"Uranus":103.14,"Neptune":21.81,"Pluto":318.3,"Node":146.92,"Chiron":68.19},"2036-02":{"Sun":312.11,"Mercury":286.97,"Venus":353.42,"Mars":33.67,"Jupiter":41.95,"Saturn":136.11,"Uranus":101.88,"Neptune":22.07,"Pluto":319.16,"Node":146.19,"Chiron":67.21},"2036-03":{"Sun":341.4,"Mercury":326.82,"Venus":26.57,"Mars":51.47,"Jupiter":45.65,"Saturn":133.86,"Uranus":101.12,"Neptune":22.77,"Pluto":320.01,"Node":146.16,"Chiron":67.29},"2036-04":{"Sun":12.26,"Mercury":25.4,"Venus":57.7,"Mars":70.82,"Jupiter":51.45,"Saturn":132.44,"Uranus":101.07,"Neptune":23.83,"Pluto":320.78,"Node":145.07,"Chiron":68.44},"2036-05":{"Sun":41.61,"Mercury":46.12,"Venus":76.53,"Mars":89.61,"Jupiter":58.09,"Saturn":132.63,"Uranus":101.82,"Neptune":24.96,"Pluto":321.23,"Node":142.58,"Chiron":70.34},"2036-06":{"Sun":71.5,"Mercury":47.12,"Venus":67.83,"Mars":109.01,"Jupiter":65.35,"Saturn":134.41,"Uranus":103.23,"Neptune":25.98,"Pluto":321.29,"Node":139.73,"Chiron":72.76},"2036-07":{"Sun":100.16,"Mercury":98.31,"Venus":63.11,"Mars":127.77,"Jupiter":72.2,"Saturn":137.31,"Uranus":104.97,"Neptune":26.65,"Pluto":320.98,"Node":137.84,"Chiron":75.13},"2036-08":{"Sun":129.74,"Mercury":154.88,"Venus":84.28,"Mars":147.25,"Jupiter":78.52,"Saturn":141.03,"Uranus":106.81,"Neptune":26.87,"Pluto":320.38,"Node":137.2,"Chiron":77.22},"2036-09":{"Sun":159.55,"Mercury":172.48,"Venus":115.4,"Mars":166.91,"Jupiter":83.4,"Saturn":144.97,"Uranus":108.39,"Neptune":26.58,"Pluto":319.7,"Node":137.1,"Chiron":78.57},"2036-10":{"Sun":188.81,"Mercury":173.46,"Venus":149.33,"Mars":186.23,"Jupiter":85.97,"Saturn":148.5,"Uranus":109.37,"Neptune":25.91,"Pluto":319.18,"Node":136.05,"Chiron":78.89},"2036-11":{"Sun":219.56,"Mercury":225.82,"Venus":186.47,"Mars":206.59,"Jupiter":85.67,"Saturn":151.33,"Uranus":109.59,"Neptune":25.06,"Pluto":318.98,"Node":133.19,"Chiron":78.11},"2036-12":{"Sun":249.79,"Mercury":270.02,"Venus":223.5,"Mars":226.75,"Jupiter":82.66,"Saturn":152.76,"Uranus":109.02,"Neptune":24.37,"Pluto":319.18,"Node":129.96,"Chiron":76.55},"2037-01":{"Sun":281.32,"Mercury":265.26,"Venus":262.26,"Mars":248.09,"Jupiter":78.6,"Saturn":152.55,"Uranus":107.84,"Neptune":24.06,"Pluto":319.78,"Node":128.16,"Chiron":74.78},"2037-02":{"Sun":312.88,"Mercury":293.96,"Venus":301.13,"Mars":269.97,"Jupiter":76.28,"Saturn":150.77,"Uranus":106.55,"Neptune":24.3,"Pluto":320.63,"Node":128.03,"Chiron":73.61},"2037-03":{"Sun":341.15,"Mercury":340.35,"Venus":336.18,"Mars":290.15,"Jupiter":76.84,"Saturn":148.55,"Uranus":105.73,"Neptune":24.95,"Pluto":321.45,"Node":127.71,"Chiron":73.5},"2037-04":{"Sun":12.01,"Mercury":29.34,"Venus":14.81,"Mars":312.86,"Jupiter":80.18,"Saturn":146.57,"Uranus":105.56,"Neptune":25.99,"Pluto":322.23,"Node":125.62,"Chiron":74.49},"2037-05":{"Sun":41.37,"Mercury":19.4,"Venus":51.91,"Mars":335.02,"Jupiter":85.33,"Saturn":146.01,"Uranus":106.18,"Neptune":27.11,"Pluto":322.69,"Node":122.4,"Chiron":76.35},"2037-06":{"Sun":71.26,"Mercury":53.77,"Venus":89.93,"Mars":357.74,"Jupiter":91.82,"Saturn":147.06,"Uranus":107.52,"Neptune":28.16,"Pluto":322.78,"Node":119.79,"Chiron":78.83},"2037-07":{"Sun":99.92,"Mercury":115.53,"Venus":126.4,"Mars":18.95,"Jupiter":98.58,"Saturn":149.43,"Uranus":109.22,"Neptune":28.86,"Pluto":322.48,"Node":118.92,"Chiron":81.36},"2037-08":{"Sun":129.51,"Mercury":155.09,"Venus":163.61,"Mars":39.09,"Jupiter":105.5,"Saturn":152.83,"Uranus":111.09,"Neptune":29.13,"Pluto":321.9,"Node":118.84,"Chiron":83.71},"2037-09":{"Sun":159.32,"Mercury":144.13,"Venus":200.04,"Mars":55.71,"Jupiter":111.78,"Saturn":156.7,"Uranus":112.73,"Neptune":28.87,"Pluto":321.22,"Node":118.0,"Chiron":85.38},"2037-10":{"Sun":188.57,"Mercury":186.57,"Venus":233.97,"Mars":65.31,"Jupiter":116.59,"Saturn":160.39,"Uranus":113.82,"Neptune":28.23,"Pluto":320.69,"Node":115.73,"Chiron":86.01},"2037-11":{"Sun":219.32,"Mercury":236.38,"Venus":265.97,"Mars":63.51,"Jupiter":119.43,"Saturn":163.62,"Uranus":114.19,"Neptune":27.38,"Pluto":320.46,"Node":112.68,"Chiron":85.5},"2037-12":{"Sun":249.54,"Mercury":264.68,"Venus":288.34,"Mars":53.35,"Jupiter":119.4,"Saturn":165.67,"Uranus":113.73,"Neptune":26.67,"Pluto":320.64,"Node":110.43,"Chiron":84.04},"2038-01":{"Sun":281.07,"Mercury":259.31,"Venus":285.37,"Mars":50.65,"Jupiter":116.52,"Saturn":166.21,"Uranus":112.61,"Neptune":26.32,"Pluto":321.22,"Node":109.67,"Chiron":82.16},"2038-02":{"Sun":312.63,"Mercury":304.79,"Venus":277.38,"Mars":58.63,"Jupiter":112.47,"Saturn":165.05,"Uranus":111.3,"Neptune":26.51,"Pluto":322.05,"Node":109.61,"Chiron":80.74},"2038-03":{"Sun":340.91,"Mercury":354.87,"Venus":295.21,"Mars":70.78,"Jupiter":110.06,"Saturn":163.01,"Uranus":110.4,"Neptune":27.12,"Pluto":322.87,"Node":108.5,"Chiron":80.39},"2038-04":{"Sun":11.77,"Mercury":3.47,"Venus":325.97,"Mars":86.82,"Jupiter":110.16,"Saturn":160.7,"Uranus":110.09,"Neptune":28.15,"Pluto":323.65,"Node":105.68,"Chiron":81.19},"2038-05":{"Sun":41.14,"Mercury":15.0,"Venus":359.46,"Mars":103.67,"Jupiter":112.96,"Saturn":159.47,"Uranus":110.6,"Neptune":29.27,"Pluto":324.13,"Node":102.49,"Chiron":82.98},"2038-06":{"Sun":71.03,"Mercury":70.46,"Venus":35.56,"Mars":121.81,"Jupiter":117.87,"Saturn":159.77,"Uranus":111.84,"Neptune":30.33,"Pluto":324.24,"Node":100.6,"Chiron":85.5},"2038-07":{"Sun":99.69,"Mercury":124.95,"Venus":71.24,"Mars":139.88,"Jupiter":123.83,"Saturn":161.54,"Uranus":113.5,"Neptune":31.07,"Pluto":323.97,"Node":100.38,"Chiron":88.2},"2038-08":{"Sun":129.28,"Mercury":133.91,"Venus":108.68,"Mars":159.0,"Jupiter":130.57,"Saturn":164.52,"Uranus":115.38,"Neptune":31.37,"Pluto":323.4,"Node":100.21,"Chiron":90.82},"2038-09":{"Sun":159.09,"Mercury":145.29,"Venus":146.71,"Mars":178.63,"Jupiter":137.33,"Saturn":168.2,"Uranus":117.1,"Neptune":31.16,"Pluto":322.72,"Node":98.46,"Chiron":92.84},"2038-10":{"Sun":188.34,"Mercury":199.69,"Venus":183.97,"Mars":198.18,"Jupiter":143.33,"Saturn":171.93,"Uranus":118.29,"Neptune":30.54,"Pluto":322.18,"Node":95.4,"Chiron":93.85},"2038-11":{"Sun":219.08,"Mercury":242.6,"Venus":222.75,"Mars":219.04,"Jupiter":148.27,"Saturn":175.45,"Uranus":118.79,"Neptune":29.7,"Pluto":321.94,"Node":92.58,"Chiron":93.67},"2038-12":{"Sun":249.3,"Mercury":233.35,"Venus":260.37,"Mars":239.91,"Jupiter":151.05,"Saturn":178.0,"Uranus":118.46,"Neptune":28.96,"Pluto":322.09,"Node":91.35,"Chiron":92.39},"2039-01":{"Sun":280.83,"Mercury":267.35,"Venus":299.23,"Mars":262.19,"Jupiter":151.08,"Saturn":179.25,"Uranus":117.41,"Neptune":28.58,"Pluto":322.64,"Node":91.13,"Chiron":90.45},"2039-02":{"Sun":312.38,"Mercury":317.73,"Venus":337.89,"Mars":285.17,"Jupiter":148.28,"Saturn":178.78,"Uranus":116.09,"Neptune":28.72,"Pluto":323.46,"Node":90.33,"Chiron":88.78},"2039-03":{"Sun":340.67,"Mercury":355.26,"Venus":12.37,"Mars":306.4,"Jupiter":144.66,"Saturn":177.1,"Uranus":115.11,"Neptune":29.3,"Pluto":324.27,"Node":88.05,"Chiron":88.14},"2039-04":{"Sun":11.54,"Mercury":344.56,"Venus":49.59,"Mars":330.24,"Jupiter":141.84,"Saturn":174.71,"Uranus":114.68,"Neptune":30.3,"Pluto":325.06,"Node":84.96,"Chiron":88.69},"2039-05":{"Sun":40.91,"Mercury":24.16,"Venus":83.95,"Mars":353.38,"Jupiter":141.73,"Saturn":172.95,"Uranus":115.06,"Neptune":31.42,"Pluto":325.56,"Node":82.81,"Chiron":90.35},"2039-06":{"Sun":70.8,"Mercury":87.57,"Venus":116.14,"Mars":16.95,"Jupiter":144.33,"Saturn":172.52,"Uranus":116.21,"Neptune":32.5,"Pluto":325.69,"Node":82.07,"Chiron":92.89},"2039-07":{"Sun":99.46,"Mercury":119.29,"Venus":139.41,"Mars":39.04,"Jupiter":148.82,"Saturn":173.63,"Uranus":117.82,"Neptune":33.27,"Pluto":325.44,"Node":81.94,"Chiron":95.74},"2039-08":{"Sun":129.05,"Mercury":110.65,"Venus":140.44,"Mars":60.64,"Jupiter":154.76,"Saturn":176.11,"Uranus":119.7,"Neptune":33.62,"Pluto":324.88,"Node":81.12,"Chiron":98.64},"2039-09":{"Sun":158.85,"Mercury":160.64,"Venus":127.92,"Mars":80.38,"Jupiter":161.35,"Saturn":179.5,"Uranus":121.47,"Neptune":33.45,"Pluto":324.21,"Node":78.61,"Chiron":101.06},"2039-10":{"Sun":188.1,"Mercury":209.8,"Venus":143.11,"Mars":96.7,"Jupiter":167.8,"Saturn":183.17,"Uranus":122.76,"Neptune":32.86,"Pluto":323.66,"Node":75.4,"Chiron":102.52},"2039-11":{"Sun":218.84,"Mercury":231.52,"Venus":173.0,"Mars":108.6,"Jupiter":173.93,"Saturn":186.86,"Uranus":123.39,"Neptune":32.01,"Pluto":323.39,"Node":73.24,"Chiron":102.78},"2039-12":{"Sun":249.05,"Mercury":231.09,"Venus":206.98,"Mars":111.36,"Jupiter":178.66,"Saturn":189.81,"Uranus":123.19,"Neptune":31.26,"Pluto":323.52,"Node":72.95,"Chiron":101.77},"2040-01":{"Sun":280.58,"Mercury":278.4,"Venus":244.25,"Mars":102.32,"Jupiter":181.48,"Saturn":191.67,"Uranus":122.24,"Neptune":30.84,"Pluto":324.05,"Node":72.79,"Chiron":99.86},"2040-02":{"Sun":312.14,"Mercury":329.34,"Venus":282.38,"Mars":93.45,"Jupiter":181.44,"Saturn":191.91,"Uranus":120.92,"Neptune":30.94,"Pluto":324.86,"Node":70.83,"Chiron":97.94},"2040-03":{"Sun":341.43,"Mercury":324.62,"Venus":318.3,"Mars":95.51,"Jupiter":178.88,"Saturn":190.67,"Uranus":119.84,"Neptune":31.51,"Pluto":325.69,"Node":67.75,"Chiron":96.96},"2040-04":{"Sun":12.29,"Mercury":347.88,"Venus":356.69,"Mars":105.65,"Jupiter":174.97,"Saturn":188.39,"Uranus":119.31,"Neptune":32.49,"Pluto":326.48,"Node":64.95,"Chiron":97.22},"2040-05":{"Sun":41.64,"Mercury":42.57,"Venus":33.73,"Mars":119.45,"Jupiter":172.3,"Saturn":186.3,"Uranus":119.59,"Neptune":33.61,"Pluto":326.98,"Node":63.9,"Chiron":98.73},"2040-06":{"Sun":71.52,"Mercury":94.52,"Venus":71.88,"Mars":135.88,"Jupiter":172.18,"Saturn":185.26,"Uranus":120.65,"Neptune":34.7,"Pluto":327.12,"Node":63.76,"Chiron":101.26},"2040-07":{"Sun":100.18,"Mercury":91.75,"Venus":108.74,"Mars":153.06,"Jupiter":174.64,"Saturn":185.75,"Uranus":122.22,"Neptune":35.49,"Pluto":326.88,"Node":63.21,"Chiron":104.25},"2040-08":{"Sun":129.77,"Mercury":117.03,"Venus":146.8,"Mars":171.8,"Jupiter":179.21,"Saturn":187.7,"Uranus":124.09,"Neptune":35.86,"Pluto":326.33,"Node":61.39,"Chiron":107.43},"2040-09":{"Sun":159.58,"Mercury":176.24,"Venus":184.78,"Mars":191.44,"Jupiter":185.11,"Saturn":190.74,"Uranus":125.9,"Neptune":35.71,"Pluto":325.66,"Node":58.41,"Chiron":110.25},"2040-10":{"Sun":188.84,"Mercury":214.25,"Venus":221.32,"Mars":211.29,"Jupiter":191.47,"Saturn":194.28,"Uranus":127.27,"Neptune":35.14,"Pluto":325.11,"Node":55.82,"Chiron":112.18},"2040-11":{"Sun":219.59,"Mercury":202.23,"Venus":258.68,"Mars":232.69,"Jupiter":198.12,"Saturn":198.04,"Uranus":128.01,"Neptune":34.3,"Pluto":324.83,"Node":54.7,"Chiron":112.95},"2040-12":{"Sun":249.82,"Mercury":242.6,"Venus":294.06,"Mars":254.27,"Jupiter":204.02,"Saturn":201.25,"Uranus":127.92,"Neptune":33.54,"Pluto":324.95,"Node":54.64,"Chiron":112.32}},"futurePairs":[{"t":"Saturn","n":"Uranus","type":"square","w":[["2026-01-01","2026-01-20",["2026-01-07"]],["2038-11-02","2038-11-25",["2038-11-13"]],["2039-02-25","2039-03-23",["2039-03-10"]],["2039-07-26","2039-08-15",["2039-08-06"]]]},{"t":"Neptune","n":"Mercury","type":"conjunction","w":[["2026-01-01","2026-02-23",["2026-01-19"]]]},{"t":"Pluto","n":"Chiron","type":"trine","w":[["2026-01-01","2026-02-19",["2026-01-19"]],["2026-07-29","2026-12-29",["2026-09-18","2026-11-13"]]]},{"t":"Pluto","n":"Mars","type":"square","w":[["2026-01-13","2026-03-25",["2026-02-14"]],["2026-06-21","2026-10-09",["2026-08-05"]],["2026-10-24","2027-01-25",["2026-12-23"]],["2027-09-10","2027-11-25",["2027-10-18"]]]},{"t":"Pluto","n":"Moon","type":"sextile","w":[["2026-02-02","2026-08-23",["2026-03-08","2026-07-10"]],["2026-12-08","2027-02-14",["2027-01-13"]],["2027-08-10","2027-12-23",["2027-10-18"]]]},{"t":"Saturn","n":"Mercury","type":"conjunction","w":[["2026-02-03","2026-02-22",["2026-02-12"]]]},{"t":"Saturn","n":"ASC","type":"square","w":[["2026-02-25","2026-03-13",["2026-03-05"]],["2039-09-15","2039-10-02",["2039-09-24"]]]},{"t":"Neptune","n":"ASC","type":"square","w":[["2026-03-04","2026-04-28",["2026-03-31"]],["2026-09-22","2027-02-28",["2026-10-30","2027-01-25"]]]},{"t":"Saturn","n":"Chiron","type":"opposition","w":[["2026-03-06","2026-03-22",["2026-03-14"]]]},{"t":"Saturn","n":"Moon","type":"conjunction","w":[["2026-03-18","2026-04-03",["2026-03-25"]]]},{"t":"Uranus","n":"Mercury","type":"sextile","w":[["2026-04-03","2026-05-11",["2026-04-23"]]]},{"t":"Neptune","n":"Chiron","type":"opposition","w":[["2026-04-03","2026-06-13",["2026-05-01"]],["2026-08-02","2026-10-25",["2026-09-17"]],["2027-01-30","2027-03-30",["2027-03-03"]],["2027-11-08","2028-01-22",["2027-12-15"]]]},{"t":"Saturn","n":"Node","type":"conjunction","w":[["2026-05-07","2026-05-27",["2026-05-16"]],["2026-09-30","2026-10-26",["2026-10-12"]],["2027-01-26","2027-02-17",["2027-02-06"]]]},{"t":"Neptune","n":"Moon","type":"conjunction","w":[["2026-05-17","2026-08-31",["2026-07-07"]],["2027-03-15","2027-05-10",["2027-04-10"]],["2027-09-12","2028-03-10",["2028-02-09"]]]},{"t":"Saturn","n":"Jupiter","type":"square","w":[["2026-05-19","2026-06-12",["2026-05-30"]],["2026-09-12","2026-10-08",["2026-09-26"]],["2027-02-10","2027-03-01",["2027-02-20"]],["2039-12-19","2040-02-25",["2040-01-21"]],["2040-09-05","2040-09-22",["2040-09-13"]]]},{"t":"Uranus","n":"Chiron","type":"trine","w":[["2026-06-05","2026-07-13",["2026-06-23"]],["2026-11-13","2027-01-03",["2026-12-07"]],["2027-03-17","2027-05-01",["2027-04-12"]]]},{"t":"Uranus","n":"Moon","type":"sextile","w":[["2026-07-01","2026-11-26",["2026-07-24","2026-11-01"]],["2027-04-21","2027-05-27",["2027-05-09"]]]},{"t":"Saturn","n":"Sun","type":"conjunction","w":[["2027-04-05","2027-04-20",["2027-04-12"]]]},{"t":"Saturn","n":"MC","type":"conjunction","w":[["2027-04-26","2027-05-13",["2027-05-04"]],["2027-11-23","2028-01-25",["2027-12-24"]]]},{"t":"Saturn","n":"Saturn","type":"square","w":[["2027-05-04","2027-05-22",["2027-05-13"]],["2027-11-07","2028-02-09",["2027-11-23","2028-01-25"]],["2040-11-28","2040-12-22",["2040-12-09"]]]},{"t":"Uranus","n":"Node","type":"sextile","w":[["2027-08-24","2027-10-09",["2027-09-15"]],["2028-05-26","2028-06-30",["2028-06-12"]],["2028-12-16","2029-04-19",["2029-01-13","2029-03-24"]]]},{"t":"Saturn","n":"Mars","type":"conjunction","w":[["2028-05-08","2028-05-24",["2028-05-16"]],["2028-12-10","2029-02-02",["2029-01-06"]]]},{"t":"Uranus","n":"Pluto","type":"conjunction","w":[["2028-06-07","2028-07-13",["2028-06-24"]],["2028-11-30","2029-01-27",["2028-12-24"]],["2029-03-10","2029-05-02",["2029-04-11"]]]},{"t":"Pluto","n":"Node","type":"sextile","w":[["2029-03-15","2029-07-11",["2029-05-11"]],["2030-01-21","2030-04-05",["2030-02-22"]],["2030-06-22","2030-10-06",["2030-08-09"]],["2030-11-10","2031-02-04",["2031-01-02"]],["2031-09-08","2031-12-10",["2031-10-25"]]]},{"t":"Pluto","n":"Pluto","type":"trine","w":[["2029-04-27","2029-05-27",["2029-05-11"]],["2030-02-11","2030-08-24",["2030-03-20","2030-07-10"]],["2030-12-20","2031-02-27",["2031-01-25"]],["2031-08-08","2032-01-06",["2031-10-01","2031-11-19"]]]},{"t":"Neptune","n":"Node","type":"conjunction","w":[["2029-05-01","2029-10-03",["2029-08-23"]],["2030-03-03","2030-04-26",["2030-03-30"]],["2030-10-14","2031-02-26",["2030-11-28"]]]},{"t":"Neptune","n":"Pluto","type":"sextile","w":[["2029-05-22","2029-09-08",["2029-07-14"]],["2030-03-21","2030-05-16",["2030-04-17"]],["2030-09-20","2031-03-17",["2030-10-26","2031-02-15"]]]},{"t":"Saturn","n":"Venus","type":"conjunction","w":[["2029-06-02","2029-06-20",["2029-06-10"]],["2029-12-03","2030-03-08",["2029-12-17"]]]},{"t":"Neptune","n":"Jupiter","type":"square","w":[["2029-06-25","2029-08-04",["2029-07-14"]],["2030-04-07","2030-06-11",["2030-05-05"]],["2030-08-23","2030-11-11",["2030-10-03"]],["2031-02-01","2031-04-03",["2031-03-07"]],["2031-11-27","2032-01-21",["2031-12-24"]]]},{"t":"Uranus","n":"Sun","type":"sextile","w":[["2029-07-29","2029-11-22",["2029-08-27","2029-10-23"]],["2030-05-16","2030-06-19",["2030-06-02"]],["2031-01-28","2031-03-27",["2031-02-25"]]]},{"t":"Uranus","n":"MC","type":"sextile","w":[["2030-07-01","2030-08-11",["2030-07-20"]],["2030-11-18","2031-01-06",["2030-12-12"]],["2031-04-17","2031-05-27",["2031-05-09"]]]},{"t":"Uranus","n":"Neptune","type":"opposition","w":[["2030-07-11","2030-08-28",["2030-07-31"]],["2030-10-31","2030-12-23",["2030-11-29"]],["2031-04-29","2031-06-05",["2031-05-18"]]]},{"t":"Saturn","n":"Pluto","type":"conjunction","w":[["2031-05-19","2031-06-04",["2031-05-27"]]]},{"t":"Uranus","n":"Uranus","type":"opposition","w":[["2031-07-29","2031-12-12",["2031-08-21"]],["2032-05-16","2032-06-20",["2032-06-03"]]]},{"t":"Saturn","n":"Neptune","type":"opposition","w":[["2031-08-12","2031-09-11",["2031-08-24"]],["2031-10-31","2031-12-01",["2031-11-17"]],["2032-04-29","2032-05-16",["2032-05-08"]]]},{"t":"Neptune","n":"Sun","type":"conjunction","w":[["2032-06-01","2032-09-11",["2032-07-21"]],["2033-03-30","2033-05-26",["2033-04-25"]],["2033-09-24","2034-03-26",["2033-10-30"]]]},{"t":"Saturn","n":"Uranus","type":"opposition","w":[["2032-06-09","2032-06-25",["2032-06-17"]]]},{"t":"Saturn","n":"Mercury","type":"square","w":[["2032-07-05","2032-07-21",["2032-07-13"]],["2033-02-04","2033-03-28",["2033-03-02"]]]},{"t":"Uranus","n":"Mercury","type":"square","w":[["2032-07-13","2032-08-24",["2032-08-01"]],["2032-11-22","2033-01-10",["2032-12-17"]],["2033-04-29","2033-06-07",["2033-05-20"]]]},{"t":"Saturn","n":"ASC","type":"conjunction","w":[["2032-07-24","2032-08-11",["2032-08-01"]],["2033-01-01","2033-01-29",["2033-01-13"]],["2033-04-03","2033-04-29",["2033-04-17"]]]},{"t":"Saturn","n":"Chiron","type":"square","w":[["2032-08-03","2032-08-22",["2032-08-12"]],["2032-12-19","2033-01-12",["2032-12-31"]],["2033-04-19","2033-05-10",["2033-04-30"]]]},{"t":"Saturn","n":"Moon","type":"square","w":[["2032-08-16","2032-09-09",["2032-08-27"]],["2032-11-30","2032-12-25",["2032-12-13"]],["2033-05-05","2033-05-23",["2033-05-15"]]]},{"t":"Uranus","n":"ASC","type":"conjunction","w":[["2032-09-02","2032-11-12",["2032-10-07"]],["2033-06-12","2033-07-16",["2033-06-28"]],["2034-01-17","2034-05-01",["2034-03-26"]]]},{"t":"Saturn","n":"Node","type":"square","w":[["2033-06-25","2033-07-10",["2033-07-03"]]]},{"t":"Neptune","n":"MC","type":"conjunction","w":[["2033-06-25","2033-08-22",["2033-07-23"]],["2034-04-13","2034-06-14",["2034-05-10"]],["2034-09-07","2034-11-26",["2034-10-16"]],["2035-02-04","2035-04-09",["2035-03-12"]],["2035-12-16","2036-01-20",["2036-01-02"]]]},{"t":"Uranus","n":"Chiron","type":"square","w":[["2033-07-01","2033-08-05",["2033-07-18"]],["2033-12-22","2034-02-16",["2034-01-14"]],["2034-04-02","2034-05-24",["2034-05-04"]]]},{"t":"Saturn","n":"Jupiter","type":"opposition","w":[["2033-07-05","2033-07-20",["2033-07-12"]]]},{"t":"Uranus","n":"Mars","type":"sextile","w":[["2033-07-15","2033-08-24",["2033-08-02"]],["2033-12-01","2034-01-19",["2033-12-26"]],["2034-04-30","2034-06-08",["2034-05-21"]]]},{"t":"Uranus","n":"Moon","type":"square","w":[["2033-07-26","2033-09-12",["2033-08-15"]],["2033-11-12","2034-01-04",["2033-12-11"]],["2034-05-13","2034-06-19",["2034-06-01"]]]},{"t":"Saturn","n":"Sun","type":"square","w":[["2033-08-25","2033-09-15",["2033-09-04"]],["2033-12-23","2034-01-16",["2034-01-04"]],["2034-05-13","2034-06-02",["2034-05-23"]]]},{"t":"Saturn","n":"MC","type":"square","w":[["2033-09-24","2033-12-13",["2033-10-12","2033-11-24"]],["2034-06-08","2034-06-24",["2034-06-16"]]]},{"t":"Saturn","n":"Saturn","type":"conjunction","w":[["2033-10-13","2033-11-24",["2033-11-02"]],["2034-06-16","2034-07-02",["2034-06-24"]]]},{"t":"Pluto","n":"Sun","type":"sextile","w":[["2034-03-07","2034-08-06",["2034-04-29","2034-06-10"]],["2035-01-16","2035-03-29",["2035-02-19"]],["2035-07-17","2036-02-04",["2035-09-01","2035-12-29"]],["2036-09-30","2036-12-04",["2036-11-01"]]]},{"t":"Pluto","n":"Venus","type":"square","w":[["2034-04-17","2034-06-23",["2034-05-19"]],["2035-02-14","2035-09-08",["2035-03-22","2035-07-24"]],["2035-12-23","2036-03-04",["2036-01-30"]],["2036-08-16","2037-01-13",["2036-10-13","2036-11-22"]]]},{"t":"Neptune","n":"Neptune","type":"trine","w":[["2034-04-28","2034-11-02",["2034-05-28","2034-09-26"]],["2035-02-26","2035-04-24",["2035-03-28"]],["2035-11-15","2036-02-19",["2036-01-02"]]]},{"t":"Neptune","n":"Saturn","type":"square","w":[["2034-05-11","2034-10-16",["2034-06-15","2034-09-07"]],["2035-03-13","2035-05-06",["2035-04-09"]],["2035-10-27","2036-03-07",["2035-12-15","2036-01-22"]]]},{"t":"Uranus","n":"Node","type":"square","w":[["2034-09-03","2034-12-01",["2034-10-16"]],["2035-06-16","2035-07-19",["2035-07-03"]],["2036-02-06","2036-04-30",["2036-03-19"]]]},{"t":"Saturn","n":"Mars","type":"square","w":[["2034-09-27","2034-10-30",["2034-10-10"]],["2034-12-05","2035-01-08",["2034-12-25"]],["2035-06-15","2035-07-02",["2035-06-24"]]]},{"t":"Uranus","n":"Jupiter","type":"opposition","w":[["2035-07-08","2035-08-12",["2035-07-24"]],["2036-01-04","2036-03-09",["2036-01-28"]],["2036-03-29","2036-05-29",["2036-05-07"]]]},{"t":"Saturn","n":"Venus","type":"square","w":[["2035-10-26","2036-01-06",["2035-11-17","2035-12-15"]],["2036-07-09","2036-07-25",["2036-07-17"]]]},{"t":"Pluto","n":"MC","type":"sextile","w":[["2036-02-27","2036-08-24",["2036-04-08","2036-07-07"]],["2037-01-07","2037-03-19",["2037-02-11"]],["2037-08-02","2038-01-28",["2037-09-19","2037-12-18"]]]},{"t":"Pluto","n":"Neptune","type":"sextile","w":[["2036-03-18","2036-07-30",["2036-05-22"]],["2037-01-27","2037-04-14",["2037-03-02"]],["2037-07-04","2038-02-15",["2037-08-22","2038-01-11"]],["2038-09-16","2038-12-24",["2038-11-05"]]]},{"t":"Neptune","n":"Uranus","type":"trine","w":[["2036-05-17","2036-10-18",["2036-06-22","2036-09-07"]],["2037-03-19","2037-05-12",["2037-04-15"]],["2037-10-29","2038-03-14",["2037-12-13","2038-01-31"]]]},{"t":"Uranus","n":"Sun","type":"square","w":[["2036-08-09","2036-09-25",["2036-08-29"]],["2036-11-25","2037-01-17",["2036-12-24"]],["2037-05-27","2037-07-02",["2037-06-15"]]]},{"t":"Uranus","n":"Venus","type":"sextile","w":[["2036-08-26","2036-12-28",["2036-09-20","2036-11-30"]],["2037-06-12","2037-07-16",["2037-06-29"]]]},{"t":"Uranus","n":"MC","type":"square","w":[["2037-07-13","2037-08-16",["2037-07-30"]],["2038-01-18","2038-06-03",["2038-02-13","2038-05-11"]]]},{"t":"Uranus","n":"Saturn","type":"conjunction","w":[["2037-07-30","2037-09-06",["2037-08-16"]],["2037-12-26","2038-02-12",["2038-01-18"]],["2038-05-12","2038-06-22",["2038-06-03"]]]},{"t":"Saturn","n":"Pluto","type":"square","w":[["2037-10-02","2037-10-20",["2037-10-11"]],["2038-03-10","2038-04-07",["2038-03-23"]],["2038-06-15","2038-07-12",["2038-06-30"]]]},{"t":"Neptune","n":"ASC","type":"sextile","w":[["2038-07-06","2038-09-04",["2038-08-04"]],["2039-04-24","2039-06-25",["2039-05-22"]],["2039-09-20","2039-12-08",["2039-10-29"]],["2040-02-15","2040-04-19",["2040-03-23"]],["2040-12-27","2041-01-01",["2041-01-01"]]]},{"t":"Saturn","n":"Neptune","type":"square","w":[["2038-09-20","2038-10-06",["2038-09-28"]]]},{"t":"Saturn","n":"Mercury","type":"opposition","w":[["2038-12-17","2039-02-01",["2039-01-08"]],["2039-08-27","2039-09-13",["2039-09-04"]]]},{"t":"Pluto","n":"Uranus","type":"sextile","w":[["2039-04-26","2039-06-29",["2039-05-27"]],["2040-02-24","2040-09-11",["2040-04-02","2040-07-25"]]]},{"t":"Neptune","n":"Mars","type":"conjunction","w":[["2039-06-23","2039-09-22",["2039-08-07"]],["2040-04-18","2040-06-15",["2040-05-14"]],["2040-10-04","2041-01-01",["2040-11-09"]]]},{"t":"Uranus","n":"Mercury","type":"trine","w":[["2039-07-19","2039-08-21",["2039-08-04"]],["2040-02-04","2040-06-06",["2040-03-03","2040-05-11"]]]},{"t":"Uranus","n":"Chiron","type":"sextile","w":[["2039-09-18","2040-01-02",["2039-10-21","2039-11-29"]],["2040-07-02","2040-08-04",["2040-07-19"]]]},{"t":"Saturn","n":"Chiron","type":"conjunction","w":[["2039-09-24","2039-10-11",["2039-10-02"]]]},{"t":"Saturn","n":"Moon","type":"opposition","w":[["2039-10-06","2039-10-23",["2039-10-14"]],["2040-05-15","2040-07-01",["2040-06-07"]]]},{"t":"Uranus","n":"Mars","type":"square","w":[["2039-10-13","2039-12-07",["2039-11-09"]],["2040-07-16","2040-08-18",["2040-08-02"]]]},{"t":"Saturn","n":"Node","type":"opposition","w":[["2039-12-01","2040-01-04",["2039-12-14"]],["2040-02-09","2040-03-15",["2040-02-29"]],["2040-08-24","2040-09-11",["2040-09-01"]]]},{"t":"Uranus","n":"Moon","type":"trine","w":[["2040-07-26","2040-08-29",["2040-08-12"]]]},{"t":"Saturn","n":"Sun","type":"opposition","w":[["2040-10-26","2040-11-12",["2040-11-03"]]]},{"t":"Saturn","n":"MC","type":"opposition","w":[["2040-11-18","2040-12-09",["2040-11-28"]]]}]};
+</script>
+
+<!-- =========================================================
+     DATA: TIMELINE EVENTS
+     ========================================================= -->
+<script>
+const ERAS = [
+  { id:"company",  label:"Company rule · 1652–1795" },
+  { id:"colonies", label:"Colonies and republics · 1795–1910" },
+  { id:"union",    label:"Union · 1910–1961" },
+  { id:"republic", label:"Republic · 1961–1994" },
+  { id:"democracy",label:"Democracy · 1994 onward" }
+];
+
+const EVENTS = [
+  { date:"1657-02-21", era:"company", title:"The first free burghers",
+    summary:"Van Riebeeck's Council of Policy settles the terms that release nine Company servants as free burghers, with farms along the Liesbeek River. The grants take effect on 1 March.",
+    claim:"Neptune stands on the Descendant: the boundary between the settlement and the peoples beyond it begins to dissolve.",
+    reading:["Neptune is within 0°08′ of the Descendant, opposite the Ascendant. The Company's men move off the shoreline and onto land the Khoikhoi used for grazing, and the line between the settlement and the land's own peoples starts to blur.",
+      "Saturn opposes the chart's Moon, ruler of the people, within 0°27′, and sits on Chiron in the 3rd house of neighbours. The people's role is fixed by contract, and the first wound between neighbours is pressed."] },
+  { date:"1658-03-28", era:"company", title:"Enslaved people arrive on the Amersfoort",
+    summary:"The Amersfoort lands more than 170 enslaved people at the Cape, captured from a Portuguese slaver bound from Angola. In May the Hasselt brings more from West Africa.",
+    claim:"Neptune squares the people's ruler to within four minutes of arc.",
+    reading:["Neptune squares the chart's Moon within 0°04′, the tightest contact of the year. The Moon rules the Ascendant and stands for the people; Neptune is the planet of bondage, loss and erased identity.",
+      "Jupiter crosses the Ascendant within 0°15′ at the same time: the body of the settlement is enlarged, and the enlargement comes through captivity. Uranus opposes the rising Saturn and squares the Midheaven within a degree, a rupture in the order of the people and of government."] },
+  { date:"1659-05-19", era:"company", title:"The first Khoikhoi–Dutch War",
+    summary:"Conflict over grazing land and cattle breaks into open war. On 19 May Van Riebeeck calls the Council of Policy to decide its response; the settlers withdraw behind their fortifications and build a line of redoubts and fences.",
+    claim:"Saturn nears its first square to its own place: the first test of the structure the chart built.",
+    reading:["Transiting Saturn is 2°36′ from a square to the chart's Saturn, the first structural checkpoint seven years after the founding. Neptune still squares the Moon, the people's ruler, and Pluto sextiles both the Sun and the Midheaven: authority finds the power to enclose.",
+      "The 1652 chart already holds this war in Mars in Taurus in the 10th, government acting through force over land and cattle. Neptune trines that Mars within 2°18′."] },
+  { date:"1795-09-16", era:"colonies", title:"The British take the Cape",
+    summary:"After the Battle of Muizenberg, the Company's government capitulates to a British force. The VOC itself is near collapse and is dissolved in 1799.",
+    claim:"Neptune opposes Mars, the ruler of government, and the Company's rule dissolves.",
+    reading:["Neptune opposes Mars within 0°31′. Mars rules the Midheaven and sits in the 10th: it is the government. Neptune dissolves it, and the Company that had ruled for 143 years gives way.",
+      "Uranus trines the same Mars within 0°47′, so the change of master comes suddenly and without a long struggle. Saturn sits on the chart's Pluto in the 12th, the house of hidden power."] },
+  { date:"1806-01-08", era:"colonies", title:"The Battle of Blaauwberg",
+    summary:"After three years of Batavian rule, Britain takes the Cape a second time, and this time keeps it.",
+    claim:"The foreign power arrives through the 7th house, where the chart's Uranus stands.",
+    reading:["Uranus and Saturn both sextile the chart's Uranus, which stands at the Descendant, the house of open encounter. Pluto squares its own place in the 12th within 2°13′, the first generational turn of the chart's deepest planet.",
+      "Neptune trines Mercury in the 9th within 0°16′: the Cape's laws and trade are folded into a new empire's."] },
+  { date:"1834-12-01", era:"colonies", title:"Emancipation",
+    summary:"Slavery is abolished at the Cape under the British Slavery Abolition Act. Those freed are bound to four years of 'apprenticeship' to their former owners, which ends in 1838.",
+    claim:"Pluto squares Jupiter, ruler of the house of servants, to within seven minutes of arc.",
+    reading:["Pluto squares the chart's Jupiter within 0°07′. Jupiter rules the 6th house of servants and labour, and Pluto ends what it touches: the legal system of owning people is broken.",
+      "Pluto also stands on the North Node in the 9th, the house of law, and Saturn opposes the Midheaven within 0°54′. The change is imposed on the colony's government by a law made overseas."] },
+  { date:"1838-12-16", era:"colonies", title:"Ncome (Blood River)",
+    summary:"Voortrekker forces defeat a Zulu army under King Dingane at the Ncome River. The day is later commemorated as the Day of the Vow and, since 1995, the Day of Reconciliation.",
+    claim:"Pluto reaches the chart's Sun in the 9th, the house of religion and belief.",
+    reading:["Pluto is within 2°15′ of the chart's Sun in the 9th. The 9th is the house of religion and belief, and the battle becomes a founding religious myth.",
+      "Saturn trines the Moon within 0°42′: the identity of one group of the people hardens around the event."] },
+  { date:"1879-01-22", era:"colonies", title:"Isandlwana",
+    summary:"The Zulu army defeats a British column at Isandlwana in the opening battle of the Anglo-Zulu War, one of the worst defeats the British army suffered in the colonial era.",
+    claim:"Neptune nears Mars, the ruler of government and its armed force, and the empire's certainty fails.",
+    reading:["Neptune is 2°55′ from the chart's Mars. Mars is the ruler of government and its armed force; Neptune dissolves certainty and exposes illusion, and the imperial army's assumption of superiority fails.",
+      "Uranus trines that same Mars within 0°40′ and sextiles the Ascendant: a sudden reversal. Saturn sits on Mercury in the 9th."] },
+  { date:"1886-09-20", era:"colonies", title:"Gold on the Witwatersrand",
+    summary:"President Paul Kruger declares the farms along the Witwatersrand open as public diggings. Johannesburg grows from the mining camp within months.",
+    claim:"Saturn returns to its own place, and Jupiter opens the hidden wealth of the 12th house.",
+    reading:["Transiting Saturn returns to the chart's Saturn in the 1st within 1°09′. Saturn returns every twenty-nine years or so; this one rebuilds the body of the nation around the mines.",
+      "Jupiter trines the chart's Pluto in the 12th within 0°46′, and Pluto sextiles the Moon: the wealth hidden underground opens to the people's ruler. Saturn squares the Midheaven within 0°08′, and a new centre of power begins to form."] },
+  { date:"1899-10-11", era:"colonies", title:"The South African War begins",
+    summary:"War breaks out between Britain and the two Boer republics. Tens of thousands of Boer and Black civilians die in the concentration camps the British establish.",
+    claim:"Neptune opposes the chart's Uranus at the Descendant, the house of open war.",
+    reading:["Neptune opposes the chart's Uranus within 0°30′. Uranus stands at the Descendant, the 7th house of open war, and Neptune brings the war's scorched earth and its camps.",
+      "Saturn crosses the chart's Neptune in the 6th, the house of public health: the camps are where the death toll gathers. The trines from Saturn to the Sun and from Uranus to the Moon give the war its endurance."] },
+  { date:"1902-05-31", era:"colonies", title:"The Peace of Vereeniging",
+    summary:"The war ends. The Boer republics become British colonies, and the treaty defers the question of a franchise for Black South Africans until self-government, which in effect shuts them out.",
+    claim:"Neptune reaches the Ascendant: the body of the nation dissolves and re-forms.",
+    reading:["Neptune is 1°48′ from the Ascendant. The republics vanish into the Crown, and the shape of the people changes.",
+      "Neptune squares Mercury in the 9th within 0°31′: the treaty's own text blurs the question of who belongs. Pluto sextiles the Sun within 0°15′, and a single British authority now governs the region."] },
+  { date:"1910-05-31", era:"union", title:"The Union of South Africa",
+    summary:"The four colonies unite as the Union of South Africa, a self-governing dominion of the British Empire. Political rights are restricted almost entirely to white men.",
+    claim:"Jupiter opposes the Moon to within four minutes: the people's ruler is enlarged into a single state.",
+    reading:["Jupiter opposes the chart's Moon within 0°04′, and Saturn sextiles the Ascendant within 0°31′, giving the body a new structure.",
+      "Neptune squares the Sun within 0°36′: the new authority rests on an exclusion that the chart registers as a fault line in the 9th house of law. Saturn approaches Mars in the 10th, and government is consolidated."] },
+  { date:"1912-01-08", era:"union", title:"The SANNC is founded",
+    summary:"African leaders meet in Bloemfontein and found the South African Native National Congress, renamed the African National Congress in 1923.",
+    claim:"Neptune crosses the chart's Saturn, the outsider who became the body of the nation.",
+    reading:["Neptune crosses the chart's Saturn in the 1st within 0°38′. Saturn there rules the 7th: it is the outsider who became the body of the nation, and Neptune dissolves its walls. A larger vision of who the people are gathers force.",
+      "Jupiter trines the Moon within 1°18′, and the people organise."] },
+  { date:"1913-06-19", era:"union", title:"The Natives Land Act",
+    summary:"The Act restricts African land ownership to reserves amounting to about 7% of the country, extended to about 13% in 1936.",
+    claim:"Pluto moves onto the Ascendant, and Saturn sits on the chart's Pluto in the house of confinement.",
+    reading:["Pluto squares Mercury within 0°18′ and moves to within 2°37′ of the Ascendant: the deepest transit there is reaches the body of the nation.",
+      "Saturn sits on the chart's Pluto in the 12th, the house of confinement, and Uranus squares Mars in Taurus, the planet of force over land. The chart's final dispositor is Venus, ruler of the land, and this law decides who may hold it."] },
+  { date:"1948-05-26", era:"union", title:"The National Party wins power",
+    summary:"The National Party wins the general election on a platform of apartheid and begins to write segregation into law.",
+    claim:"Neptune opposes the North Node in the 9th house of law: an ideology is turned into law.",
+    reading:["Neptune opposes the North Node in the 9th within 0°20′, and squares Jupiter, ruler of the 6th house of labour and the 9th of law, within 1°39′.",
+      "Jupiter sits exactly on the chart's Uranus at the Descendant, and transiting Uranus opposes its own place: the order that follows is a sudden, sweeping break."] },
+  { date:"1955-06-26", era:"union", title:"The Freedom Charter",
+    summary:"The Congress of the People at Kliptown adopts the Freedom Charter, which opens: 'South Africa belongs to all who live in it, black and white.'",
+    claim:"The contacts are soft: a vision held for the future rather than enacted.",
+    reading:["Neptune sextiles and Pluto trines the chart's Uranus at the Descendant: a vision of a different order, carried forward rather than forced.",
+      "Jupiter squares Mars, ruler of government, within 1°23′."] },
+  { date:"1960-03-21", era:"union", title:"Sharpeville",
+    summary:"Police open fire on a crowd protesting the pass laws at Sharpeville, killing 69 people. The ANC and PAC are banned weeks later.",
+    claim:"Saturn squares the Sun on the Midheaven: authority meets its hard limit and answers with force.",
+    reading:["Saturn squares the Sun within 0°53′, and Pluto trines Mars, ruler of government, within 0°10′: lethal power used freely.",
+      "Jupiter stands on the Descendant, opposite the Ascendant, and squares Chiron: the wound is magnified before the world, and international condemnation follows."] },
+  { date:"1961-05-31", era:"republic", title:"The Republic",
+    summary:"South Africa becomes a republic and leaves the Commonwealth.",
+    claim:"Uranus trines the Midheaven: the form of government breaks with the Crown.",
+    reading:["Uranus trines the Midheaven within 1°12′ and trines the chart's Neptune within 0°39′. Saturn sextiles Mercury in the 9th: the break is constitutional and orderly in form."] },
+  { date:"1964-06-12", era:"republic", title:"The Rivonia sentences",
+    summary:"Nelson Mandela and seven co-accused are sentenced to life imprisonment at the end of the Rivonia Trial.",
+    claim:"Pluto squares its own place in the 12th, the house of prisons.",
+    reading:["Pluto squares the chart's Pluto within 0°18′. The 12th house is prisons and confinement, and the chart's Pluto lives there.",
+      "Pluto also trines Jupiter, ruler of the 9th of law, within 0°20′: the law is the instrument of confinement."] },
+  { date:"1976-06-16", era:"republic", title:"The Soweto Uprising",
+    summary:"Students march against the imposition of Afrikaans as a medium of instruction. Police open fire, and the uprising spreads across the country.",
+    claim:"Uranus opposes Mars, ruler of government and of the 5th house of the young.",
+    reading:["Uranus opposes Mars within 0°47′. Mars rules the 10th of government and also the 5th house, the house of children and the young. The revolt is led by schoolchildren, and the government's force meets them directly.",
+      "Neptune opposes the chart's Pluto in the 12th within 0°50′, and Jupiter sits exactly on Venus, ruler of the land."] },
+  { date:"1990-02-11", era:"republic", title:"Mandela walks free",
+    summary:"Nelson Mandela is released after 27 years in prison, nine days after the unbanning of the liberation movements.",
+    claim:"Jupiter crosses the Ascendant and squares the ruler of the house of prisons.",
+    reading:["Jupiter crosses the Ascendant within 1°01′ and squares Mercury, ruler of the 12th house of prisons: release from confinement.",
+      "Saturn opposes its own place in the 1st and squares the Midheaven within 0°31′, the old structure at its turning point. Pluto opposes Venus, the final dispositor and ruler of the land, within 1°18′: the foundations begin to change."] },
+  { date:"1994-04-27", era:"democracy", title:"The first democratic election",
+    summary:"South Africans of all races vote together for the first time. Nelson Mandela becomes president on 10 May.",
+    claim:"Neptune opposes the chart's Saturn, the outsider who became the body of the nation.",
+    reading:["Neptune opposes the chart's Saturn within 1°25′. Saturn is the ruler of the 7th standing in the 1st, and Neptune dissolves its walls. Neptune also squares the Midheaven within 2°27′, bringing a new vision of government.",
+      "Saturn squares the chart's Pluto in the 12th: what was confined is brought into the open."] },
+  { date:"1996-12-10", era:"democracy", title:"The Constitution is signed",
+    summary:"President Mandela signs the new Constitution into law at Sharpeville.",
+    claim:"Saturn sits on Mercury in the 9th house of law: the law is written down and made binding.",
+    reading:["Saturn is within 0°49′ of Mercury in the 9th. Pluto trines the Moon within 1°06′ and sextiles Chiron within 0°21′, a transformation that works with the wound rather than against it.",
+      "The signing at Sharpeville answers the chart's 1960 contacts."] },
+  { date:"2010-06-11", era:"democracy", title:"The FIFA World Cup",
+    summary:"South Africa hosts the first FIFA World Cup held in Africa.",
+    claim:"Jupiter and Uranus stand together on Mercury in the 9th house of foreign visitors.",
+    reading:["Jupiter and Uranus are both within a degree of Mercury in the 9th, the house of foreign visitors and international standing: the world arrives.",
+      "Underneath, Pluto squares the Moon within 0°13′, the people's ruler under deep pressure."] },
+  { date:"2021-07-09", era:"democracy", title:"The July unrest",
+    summary:"Protests after the jailing of former president Jacob Zuma turn into widespread rioting and looting in KwaZulu-Natal and Gauteng. More than 300 people die.",
+    claim:"The hard contacts are few; the clearest falls on the 6th house of workers and public health.",
+    reading:["Neptune squares its own place in the 6th, the house of workers and public health, within 1°42′, during pandemic lockdowns and high unemployment.",
+      "Saturn trines the chart's Pluto in the 12th within 0°28′."] },
+  { date:"2024-05-29", era:"democracy", title:"The Government of National Unity",
+    summary:"The ANC loses its parliamentary majority for the first time since 1994 and forms a Government of National Unity with nine other parties.",
+    claim:"Neptune sits on Mercury in the 9th: the message is blurred and no party carries the whole.",
+    reading:["Neptune is within 0°12′ of Mercury in the 9th. Pluto squares Mars, ruler of government, within 2°08′: the governing power is transformed.",
+      "Saturn sextiles Venus within 0°26′, giving the land's ruler a working arrangement among many parties."] }
+];
+</script>
+
+<!-- =========================================================
+     DATA: FUTURE CHAPTERS
+     ========================================================= -->
+<script>
+const CHAPTERS = [
+  { id:"neptune", range:"2024–2036", peak:"2033-04", title:"Neptune crosses the 9th house",
+    claim:"Neptune moves over every body in the 9th house, then the Midheaven.",
+    reading:["Neptune entered Aries in 2025 and 2026 and walks the whole of the chart's 9th house: Mercury (exact in January 2026), the Moon (2026 to 2028), the North Node (2029 to 2031), the Sun (2032 to 2034) and the Midheaven (2033 to 2036). The 9th is the house of foreign trade, shipping, law, religion and international standing, the reason the station existed.",
+      "Neptune dissolves, idealises, confuses and inspires. Its passage describes long stretches in which the country's laws, beliefs and place in the world are hard to pin down and easy to mythologise. The Moon crossing, over the ruler of the people, comes first; from 2032 the same dissolving force reaches the Sun and the Midheaven, authority and government.",
+      "Neptune last crossed these degrees between 1861 and 1875. It reached the Sun in 1869 and the Midheaven in 1870 and 1871, the years of the first great diamond finds and the rush to Kimberley, when the country's place in the world economy was remade."] },
+  { id:"saturn", range:"2026–2030", peak:"2027-04", title:"Saturn's pass through Aries",
+    claim:"Saturn tests the 9th house, then government, then the land's ruler.",
+    reading:["Saturn met Neptune at the start of Aries in February 2026, on the chart's Mercury, and crossed the Moon in March 2026. In October 2026 it stands exactly on the North Node. It reaches the Sun in April 2027 and the Midheaven in May and December 2027, squares its own place in the 1st from late 2027 to early 2028, then moves on to Mars (2028 to 2029) and Venus (2029 to 2030).",
+      "Saturn tests and consolidates. In the order it moves, the pressure falls first on law and trade, then on government, then on the government's force and finally on Venus, the ruler of the land and of the whole chart. Saturn's square to its own place is a structural checkpoint of the same kind the chart met in 1659."] },
+  { id:"pluto-mars", range:"2026–2027", peak:"2026-08", title:"Pluto squares Mars",
+    claim:"The deepest planet presses on the ruler of government and its force.",
+    reading:["Pluto in Aquarius squares the chart's Mars in four windows between January 2026 and November 2027. Mars rules the Midheaven, sits in the 10th and stands for government acting with force: the police and the military, and force applied to land and livestock.",
+      "Pluto exposes and transforms power. A square from Pluto to the ruler of government describes a struggle over who commands force and how it is used. The same Mars was struck by Neptune in 1795, by Uranus in 1976, and by Pluto's approach in 2024."] },
+  { id:"uranus-pluto", range:"2028–2030", peak:"2028-12", title:"Uranus meets Pluto in the 12th",
+    claim:"What is hidden in the state's institutions comes suddenly into view.",
+    reading:["Uranus in Gemini crosses the chart's Pluto three times, in June 2028, December 2028 and April 2029, and an annular solar eclipse falls on the same degree on 1 June 2030. The chart's Pluto lies in the 12th, the house of hidden enemies, prisons and the institutions that confine.",
+      "Uranus breaks open and exposes. On Pluto in the 12th it describes revelation: what has been concealed comes into view, abruptly. This Pluto was squared by Pluto in 1806 and again in 1964, the year of the Rivonia sentences."] },
+  { id:"uranus-asc", range:"2032–2038", peak:"2033-06", title:"Uranus crosses the Ascendant",
+    claim:"The body of the nation changes shape, and its rising Saturn is woken.",
+    reading:["Uranus enters Cancer and crosses the Ascendant in October 2032, June 2033 and March 2034. Saturn crosses the same degree from August 2032 to April 2033, then returns to its own place in the 1st in November 2033 and June 2034, the chart's Saturn return. Uranus goes on to sit on the chart's Saturn in 2037 and 2038, and a total solar eclipse falls on that Saturn on 13 July 2037.",
+      "The Ascendant is the people and the body of the nation; the Saturn there is the outsider who became the body, behind its walls. Uranus is sudden change and liberation. Together these crossings are the chart's strongest signature of a change in who the people are and how they are held together. The previous Saturn returns fell in 1975, the year before Soweto, and in 2004 and 2005."] },
+  { id:"eclipses", range:"2033–2034", peak:"2033-03", title:"The eclipse gate",
+    claim:"Three eclipses fall on the 9th house, echoing the founding eclipse.",
+    reading:["A total solar eclipse on 30 March 2033 falls at 10°27′ Aries, within 0°17′ of the North Node. Another total solar eclipse on 20 March 2034 falls within 0°05′ of Mercury, and a lunar eclipse on 28 September 2034 falls on the Moon. Neptune is crossing the Sun and the Midheaven at the same time.",
+      "The chart was cast a day before a total solar eclipse on its Midheaven. Eclipses on the Node, Mercury and Moon, all in the 9th, return the chart to the conditions of its founding: the same house, the same sign, the same purpose put in question."] },
+  { id:"pluto-venus", range:"2032–2037", peak:"2035-03", title:"Pluto squares Venus",
+    claim:"The ruler of the land, and of the whole chart, is transformed.",
+    reading:["An annular solar eclipse falls directly on Venus on 9 May 2032. Pluto then squares Venus in six exact passes from May 2034 to November 2036. Venus is the chart's final dispositor, where every chain of rulership ends, and it rules the 4th house of land.",
+      "Pluto on Venus is the land question at its deepest: a full, slow reckoning with ownership and value, worked out in the 11th house of councils, where Venus sits. The chart's Venus was opposed by Pluto when Mandela walked free in 1990, and touched by Jupiter on the day of the Soweto Uprising."] }
+];
+</script>
+
+<!-- =========================================================
+     MODULE: ASTRO UTILITIES
+     ========================================================= -->
 <script>
 const Astro = (() => {
   const SIGNS = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
   const SIGN_GLYPHS = ["♈","♉","♊","♋","♌","♍","♎","♏","♐","♑","♒","♓"];
-  const VS = "︎"; // text presentation, never emoji
+  const VS = "︎";
+  const ASPECTS = [[0,"conjunction"],[60,"sextile"],[90,"square"],[120,"trine"],[180,"opposition"]];
+  const ORB = { Jupiter:2, Saturn:3, Uranus:3, Neptune:3, Pluto:3 };
+  const SLOW = Object.keys(ORB);
+  const KIND = { conjunction:"conj", square:"hard", opposition:"hard", trine:"soft", sextile:"soft", quincunx:"minor" };
+  const POINT_NAMES = { ASC:"Ascendant", MC:"Midheaven", Node:"North Node" };
+
   const norm = d => ((d % 360) + 360) % 360;
+  const sep = (a, b) => { const d = Math.abs(norm(a) - norm(b)) % 360; return Math.min(d, 360 - d); };
   const signIndex = lon => Math.floor(norm(lon) / 30);
-  const fmt = lon => {
-    const x = norm(lon) % 30;
-    let deg = Math.floor(x), min = Math.floor((x - deg) * 60 + 1e-6);
-    if (min === 60) { deg += 1; min = 0; }
-    return `${deg}°${String(min).padStart(2,"0")}′ ${SIGNS[signIndex(lon)]}`;
-  };
-  const fmtOrb = o => `${Math.floor(o)}°${String(Math.round((o % 1) * 60)).padStart(2,"0")}′`;
+  const dm = x => { let d = Math.floor(x), m = Math.floor((x - d) * 60 + 1e-6); return [d, m]; };
+  const fmt = lon => { const [d, m] = dm(norm(lon) % 30); return `${d}°${String(m).padStart(2,"0")}′ ${SIGNS[signIndex(lon)]}`; };
+  const fmtOrb = o => { const [d, m] = dm(o); return `${d}°${String(m).padStart(2,"0")}′`; };
   const glyph = g => g + VS;
-  return { SIGNS, SIGN_GLYPHS, norm, signIndex, fmt, fmtOrb, glyph };
+  const pointName = id => POINT_NAMES[id] || id;
+
+  function natalPoints(chart) {
+    const pts = Object.fromEntries(chart.bodies.map(b => [b.id, b.lon]));
+    pts.ASC = chart.asc; pts.MC = chart.mc;
+    return pts;
+  }
+
+  // Contacts from slow transiting planets to the natal chart
+  function contacts(transits, natal) {
+    const out = [];
+    for (const t of SLOW) {
+      if (!(t in transits)) continue;
+      for (const [n, nl] of Object.entries(natal)) {
+        const d = sep(transits[t], nl);
+        for (const [ang, name] of ASPECTS) {
+          const orb = ORB[t] * (ang === 60 ? 0.67 : 1);
+          if (Math.abs(d - ang) <= orb) out.push({ t, n, type:name, orb:Math.abs(d - ang) });
+        }
+      }
+    }
+    return out.sort((a, b) => a.orb - b.orb);
+  }
+
+  return { SIGNS, SIGN_GLYPHS, KIND, norm, sep, signIndex, fmt, fmtOrb, glyph, pointName, natalPoints, contacts };
+})();
+
+const Dates = (() => {
+  const LONG = new Intl.DateTimeFormat("en-GB", { day:"numeric", month:"long", year:"numeric", timeZone:"UTC" });
+  const MONTH = new Intl.DateTimeFormat("en-GB", { month:"long", year:"numeric", timeZone:"UTC" });
+  const SHORT = new Intl.DateTimeFormat("en-GB", { day:"numeric", month:"short", year:"numeric", timeZone:"UTC" });
+  const parse = s => new Date(s.length === 7 ? s + "-01T00:00:00Z" : s + "T00:00:00Z");
+  return {
+    parse,
+    long: s => LONG.format(parse(s)),
+    month: s => MONTH.format(parse(s)),
+    short: s => SHORT.format(parse(s)),
+    year: s => s.slice(0, 4),
+    monthKey: d => d.toISOString().slice(0, 7)
+  };
 })();
 
 const Dom = {
@@ -511,195 +946,507 @@ const Dom = {
     if (text) n.textContent = text;
     return n;
   },
-  tag(text, tone = "") { return `<span class="tag ${tone}">${text}</span>`; }
+  tag(text, tone = "") { return `<span class="tag ${tone}">${text}</span>`; },
+  esc(s) { return String(s).replace(/[&<>"]/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;" })[c]); }
 };
 
-const ASPECT_KIND = { conjunction:"", square:"hard", opposition:"hard", trine:"soft", sextile:"soft", quincunx:"minor" };
+const GLYPHS = Object.fromEntries(CHART.bodies.map(b => [b.id, b.glyph]));
+const gl = id => GLYPHS[id] ? `<i class="g">${Astro.glyph(GLYPHS[id])}</i>` : "";
 </script>
 
-<!-- ========== WHEEL ========== -->
+<!-- =========================================================
+     MODULE: WHEEL (single and bi-wheel)
+     ========================================================= -->
 <script>
 const Wheel = (() => {
-  const C = 300, R = { outer:292, zodiac:252, planet:212, deg:184, house:150, inner:128 };
+  const C = 300;
+  const LAYOUT = {
+    single: { outer:292, zodiac:252, natal:212, natalDeg:184, natalTick:252, inner:128 },
+    bi:     { outer:292, zodiac:252, transit:231, divider:212, natal:190, natalDeg:166, natalTick:212, inner:140 }
+  };
 
-  // Ascendant on the left, zodiac running anticlockwise
   const angleOf = (lon, asc) => (180 + Astro.norm(lon - asc)) * Math.PI / 180;
   const pt = (lon, r, asc) => { const a = angleOf(lon, asc); return [C + r * Math.cos(a), C - r * Math.sin(a)]; };
 
-  // Push crowded glyphs apart so labels never collide
-  function spread(bodies, minSep = 8.5) {
-    const items = bodies.map(b => ({ id:b.id, lon:b.lon, disp:b.lon })).sort((a,b) => a.lon - b.lon);
-    for (let it = 0; it < 60; it++) {
+  function spread(items, minSep) {
+    const list = items.map(i => ({ id:i.id, disp:i.lon })).sort((a, b) => a.disp - b.disp);
+    for (let it = 0; it < 80; it++) {
       let moved = false;
-      for (let i = 0; i < items.length; i++) {
-        const a = items[i], b = items[(i + 1) % items.length];
+      for (let i = 0; i < list.length; i++) {
+        const a = list[i], b = list[(i + 1) % list.length];
         const gap = Astro.norm(b.disp - a.disp);
-        if (gap < minSep) { const push = (minSep - gap) / 2; a.disp -= push; b.disp += push; moved = true; }
+        if (gap < minSep) { const p = (minSep - gap) / 2; a.disp -= p; b.disp += p; moved = true; }
       }
       if (!moved) break;
     }
-    return Object.fromEntries(items.map(i => [i.id, Astro.norm(i.disp)]));
+    return Object.fromEntries(list.map(i => [i.id, Astro.norm(i.disp)]));
   }
 
-  function drawZodiac(g, asc) {
+  function drawZodiac(g, L, asc) {
     for (let s = 0; s < 12; s++) {
       const a0 = s * 30, a1 = a0 + 30;
-      const [x0,y0] = pt(a0, R.outer, asc), [x1,y1] = pt(a1, R.outer, asc);
-      const [x2,y2] = pt(a1, R.zodiac, asc), [x3,y3] = pt(a0, R.zodiac, asc);
+      const [x0,y0] = pt(a0, L.outer, asc), [x1,y1] = pt(a1, L.outer, asc);
+      const [x2,y2] = pt(a1, L.zodiac, asc), [x3,y3] = pt(a0, L.zodiac, asc);
       g.append(Dom.svg("path", { class:"band", fill: s % 2 ? "var(--band)" : "var(--band-2)",
-        d:`M${x0},${y0} A${R.outer},${R.outer} 0 0 0 ${x1},${y1} L${x2},${y2} A${R.zodiac},${R.zodiac} 0 0 1 ${x3},${y3} Z` }));
-      const [tx,ty] = pt(a0 + 15, (R.outer + R.zodiac) / 2, asc);
+        d:`M${x0},${y0} A${L.outer},${L.outer} 0 0 0 ${x1},${y1} L${x2},${y2} A${L.zodiac},${L.zodiac} 0 0 1 ${x3},${y3} Z` }));
+      const [tx,ty] = pt(a0 + 15, (L.outer + L.zodiac) / 2, asc);
       g.append(Dom.svg("text", { class:"sign", x:tx, y:ty }, Astro.glyph(Astro.SIGN_GLYPHS[s])));
     }
-    [R.outer, R.zodiac, R.inner].forEach(r => g.append(Dom.svg("circle", { class:"ring", cx:C, cy:C, r })));
+    [L.outer, L.zodiac, L.inner].forEach(r => g.append(Dom.svg("circle", { class:"ring", cx:C, cy:C, r })));
+    if (L.divider) g.append(Dom.svg("circle", { class:"divider", cx:C, cy:C, r:L.divider }));
   }
 
-  function drawHouses(g, cusps, asc) {
+  function drawHouses(g, L, cusps, asc) {
     cusps.forEach((c, i) => {
       const angular = i % 3 === 0;
-      const [x0,y0] = pt(c, R.inner, asc), [x1,y1] = pt(c, angular ? R.outer + 6 : R.zodiac, asc);
+      const [x0,y0] = pt(c, L.inner, asc), [x1,y1] = pt(c, angular ? L.outer + 6 : L.zodiac, asc);
       g.append(Dom.svg("line", { class: angular ? "angle" : "cusp", x1:x0, y1:y0, x2:x1, y2:y1 }));
-      const next = cusps[(i + 1) % 12], mid = c + Astro.norm(next - c) / 2;
-      const [hx,hy] = pt(mid, R.inner + 12, asc);
+      const mid = c + Astro.norm(cusps[(i + 1) % 12] - c) / 2;
+      const [hx,hy] = pt(mid, L.inner + 12, asc);
       g.append(Dom.svg("text", { class:"hnum", x:hx, y:hy }, String(i + 1)));
     });
-    const labels = [["AC",0,-1],["IC",3,1],["DC",6,1],["MC",9,-1]];
-    labels.forEach(([t, i]) => {
-      const [lx,ly] = pt(cusps[i] + (i === 0 || i === 6 ? 4 : -4), R.zodiac - 14, asc);
+    [["AC",0],["IC",3],["DC",6],["MC",9]].forEach(([t, i]) => {
+      const off = (i === 0 || i === 6) ? 4 : -4;
+      const [lx,ly] = pt(cusps[i] + off, L.zodiac - 14, asc);
       g.append(Dom.svg("text", { class:"angle-lbl", x:lx, y:ly, "text-anchor":"middle", "dominant-baseline":"central" }, t));
     });
   }
 
-  function drawAspects(g, chart, asc) {
-    const pos = Object.fromEntries(chart.bodies.map(b => [b.id, b.lon]));
-    chart.aspects.forEach(([a, b, type]) => {
-      if (!(a in pos) || !(b in pos) || type === "conjunction") return;
-      const [x1,y1] = pt(pos[a], R.inner, asc), [x2,y2] = pt(pos[b], R.inner, asc);
-      g.append(Dom.svg("line", { class:`asp ${ASPECT_KIND[type]}`, "data-a":a, "data-b":b, x1, y1, x2, y2 }));
-    });
-  }
-
-  function drawPlanets(g, chart, asc) {
-    const disp = spread(chart.bodies);
-    chart.bodies.forEach(b => {
-      const grp = Dom.svg("g", { class:"planet", "data-body":b.id, tabindex:"0", "aria-label":`${b.id} ${Astro.fmt(b.lon)}` });
-      const [t0x,t0y] = pt(b.lon, R.zodiac, asc), [t1x,t1y] = pt(b.lon, R.zodiac - 9, asc);
-      grp.append(Dom.svg("line", { class:"tick", x1:t0x, y1:t0y, x2:t1x, y2:t1y }));
-      const [gx,gy] = pt(disp[b.id], R.planet, asc);
-      grp.append(Dom.svg("line", { class:"lead", x1:t1x, y1:t1y, x2:gx, y2:gy, opacity: Math.abs(disp[b.id] - b.lon) > .5 ? 1 : 0 }));
-      grp.append(Dom.svg("circle", { cx:gx, cy:gy, r:14, fill:"transparent" }));
-      grp.append(Dom.svg("text", { class:"pg", x:gx, y:gy }, Astro.glyph(b.glyph)));
-      const [dx,dy] = pt(disp[b.id], R.deg, asc);
-      grp.append(Dom.svg("text", { class:"pdeg", x:dx, y:dy }, String(Math.floor(b.lon % 30))));
-      grp.append(Dom.svg("title", {}, `${b.id} ${Astro.fmt(b.lon)}`));
+  function drawBodies(g, bodies, asc, ring) {
+    const disp = spread(bodies, ring.minSep);
+    bodies.forEach(b => {
+      const grp = Dom.svg("g", { class:"planet", "data-body":b.id, tabindex:"0", "aria-label":`${ring.prefix}${b.id} ${Astro.fmt(b.lon)}` });
+      const [t0x,t0y] = pt(b.lon, ring.tick, asc), [t1x,t1y] = pt(b.lon, ring.tick - 8, asc);
+      grp.append(Dom.svg("line", { class:`tick ${ring.cls}`, x1:t0x, y1:t0y, x2:t1x, y2:t1y }));
+      const [gx,gy] = pt(disp[b.id], ring.r, asc);
+      if (Math.abs(disp[b.id] - b.lon) > .5) grp.append(Dom.svg("line", { class:"lead", x1:t1x, y1:t1y, x2:gx, y2:gy }));
+      grp.append(Dom.svg("circle", { cx:gx, cy:gy, r:13, fill:"transparent" }));
+      grp.append(Dom.svg("text", { class:`pg ${ring.cls}`, x:gx, y:gy }, Astro.glyph(b.glyph)));
+      if (ring.degR) {
+        const [dx,dy] = pt(disp[b.id], ring.degR, asc);
+        grp.append(Dom.svg("text", { class:"pdeg", x:dx, y:dy }, String(Math.floor(Astro.norm(b.lon) % 30))));
+      }
+      grp.append(Dom.svg("title", {}, `${ring.prefix}${b.id} ${Astro.fmt(b.lon)}`));
       g.append(grp);
     });
   }
 
-  function render(svg, chart) {
-    const asc = chart.asc;
-    const layers = ["zodiac","houses","aspects","planets"].map(() => svg.appendChild(Dom.svg("g")));
-    drawZodiac(layers[0], asc);
-    drawHouses(layers[1], chart.cusps, asc);
-    drawAspects(layers[2], chart, asc);
-    drawPlanets(layers[3], chart, asc);
+  function drawLines(g, L, asc, lines) {
+    lines.forEach(({ a, b, type, key, ids }) => {
+      const [x1,y1] = pt(a, L.inner, asc), [x2,y2] = pt(b, L.inner, asc);
+      g.append(Dom.svg("line", { class:`asp ${Astro.KIND[type]}`, "data-key":key, "data-a":ids[0], "data-b":ids[1], x1, y1, x2, y2 }));
+    });
   }
-  return { render };
+
+  /** Render the 1652 chart; pass opts.transits ({id: lon}) and opts.contacts for a bi-wheel. */
+  function render(svg, chart, opts = {}) {
+    svg.replaceChildren();
+    const bi = !!opts.transits;
+    const L = bi ? LAYOUT.bi : LAYOUT.single;
+    const asc = chart.asc;
+    const layers = [0,1,2,3,4].map(() => svg.appendChild(Dom.svg("g")));
+    drawZodiac(layers[0], L, asc);
+    drawHouses(layers[1], L, chart.cusps, asc);
+
+    const natal = Astro.natalPoints(chart);
+    const lines = bi
+      ? (opts.contacts || []).map(c => ({ a:natal[c.n], b:opts.transits[c.t], type:c.type, key:`${c.t}|${c.n}|${c.type}`, ids:[c.t, c.n] }))
+      : chart.aspects.filter(([a, b, t]) => t !== "conjunction" && a in natal && b in natal && a !== "ASC" && b !== "ASC" && a !== "MC" && b !== "MC")
+          .map(([a, b, t]) => ({ a:natal[a], b:natal[b], type:t, key:`${a}|${b}|${t}`, ids:[a, b] }));
+    drawLines(layers[2], L, asc, lines);
+
+    drawBodies(layers[3], chart.bodies, asc, { r:L.natal, degR:L.natalDeg, tick:L.natalTick, cls:"", prefix: bi ? "1652 " : "", minSep:8.5 });
+    if (bi) {
+      const tb = Object.entries(opts.transits).map(([id, lon]) => ({ id, lon, glyph:GLYPHS[id] }));
+      drawBodies(layers[4], tb, asc, { r:L.transit, degR:null, tick:L.zodiac, cls:"t", prefix:"Transit ", minSep:7.5 });
+    }
+  }
+
+  /** Highlight lines matching a predicate; null clears. */
+  function focus(svg, match) {
+    svg.classList.toggle("focus", !!match);
+    svg.querySelectorAll(".asp").forEach(l => l.classList.toggle("on", !!match && match(l)));
+  }
+
+  return { render, focus };
 })();
 </script>
 
-<!-- ========== TABLES & BLOCKS ========== -->
+<!-- =========================================================
+     MODULE: CHART VIEW
+     ========================================================= -->
 <script>
-const Render = {
-  positions(tbody, chart) {
-    const rows = [...chart.bodies.map(b => ({ ...b })),
+const ChartView = (() => {
+  const $ = id => document.getElementById(id);
+
+  function positions(tbody, chart) {
+    const rows = [...chart.bodies,
       { id:"Ascendant", glyph:"", lon:chart.asc, house:1, motion:"", state:"Angle", tone:"" },
       { id:"Midheaven", glyph:"", lon:chart.mc, house:10, motion:"", state:"Angle", tone:"" }];
     rows.forEach(b => {
-      const tr = Dom.el("tr", { "data-body":b.id });
-      tr.innerHTML = `<td><span class="body-cell"><i class="g">${b.glyph ? Astro.glyph(b.glyph) : ""}</i>${b.id}</span></td>
-        <td class="num">${Astro.fmt(b.lon)}${/Retro/.test(b.motion) ? " R" : ""}</td>
-        <td class="num">${b.house}</td>
-        <td>${Dom.tag(b.state, b.tone)}</td>`;
-      tbody.append(tr);
+      tbody.append(Dom.el("tr", { "data-body":b.id },
+        `<td><span class="body-cell"><i class="g">${b.glyph ? Astro.glyph(b.glyph) : ""}</i>${b.id}</span></td>
+         <td class="num">${Astro.fmt(b.lon)}${/Retro/.test(b.motion) ? " R" : ""}</td>
+         <td class="num">${b.house}</td><td>${Dom.tag(b.state, b.tone)}</td>`));
     });
-  },
-  bars(host, rows, max) {
-    rows.forEach(([label, n, who]) => {
-      host.append(Dom.el("div", { class:"bar-row" },
-        `<span>${label}</span><span class="bar"><i style="width:${n / max * 100}%"></i></span><b>${n}</b><small>${who}</small>`));
-    });
-  },
-  chain(host, chart) {
-    const byId = Object.fromEntries(chart.bodies.map(b => [b.id, b]));
-    const chip = (id, final = false) => `<span class="chip${final ? " final" : ""}"><i class="g">${Astro.glyph(byId[id].glyph)}</i>${id}${final ? " ⟲" : ""}</span>`;
-    chart.chain.forEach(row => {
-      const parts = row.from.map(id => chip(id)).concat(chip(row.to, row.to === "Venus"));
-      host.append(Dom.el("div", { class:"chain-row" },
-        parts.join('<span class="arrow">→</span>') + (row.note ? `<span class="arrow" style="font-size:.8rem">&nbsp;${row.note}</span>` : "")));
-    });
-  },
-  simple(tbody, rows, cellFn) {
-    rows.forEach(r => tbody.append(Dom.el("tr", {}, cellFn(r))));
   }
-};
-</script>
 
-<!-- ========== INTERACTION ========== -->
-<script>
-const Focus = (() => {
-  let svg, rows;
-  function set(id) {
-    svg.classList.toggle("focus", !!id);
-    svg.querySelectorAll(".asp").forEach(l => l.classList.toggle("on", !!id && (l.dataset.a === id || l.dataset.b === id)));
-    svg.querySelectorAll(".planet").forEach(p => p.classList.toggle("on", p.dataset.body === id));
-    rows.forEach(r => r.classList.toggle("hl", r.dataset.body === id));
+  function bars(host, rows, max) {
+    rows.forEach(([label, n, who]) => host.append(Dom.el("div", { class:"bar-row" },
+      `<span>${label}</span><span class="bar"><i style="width:${n / max * 100}%"></i></span><b>${n}</b><small>${who}</small>`)));
   }
-  function bind(svgEl, rowEls) {
-    svg = svgEl; rows = [...rowEls];
-    const targets = [...svg.querySelectorAll(".planet"), ...rows];
-    targets.forEach(t => {
+
+  function chain(host, chart) {
+    const chip = (id, final) => `<span class="chip${final ? " final" : ""}">${gl(id)}${id}${final ? " ⟲" : ""}</span>`;
+    chart.chain.forEach(row => {
+      const parts = row.from.map(id => chip(id, false)).concat(chip(row.to, row.to === "Venus"));
+      host.append(Dom.el("div", { class:"chain-row" },
+        parts.join('<span class="arrow">→</span>') + (row.note ? `<span class="arrow small">&nbsp;${row.note}</span>` : "")));
+    });
+  }
+
+  function rows(tbody, data, cells) { data.forEach(r => tbody.append(Dom.el("tr", {}, cells(r)))); }
+
+  function bindFocus(svg, rowEls) {
+    const set = id => {
+      Wheel.focus(svg, id ? l => l.dataset.a === id || l.dataset.b === id : null);
+      svg.querySelectorAll(".planet").forEach(p => p.classList.toggle("on", p.dataset.body === id));
+      rowEls.forEach(r => r.classList.toggle("hl", r.dataset.body === id));
+    };
+    [...svg.querySelectorAll(".planet"), ...rowEls].forEach(t => {
       const id = t.dataset.body;
       t.addEventListener("mouseenter", () => set(id));
       t.addEventListener("mouseleave", () => set(null));
       t.addEventListener("focus", () => set(id));
       t.addEventListener("blur", () => set(null));
-      t.addEventListener("click", () => set(svg.classList.contains("focus") && t.classList.contains("on") ? null : id));
     });
   }
-  return { bind };
+
+  function init(chart) {
+    const svg = $("wheel-natal");
+    Wheel.render(svg, chart);
+    positions($("pos-body"), chart);
+    bars($("elements"), chart.elements, 4);
+    bars($("modes"), chart.modes, 4);
+    chain($("chain"), chart);
+    rows($("rulers-body"), chart.rulers, ([h, m, r, s]) => `<td class="num">${h}</td><td>${m}</td><td><span class="body-cell">${gl(r)}${r}</span></td><td>${s}</td>`);
+    rows($("cond-body"), chart.condition, ([p, st, ang, sect, tone]) => `<td><span class="body-cell">${gl(p)}${p}</span></td><td>${Dom.tag(st, tone)}</td><td>${ang}</td><td>${sect}</td>`);
+    rows($("asp-body"), chart.aspects, ([a, b, type, orb, ph]) =>
+      `<td><span class="body-cell">${gl(a)}${Astro.pointName(a)} <span class="muted">·</span> ${gl(b)}${Astro.pointName(b)}</span></td>
+       <td>${Dom.tag(type, Astro.KIND[type])}</td><td class="num">${Astro.fmtOrb(orb)}</td><td>${ph === "app" ? "Applying" : "Separating"}</td>`);
+    rows($("houses-body"), chart.houses, ([n, meaning, ruler, occ]) =>
+      `<td class="num">${n}</td><td class="num">${Astro.fmt(chart.cusps[n - 1])}</td><td>${meaning}</td><td>${ruler}</td><td>${occ}</td>`);
+    bindFocus(svg, [...$("pos-body").querySelectorAll("tr")]);
+  }
+
+  return { init };
 })();
 </script>
 
-<!-- ========== BOOT ========== -->
+<!-- =========================================================
+     MODULE: CONTACTS TABLE (shared by Timeline and Future)
+     ========================================================= -->
 <script>
-(function init(chart) {
+const ContactsTable = {
+  /** Fill a tbody with transit-to-1652 contacts and link row hover to the wheel lines. */
+  fill(tbody, svg, contacts, limit = 12) {
+    tbody.replaceChildren();
+    if (!contacts.length) {
+      tbody.append(Dom.el("tr", {}, `<td colspan="4" class="muted">No slow-planet contacts within orb.</td>`));
+      return;
+    }
+    contacts.slice(0, limit).forEach(c => {
+      const key = `${c.t}|${c.n}|${c.type}`;
+      const tr = Dom.el("tr", { "data-key":key },
+        `<td><span class="body-cell" style="color:var(--transit)">${gl(c.t)}${c.t}</span></td>
+         <td>${Dom.tag(c.type, Astro.KIND[c.type])}</td>
+         <td><span class="body-cell" style="white-space:normal">${gl(c.n)}${Astro.pointName(c.n)}</span></td>
+         <td class="num">${Astro.fmtOrb(c.orb)}</td>`);
+      const on = () => { Wheel.focus(svg, l => l.dataset.key === key); tr.classList.add("hl"); };
+      const off = () => { Wheel.focus(svg, null); tr.classList.remove("hl"); };
+      tr.addEventListener("mouseenter", on); tr.addEventListener("mouseleave", off);
+      tbody.append(tr);
+    });
+  }
+};
+</script>
+
+<!-- =========================================================
+     MODULE: TIMELINE VIEW
+     ========================================================= -->
+<script>
+const TimelineView = (() => {
+  let nav, detail, buttons = {};
+
+  function buildNav() {
+    ERAS.forEach(era => {
+      const items = EVENTS.filter(e => e.era === era.id);
+      if (!items.length) return;
+      nav.append(Dom.el("div", { class:"era" }, era.label));
+      const ol = Dom.el("ol", { class:"tl-list" });
+      items.forEach(e => {
+        const li = Dom.el("li");
+        const a = Dom.el("a", { class:"tl-item", href:`#/timeline/${e.date}`, style:"text-decoration:none;color:inherit" },
+          `<span class="y">${Dates.year(e.date)}</span><span><span class="t">${Dom.esc(e.title)}</span><span class="d">${Dates.long(e.date)}</span></span>`);
+        buttons[e.date] = a;
+        li.append(a); ol.append(li);
+      });
+      nav.append(ol);
+    });
+  }
+
+  function renderDetail(e) {
+    const sky = SKY.events[e.date];
+    const idx = EVENTS.indexOf(e), prev = EVENTS[idx - 1], next = EVENTS[idx + 1];
+    detail.innerHTML = `
+      <div class="detail-head">
+        <div class="eyebrow">${Dates.long(e.date)} · ${ERAS.find(x => x.id === e.era).label.split(" · ")[0]}</div>
+        <h2>${Dom.esc(e.title)}</h2>
+        <p>${Dom.esc(e.summary)}</p>
+      </div>
+      <div class="detail-grid">
+        <div>
+          <div class="wheel-box">
+            <svg class="wheel" id="wheel-event" viewBox="0 0 600 600" role="img" aria-label="1652 chart with the sky on ${Dates.long(e.date)}"></svg>
+            <div class="legend"><span class="l-natal">1652 chart</span><span class="l-transit">Sky on the day</span><span class="l-conj">Conjunction</span><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span></div>
+          </div>
+        </div>
+        <div class="reading">
+          <p class="claim">${Dom.esc(e.claim)}</p>
+          ${e.reading.map(p => `<p>${Dom.esc(p)}</p>`).join("")}
+          <div class="tbl-wrap">
+            <table><thead><tr><th>Transit</th><th>Aspect</th><th>1652 point</th><th>Orb</th></tr></thead><tbody id="event-contacts"></tbody></table>
+          </div>
+        </div>
+      </div>
+      <div class="pager">
+        ${prev ? `<a class="btn" href="#/timeline/${prev.date}">◀ ${Dates.year(prev.date)}</a>` : `<span></span>`}
+        ${next ? `<a class="btn" href="#/timeline/${next.date}">${Dates.year(next.date)} ▶</a>` : `<span></span>`}
+      </div>`;
+    const svg = detail.querySelector("#wheel-event");
+    const contacts = sky.contacts;
+    Wheel.render(svg, CHART, { transits: sky.transits, contacts });
+    ContactsTable.fill(detail.querySelector("#event-contacts"), svg, contacts);
+  }
+
+  function select(date, scroll) {
+    const e = EVENTS.find(x => x.date === date) || EVENTS[0];
+    Object.entries(buttons).forEach(([d, b]) => b.setAttribute("aria-current", d === e.date ? "true" : "false"));
+    renderDetail(e);
+    if (scroll) detail.scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function init() {
+    nav = document.getElementById("tl-nav");
+    detail = document.getElementById("tl-detail");
+    buildNav();
+  }
+
+  return { init, select };
+})();
+</script>
+
+<!-- =========================================================
+     MODULE: FUTURE VIEW
+     ========================================================= -->
+<script>
+const FutureView = (() => {
   const $ = id => document.getElementById(id);
-  const byId = Object.fromEntries(chart.bodies.map(b => [b.id, b]));
-  const label = id => id === "ASC" ? "Ascendant" : id === "MC" ? "Midheaven" : id;
-  const g = id => byId[id] ? `<i class="g">${Astro.glyph(byId[id].glyph)}</i>` : "";
+  const MONTHS = Object.keys(SKY.months);
+  const START = Dates.parse(MONTHS[0]).getTime();
+  const END = Dates.parse("2041-01-01").getTime();
+  const pct = s => ((Dates.parse(s).getTime() - START) / (END - START)) * 100;
+  const natal = Astro.natalPoints(CHART);
+  const GROUPS = ["Saturn","Uranus","Neptune","Pluto","Eclipses"];
+  const active = new Set(["Uranus","Neptune","Pluto","Eclipses"]);
+  let svg, monthIdx = 0, chapterId = null;
 
-  Wheel.render($("wheel"), chart);
-  Render.positions($("pos-body"), chart);
-  Render.bars($("elements"), chart.elements, 4);
-  Render.bars($("modes"), chart.modes, 4);
-  Render.chain($("chain"), chart);
+  const todayKey = () => {
+    const k = Dates.monthKey(new Date());
+    return MONTHS.includes(k) ? k : MONTHS[0];
+  };
 
-  Render.simple($("rulers-body"), chart.rulers, ([h, m, r, s]) =>
-    `<td class="num">${h}</td><td>${m}</td><td><span class="body-cell">${g(r)}${r}</span></td><td>${s}</td>`);
+  // ---------- Now box ----------
+  function renderNow() {
+    const top = SKY.today.contacts.filter(c => c.orb <= 1.1).slice(0, 5);
+    $("now-box").innerHTML = `
+      <div><div class="eyebrow" style="margin-bottom:.4rem">Today · 12 October 2026</div>
+      <p style="margin:0">The slow planets touching the 1652 chart most closely right now:</p></div>
+      <ul>${top.map(c => `<li><b>${c.t}</b> ${c.type} the 1652 <b>${Astro.pointName(c.n)}</b> <span class="num muted">(${Astro.fmtOrb(c.orb)})</span></li>`).join("")}</ul>`;
+  }
 
-  Render.simple($("cond-body"), chart.condition, ([p, st, ang, sect, tone]) =>
-    `<td><span class="body-cell">${g(p)}${p}</span></td><td>${Dom.tag(st, tone)}</td><td>${ang}</td><td>${sect}</td>`);
+  // ---------- Chapters ----------
+  function renderChapters() {
+    const host = $("chapters");
+    CHAPTERS.forEach(ch => {
+      const a = Dom.el("a", { class:"chapter", href:`#/future/${ch.peak}/${ch.id}`, "data-id":ch.id, style:"text-decoration:none;color:inherit" },
+        `<div class="k">${ch.range}</div><h3>${Dom.esc(ch.title)}</h3><p>${Dom.esc(ch.claim)}</p><span class="go">Read and see on the wheel →</span>`);
+      host.append(a);
+    });
+  }
 
-  Render.simple($("asp-body"), chart.aspects, ([a, b, type, orb, ph]) =>
-    `<td><span class="body-cell">${g(a)}${label(a)} <span style="color:var(--ink-2);font-weight:400">·</span> ${g(b)}${label(b)}</span></td>
-     <td>${Dom.tag(type, ASPECT_KIND[type])}</td><td class="num">${Astro.fmtOrb(orb)}</td><td>${ph === "app" ? "Applying" : "Separating"}</td>`);
+  function showChapter(id) {
+    chapterId = id;
+    const box = $("chapter-box");
+    document.querySelectorAll(".chapter").forEach(c => c.setAttribute("aria-pressed", c.dataset.id === id ? "true" : "false"));
+    const ch = CHAPTERS.find(c => c.id === id);
+    if (!ch) { box.hidden = true; return; }
+    box.hidden = false;
+    box.innerHTML = `<button class="close" id="chapter-close">Close ✕</button>
+      <div class="k">${ch.range}</div><h3>${Dom.esc(ch.title)}</h3>
+      ${ch.reading.map(p => `<p>${Dom.esc(p)}</p>`).join("")}`;
+    $("chapter-close").addEventListener("click", () => showChapter(null));
+  }
 
-  Render.simple($("houses-body"), chart.houses, ([n, sign, meaning, ruler, occ]) =>
-    `<td class="num">${n}</td><td class="num">${Astro.fmt(chart.cusps[n - 1])}</td><td>${meaning}</td><td>${ruler}</td><td>${occ}</td>`);
+  // ---------- Explorer ----------
+  function setMonth(i, opts = {}) {
+    monthIdx = Math.max(0, Math.min(MONTHS.length - 1, i));
+    const key = MONTHS[monthIdx];
+    $("month-range").value = monthIdx;
+    $("month-label").textContent = Dates.month(key);
+    $("month-prev").disabled = monthIdx === 0;
+    $("month-next").disabled = monthIdx === MONTHS.length - 1;
+    const transits = SKY.months[key];
+    const contacts = Astro.contacts(transits, natal);
+    Wheel.render(svg, CHART, { transits, contacts });
+    ContactsTable.fill($("month-contacts"), svg, contacts);
+    document.querySelectorAll("#gantt .cursor").forEach(c => c.style.left = pct(key) + "%");
+    if (opts.syncHash) history.replaceState(null, "", `#/future/${key}${chapterId ? "/" + chapterId : ""}`);
+  }
 
-  Focus.bind($("wheel"), $("pos-body").querySelectorAll("tr"));
-})(CHART);
+  // ---------- Calendar ----------
+  function renderFilters() {
+    const host = $("filters");
+    GROUPS.forEach(g => {
+      const b = Dom.el("button", { class:"filter", "aria-pressed": active.has(g) ? "true" : "false", "data-g":g }, g);
+      b.addEventListener("click", () => {
+        active.has(g) ? active.delete(g) : active.add(g);
+        b.setAttribute("aria-pressed", active.has(g) ? "true" : "false");
+        renderGantt();
+      });
+      host.append(b);
+    });
+  }
+
+  function trackHTML(inner) {
+    const years = [];
+    for (let y = 2026; y <= 2040; y++) years.push(`<i class="yr" style="left:${pct(y + "-01")}%"></i>`);
+    return `<div class="g-track">${years.join("")}<span class="nowline" style="left:${pct(todayKey())}%"></span><span class="cursor" style="left:${pct(MONTHS[monthIdx])}%"></span>${inner}</div>`;
+  }
+
+  function renderGantt() {
+    const host = $("gantt");
+    let html = `<div class="g-row head"><div class="g-label muted small">Transit to 1652</div><div class="g-axis">`;
+    for (let y = 2026; y <= 2040; y++) html += `<i style="left:${pct(y + "-01")}%"></i><span style="left:${pct(y + "-07")}%">${y}</span>`;
+    html += `</div></div>`;
+
+    GROUPS.filter(g => active.has(g)).forEach(g => {
+      html += `<div class="g-row group"><div>${g}</div><div></div></div>`;
+      if (g === "Eclipses") {
+        const dots = SKY.eclipses.map(e => {
+          const on = e.hits.map(h => `${h.via === "opp" ? "opposite " : ""}${Astro.pointName(h.n)}`).join(", ");
+          return `<button class="dot ${e.kind}" style="left:${pct(e.date)}%" data-month="${e.date.slice(0,7)}" title="${Dates.long(e.date)}: ${e.sub} ${e.kind} eclipse on ${on}"></button>`;
+        }).join("");
+        html += `<div class="g-row"><div class="g-label">Solar ● · Lunar ○</div>${trackHTML(dots)}</div>`;
+        return;
+      }
+      SKY.futurePairs.filter(p => p.t === g).forEach(p => {
+        const segs = p.w.map(([s, e, ex]) => {
+          const left = pct(s), width = Math.max(pct(e) - left, 0.35);
+          const title = `${p.t} ${p.type} 1652 ${Astro.pointName(p.n)}: ${Dates.short(s)} to ${Dates.short(e)}; exact ${ex.map(Dates.short).join(", ")}`;
+          return `<button class="seg ${Astro.KIND[p.type]}" style="left:${left}%;width:${width}%" data-month="${ex[0].slice(0,7)}" title="${title}" aria-label="${title}"></button>`;
+        }).join("");
+        html += `<div class="g-row"><div class="g-label" title="${p.t} ${p.type} ${Astro.pointName(p.n)}">${p.type} <b>${Astro.pointName(p.n)}</b></div>${trackHTML(segs)}</div>`;
+      });
+    });
+    host.innerHTML = html;
+  }
+
+  function renderEclipses() {
+    const tb = $("eclipse-body");
+    SKY.eclipses.forEach(e => {
+      const on = e.hits.map(h => `${h.via === "opp" ? "Opposite " : ""}${Astro.pointName(h.n)} <span class="num muted">${Astro.fmtOrb(h.orb)}</span>`).join("<br>");
+      const tr = Dom.el("tr", { class:"clickable", "data-month":e.date.slice(0,7) },
+        `<td class="num">${Dates.long(e.date)}</td><td>${e.sub[0].toUpperCase() + e.sub.slice(1)} ${e.kind}</td><td class="num">${Astro.fmt(e.lon)}</td><td>${on}</td>`);
+      tb.append(tr);
+    });
+  }
+
+  function jump(month) {
+    const i = MONTHS.indexOf(month);
+    if (i < 0) return;
+    setMonth(i, { syncHash:true });
+    $("explorer-sec").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function bind() {
+    $("month-range").max = MONTHS.length - 1;
+    $("month-range").addEventListener("input", e => setMonth(+e.target.value, { syncHash:true }));
+    $("month-prev").addEventListener("click", () => setMonth(monthIdx - 1, { syncHash:true }));
+    $("month-next").addEventListener("click", () => setMonth(monthIdx + 1, { syncHash:true }));
+    document.querySelector('[data-view="future"]').addEventListener("click", e => {
+      const t = e.target.closest("[data-month]");
+      if (t) jump(t.dataset.month);
+    });
+  }
+
+  function init() {
+    svg = $("wheel-future");
+    renderNow(); renderChapters(); renderFilters(); renderEclipses(); bind();
+    monthIdx = MONTHS.indexOf(todayKey());
+    renderGantt();
+  }
+
+  /** Route entry: optional month key and chapter id. */
+  function show(month, chapter) {
+    showChapter(chapter || null);
+    const i = month ? MONTHS.indexOf(month) : MONTHS.indexOf(todayKey());
+    setMonth(i < 0 ? monthIdx : i);
+    if (chapter) $("explorer-sec").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  return { init, show };
+})();
+</script>
+
+<!-- =========================================================
+     MODULE: ROUTER
+     ========================================================= -->
+<script>
+const Router = (() => {
+  const views = [...document.querySelectorAll(".view")];
+  const links = [...document.querySelectorAll(".nav a.link")];
+  let current = null;
+
+  function parse() {
+    const [, name = "chart", ...rest] = (location.hash || "#/chart").split("/");
+    return { name: ["chart","timeline","future"].includes(name) ? name : "chart", rest };
+  }
+
+  function go() {
+    const { name, rest } = parse();
+    const changed = name !== current;
+    views.forEach(v => v.hidden = v.dataset.view !== name);
+    links.forEach(a => a.dataset.route === name ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
+    if (name === "timeline") TimelineView.select(rest[0] || EVENTS[0].date, !changed && window.innerWidth < 980);
+    if (name === "future") FutureView.show(rest[0], rest[1]);
+    if (changed) window.scrollTo(0, 0);
+    document.title = { chart:"South Africa 1652 Chart", timeline:"South Africa 1652 Timeline", future:"South Africa 1652 Future" }[name];
+    current = name;
+  }
+
+  return { init() { window.addEventListener("hashchange", go); go(); } };
+})();
+</script>
+
+<!-- =========================================================
+     BOOT
+     ========================================================= -->
+<script>
+ChartView.init(CHART);
+TimelineView.init();
+FutureView.init();
+Router.init();
 </script>
 </body>
 </html>
