@@ -104,6 +104,16 @@ button{font:inherit;color:inherit}
 .eyebrow{font:500 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:var(--gap-s)}
 h1{font-size:clamp(2.5rem,7vw,5rem);font-weight:700;letter-spacing:-.02em}
 .lede{font-family:var(--serif);font-size:clamp(1.15rem,2.2vw,1.4rem);line-height:1.45;color:var(--ink-2);margin-top:var(--gap-s);max-width:48ch}
+/* Hero with the Charles Bell painting */
+.hero--image{position:relative;overflow:hidden;background:#1c1915;color:#fff;border-bottom:0;
+  --ink:#fff; --ink-2:rgba(255,255,255,.82); --rule:rgba(255,255,255,.32); --accent:#f2a58f}
+.hero--image .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.hero--image::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(14,12,10,.88) 0%,rgba(14,12,10,.72) 45%,rgba(14,12,10,.35) 100%),linear-gradient(0deg,rgba(14,12,10,.85) 0%,rgba(14,12,10,0) 45%)}
+.hero--image .wrap{position:relative;z-index:1}
+.hero--image h1{color:#fff}
+.hero-credit{position:relative;z-index:1;margin-top:var(--gap-m);font:400 .74rem/1.4 var(--mono);color:rgba(255,255,255,.7)}
+.hero-credit a{color:inherit}
+@media (min-width:900px){.hero--image{padding-top:calc(var(--gap-xl) * 1.6)}}
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:var(--gap-s) var(--gap-m);margin:var(--gap-l) 0 0;padding-top:var(--gap-m);border-top:1px solid var(--rule)}
 .fact dt{font:500 .7rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.4rem}
 .fact dd{margin:0;font-weight:500}
@@ -330,7 +340,10 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
      VIEW: CHART
      ========================================================= -->
 <div class="view" data-view="chart">
-<header class="hero">
+<header class="hero hero--image">
+  <img class="hero-img" alt="" decoding="async" fetchpriority="high"
+       src="https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3f/Charles_Bell_-_Jan_van_Riebeeck_se_aankoms_aan_die_Kaap.jpg/1280px-Charles_Bell_-_Jan_van_Riebeeck_se_aankoms_aan_die_Kaap.jpg"
+       onerror="if(!this.dataset.fb){this.dataset.fb=1;this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/3/3f/Charles_Bell_-_Jan_van_Riebeeck_se_aankoms_aan_die_Kaap.jpg/1280px-Charles_Bell_-_Jan_van_Riebeeck_se_aankoms_aan_die_Kaap.jpg'}else{this.remove()}">
   <div class="wrap">
     <div class="eyebrow">Mundane astrology · Event chart</div>
     <h1>South Africa, 1652</h1>
@@ -341,6 +354,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <div class="fact"><dt>Place</dt><dd>Table Bay, Cape Town<small>33°55′S · 18°22′E</small></dd></div>
       <div class="fact"><dt>System</dt><dd>Tropical · Placidus<small>Geocentric · True Node</small></dd></div>
     </dl>
+    <p class="hero-credit">Image: Charles Davidson Bell, <i>Jan van Riebeeck se aankoms aan die Kaap</i> (c. 1850). Public domain, via <a href="https://commons.wikimedia.org/wiki/File:Charles_Bell_-_Jan_van_Riebeeck_se_aankoms_aan_die_Kaap.jpg">Wikimedia Commons</a>.</p>
   </div>
 </header>
 
@@ -682,7 +696,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <h4>Data</h4>
       <p>7 April 1652, 12:12 LMT, Table Bay (33°55′S, 18°22′E). Time divined by Dlozi Mthethwa. Positions from the Swiss Ephemeris (Astrodienst AG). Tropical zodiac, Placidus houses, True Node.</p>
     </div>
-    <div class="base">Version 2.2 · 19 October 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
+    <div class="base">Version 2.3 · 19 October 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
   </div>
 </footer>
 

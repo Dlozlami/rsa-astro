@@ -30,7 +30,7 @@ The site lives at **https://rsa.ascensys.co.za/**. Upload the contents of `site/
 
 The Home link in the nav and footer goes to https://ascensys.co.za/. The canonical URL and the preview-image address in the page head both point to rsa.ascensys.co.za, so update them if the address changes.
 
-Everything is free and open source. The fonts are self-hosted under the SIL Open Font License, so the page makes no calls to Google or any other third party. The planetary data was computed with the Swiss Ephemeris, used under its AGPL licence.
+Everything is free and open source. The fonts are self-hosted under the SIL Open Font License, so the page makes no calls to Google. The only outside request is the hero painting, loaded from Wikimedia Commons (public domain). The planetary data was computed with the Swiss Ephemeris, used under its AGPL licence.
 
 ## Pages
 
@@ -107,6 +107,7 @@ The **history** draws on SA History Online and Wikipedia. Full links are in the 
 
 | Version | Date | Change |
 |---|---|---|
+| 2.3 | 2026-10-19 | Chart page hero now carries Charles Davidson Bell's *Jan van Riebeeck se aankoms aan die Kaap* (c. 1850, public domain), loaded from Wikimedia's 1280px thumbnail with a fallback address, under a dark overlay, with a credit line. |
 | 2.2 | 2026-10-19 | Added the project frame: the VOC's Cape of Good Hope Project v5, a.k.a. RSA. New Thesis section on the Chart page (Dlozi Mthethwa's reading in her words, the Heeren XVII, Terreblanche's research, the five versions, and the board question). "Read as a project" table in Rulership; "In the project" column in the houses table. Timeline eras renamed as versions v1 to v5, with an "In the project" line for every event. Future intro and a "For the project" line for every chapter. Sources, meta tags, footer and preview image updated. |
 | 2.1 | 2026-10-19 | Prepared for rsa.ascensys.co.za. Renamed to `index.html`; fonts self-hosted instead of loaded from Google; added a page description, canonical URL, sharing tags, a preview image and a placeholder favicon; the "today" panel now updates from the visitor's date; added a Home link to ascensys.co.za; noted that the Future data runs to December 2040; tightened the nav for small phones. |
 | 2.0 | 2026-10-12 | Rebuilt as a three-page site in one file, with a nav and a footer. Added the Timeline page (26 events, bi-wheels, contacts, readings) and the Future page (today panel, seven chapters, month explorer, crossing calendar, eclipse table). Added the 5th and 12th house rulers to the rulership table. |
