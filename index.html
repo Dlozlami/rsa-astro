@@ -272,6 +272,24 @@ a.tl-item{color:inherit;text-decoration:none}
 .milestones .d2{display:block;color:var(--ink-2);font-size:.95rem}
 
 /* =========================================================
+   NEXT TEN YEARS (reading first, sky as support)
+   ========================================================= */
+.years{list-style:none;margin:var(--gap-m) 0 0;padding:0;border-top:2px solid var(--ink)}
+.year{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem var(--gap-m);padding:var(--gap-m) 0;border-bottom:1px solid var(--rule)}
+@media (min-width:760px){.year{grid-template-columns:7.5rem minmax(0,1fr)}}
+.year .yr{font:700 clamp(2.2rem,5vw,3.2rem)/1 var(--serif);letter-spacing:-.02em}
+.year.peak .yr{color:var(--accent)}
+.year h3{margin:0 0 .6rem;font-size:clamp(1.45rem,3vw,1.9rem);line-height:1.2}
+.year .read{font-size:1.12rem;line-height:1.65;max-width:64ch;margin-bottom:.8rem}
+.year .meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
+.year .vote{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.year details{font-size:.82rem;color:var(--ink-2)}
+.year summary{cursor:pointer;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
+.year summary:hover{color:var(--ink)}
+.year details ul{margin:.6rem 0 0;padding-left:1.1rem;font-family:var(--mono);font-size:.78rem;line-height:1.6}
+.year .wheel-link{background:none;border:0;padding:0;cursor:pointer;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+
+/* =========================================================
    FUTURE VIEW
    ========================================================= */
 .now{display:grid;grid-template-columns:minmax(0,1fr);gap:var(--gap-s);background:var(--surface);border:1px solid var(--rule);border-left:4px solid var(--accent);padding:var(--gap-s) var(--gap-m);margin-top:var(--gap-l)}
@@ -637,8 +655,17 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
     </div>
   </section>
 
+  <section class="sec" id="next-ten">
+    <div class="sec-label">02 · Next ten years</div>
+    <div class="sec-body">
+      <h2>The next 10 years in RSA, 2027–2037</h2>
+      <p class="claim">Read for the project, the decade builds to 2032–2036, when its workforce, its business model, its structure and its core asset are all in play at once.</p>
+      <ol class="years" id="years"></ol>
+    </div>
+  </section>
+
   <section class="sec" id="explorer-sec">
-    <div class="sec-label">02 · Explorer</div>
+    <div class="sec-label">03 · Explorer</div>
     <div class="sec-body">
       <h2>Move through the years</h2>
       <p class="claim">Pick a month to see the sky against the 1652 chart, and every contact the slow planets make.</p>
@@ -671,7 +698,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
   </section>
 
   <section class="sec">
-    <div class="sec-label">03 · Calendar</div>
+    <div class="sec-label">04 · Calendar</div>
     <div class="sec-body">
       <h2>Every crossing, 2026 to 2040</h2>
       <p class="claim">Each bar is a window within 1° of exact; click any bar or eclipse to move the explorer there.</p>
@@ -794,7 +821,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <h4>Data</h4>
       <p>7 April 1652, 12:12 LMT, Table Bay (33°55′S, 18°22′E). Time divined by Dlozi Mthethwa. Positions from the Swiss Ephemeris (Astrodienst AG). Tropical zodiac, Placidus houses, True Node.</p>
     </div>
-    <div class="base">Version 2.6 · 1 November 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
+    <div class="base">Version 2.7 · 1 November 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
   </div>
 </footer>
 
@@ -1895,6 +1922,71 @@ const ElectionsView = (() => {
 </script>
 
 <!-- =========================================================
+     DATA: THE NEXT TEN YEARS
+     ========================================================= -->
+<script>
+const NEXT_TEN = [
+  { year:2027, month:"2027-05", title:"Management is audited",
+    reading:"The project's management comes under a hard, formal review. Whoever runs the state is measured against the founding structure, and what cannot carry weight is cut back. Expect inquiries, a reshaped executive and pressure on how authority is used, sharpest in April, May and December.",
+    sky:["Saturn conjunct the Sun: 12 April","Saturn conjunct the Midheaven: 4 May, 24 December","Saturn square its own place: 13 May, 23 November, 25 January 2028","Neptune conjunct the Moon: 10 April","Pluto square Mars: 18 October"] },
+  { year:2028, month:"2028-06", title:"What the project hides comes into view",
+    reading:"Concealed arrangements inside the project's institutions break into the open, suddenly rather than through slow investigation. The workforce's mood drifts and is hard to read, and the enforcement arm is tested in May and again at the turn of the year.",
+    sky:["Uranus conjunct Pluto: 24 June, 24 December, 11 April 2029","Neptune conjunct the Moon: 9 February","Saturn conjunct Mars: 16 May, 6 January 2029","Partial lunar eclipse on Saturn: 12 January","Total lunar eclipse opposite Jupiter: 31 December"] },
+  { year:2029, month:"2029-06", vote:"National election expected", title:"The core asset goes to the ballot",
+    reading:"The land and its value come under review in a national election year. The land is tested in June and again in December, and the project's direction blurs. The land question shapes the campaign and the coalition talks that follow.",
+    sky:["Saturn conjunct Venus: 10 June, 17 December","Neptune conjunct the North Node: 23 August","Uranus conjunct Pluto: 11 April","Neptune square Jupiter: 14 July","Partial solar eclipse near Saturn: 11 July","Total lunar eclipse on the Ascendant: 20 December"] },
+  { year:2030, month:"2030-06", title:"The hidden becomes public record",
+    reading:"What surfaced in 2028 is now on the record. The project's institutions face a public reckoning in June, and the labour base is jolted in the second half of the year.",
+    sky:["Annular solar eclipse on Pluto: 1 June","Uranus opposite Neptune: 31 July, 29 November","Neptune conjunct the North Node: 30 March, 28 November","Uranus sextile the Sun and the Midheaven: 2 June, 20 July, 12 December"] },
+  { year:2031, month:"2031-08", vote:"Local elections expected", title:"The branches break ranks",
+    reading:"The project reaches a turning point with its workforce. Local elections fall in a year of sudden breaks, and the labour base is put under strain from above. Expect breakaways and shifts in local allegiance.",
+    sky:["Uranus opposite its own place: 21 August","Saturn opposite Neptune: 24 August, 17 November, 8 May 2032","Saturn conjunct Pluto: 27 May","Neptune square Jupiter: 24 December"] },
+  { year:2032, month:"2032-10", peak:true, title:"The workforce changes shape",
+    reading:"The project's body begins a three-year transformation. Who counts as the project's people, and on what terms, is renegotiated, and in May the core asset is back in question.",
+    sky:["Annular solar eclipse on Venus: 9 May","Total lunar eclipse opposite Mars: 25 April","Neptune conjunct the Sun: 21 July","Saturn conjunct the Ascendant: 1 August, 13 January and 17 April 2033","Uranus conjunct the Ascendant: 7 October"] },
+  { year:2033, month:"2033-03", peak:true, title:"The founding purpose is questioned",
+    reading:"The project's reason for existing is put in question. The conditions of the founding return, management loses its outline, and the project's own structure comes full circle. The business model is open to redefinition.",
+    sky:["Total solar eclipse on the North Node: 30 March","Neptune conjunct the Sun: 25 April, 30 October","Uranus conjunct the Ascendant: 28 June","Neptune conjunct the Midheaven: 23 July","Saturn return: 2 November","Total lunar eclipse on the Sun: 8 October"] },
+  { year:2034, month:"2034-06", peak:true, vote:"National election expected", title:"The walls under strain",
+    reading:"The project's structure meets its hardest test of the decade in a national election year. The structure of the state itself is on the table, not only its management, while the workforce finishes changing shape and the land question opens at its root.",
+    sky:["Total solar eclipse on Mercury: 20 March","Uranus conjunct the Ascendant: 26 March","Neptune conjunct the Midheaven: 10 May, 16 October","Pluto square Venus begins: 19 May","Neptune square Saturn: 15 June, 7 September","Saturn return: 24 June","Partial lunar eclipse on the Moon: 28 September"] },
+  { year:2035, month:"2035-03", peak:true, title:"The land question at its root",
+    reading:"Ownership and the value of the land are contested at the deepest level, all year. The strain on the project's structure continues, and this is the year the land question is least likely to be deferred.",
+    sky:["Pluto square Venus: 22 March, 24 July","Neptune square Saturn: 9 April, 15 December","Neptune conjunct the Midheaven: 12 March","Uranus opposite Jupiter: 24 July","Uranus square the North Node: 3 July"] },
+  { year:2036, month:"2036-10", peak:true, vote:"Local elections expected", title:"A settlement on the land",
+    reading:"The land question moves towards an outcome. Local elections fall inside the last of the pressure on the land, and management has the room to carry a change through. What is settled here shapes the project's next version.",
+    sky:["Neptune square Saturn, last pass: 22 January","Pluto square Venus: 30 January, 13 October, 22 November","Pluto sextile the Midheaven: 8 April, 7 July","Neptune trine Uranus: 22 June, 7 September","Uranus square the Sun: 29 August, 24 December"] },
+  { year:2037, month:"2037-07", title:"The owners' seat is shaken",
+    reading:"The project's foundation stone moves. The point where the outsider became the body of the project is struck directly, in July and again in August. The arrangement that has held since 1652 is open to change.",
+    sky:["Total solar eclipse on Saturn: 13 July","Uranus square the Midheaven: 30 July","Uranus conjunct Saturn: 16 August, 18 January and 3 June 2038","Pluto sextile Neptune: 22 August"] }
+];
+</script>
+
+<!-- =========================================================
+     MODULE: NEXT TEN YEARS VIEW
+     ========================================================= -->
+<script>
+const NextTenView = (() => {
+  function card(y) {
+    return `<li class="year${y.peak ? " peak" : ""}">
+      <div class="yr">${y.year}</div>
+      <div>
+        <h3>${Dom.esc(y.title)}</h3>
+        <p class="read">${Dom.esc(y.reading)}</p>
+        <div class="meta">
+          ${y.vote ? `<span class="tag vote">${Dom.esc(y.vote)}</span>` : ""}
+          <details><summary>The sky</summary><ul>${y.sky.map(t => `<li>${Dom.esc(t)}</li>`).join("")}</ul></details>
+          <button class="wheel-link" data-month="${y.month}">See it on the wheel →</button>
+        </div>
+      </div>
+    </li>`;
+  }
+  function init() { document.getElementById("years").innerHTML = NEXT_TEN.map(card).join(""); }
+  return { init };
+})();
+</script>
+
+<!-- =========================================================
      MODULE: ROUTER
      ========================================================= -->
 <script>
@@ -1932,6 +2024,7 @@ const Router = (() => {
 ChartView.init(CHART);
 TimelineView.init();
 ElectionsView.init();
+NextTenView.init();
 FutureView.init();
 Router.init();
 </script>
