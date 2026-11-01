@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>South Africa 1652 Chart</title>
-<meta name="description" content="The chart of the VOC's Cape of Good Hope Project v5, a.k.a. RSA, cast for the founding of the Dutch East India Company station at Table Bay on 7 April 1652: the chart in depth, its versions and history from 1657 to 2024, and the road ahead to 2040.">
+<meta name="description" content="The chart of RSA: Refreshment Station Africa, now on version 5, the Republic of South Africa, cast for the founding of the Dutch East India Company station at Table Bay on 7 April 1652: the chart in depth, its versions and history from 1657 to 2024, every election since 1994, and the road ahead to 2040.">
 <link rel="canonical" href="https://rsa.ascensys.co.za/">
 <meta name="theme-color" content="#f5f1e8" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
@@ -14,7 +14,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://rsa.ascensys.co.za/">
 <meta property="og:site_name" content="South Africa, 1652">
-<meta property="og:title" content="South Africa, 1652: the VOC's Cape of Good Hope Project v5, a.k.a. RSA">
+<meta property="og:title" content="South Africa, 1652: RSA, Refreshment Station Africa">
 <meta property="og:description" content="The 1652 Table Bay chart read as the chart of a project imposed on the land and its people: its five versions, 26 turning points and the planets' path to 2040.">
 <meta property="og:image" content="https://rsa.ascensys.co.za/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -22,7 +22,7 @@
 <meta property="og:image:alt" content="South Africa, 1652: chart wheel for 7 April 1652, Table Bay">
 <meta property="og:locale" content="en_GB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="South Africa, 1652: the VOC's Cape of Good Hope Project v5, a.k.a. RSA">
+<meta name="twitter:title" content="South Africa, 1652: RSA, Refreshment Station Africa">
 <meta name="twitter:description" content="The 1652 Table Bay chart read as the chart of a project imposed on the land and its people: its five versions, 26 turning points and the planets' path to 2040.">
 <meta name="twitter:image" content="https://rsa.ascensys.co.za/og-image.png">
 <style>
@@ -95,6 +95,7 @@ button{font:inherit;color:inherit}
 .nav a.link[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
 @media (max-width:520px){.brand span{display:none}.brand{font-size:.98rem}.nav ul{gap:0}.nav a.link{padding:.45rem .4rem;font-size:.7rem;letter-spacing:.04em}}
 @media (max-width:420px){.brand{font-size:.86rem}.nav .wrap{gap:.5rem}.nav a.link{padding:.45rem .3rem;font-size:.66rem;letter-spacing:.02em}}
+@media (max-width:600px){.nav .wrap{height:auto;flex-wrap:wrap;row-gap:0;padding-top:.55rem;padding-bottom:.2rem}.nav ul{width:100%;justify-content:space-between;margin-left:-.3rem}}
 
 /* =========================================================
    VIEWS
@@ -219,9 +220,6 @@ td .tag{white-space:normal;line-height:1.25}
 /* =========================================================
    PROJECT FRAME
    ========================================================= */
-.voice{border-left:4px solid var(--ink);padding:.2rem 0 .2rem var(--gap-m);margin:var(--gap-s) 0 var(--gap-m);max-width:62ch}
-.voice p{font-family:var(--serif);font-size:1.18rem;line-height:1.55}
-.voice cite{display:block;font:500 .72rem/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);font-style:normal}
 .project-line{display:flex;gap:.6rem;align-items:baseline;flex-wrap:wrap;margin:var(--gap-s) 0 0;font-weight:500}
 .project-line .tag{background:var(--ink);color:var(--bg);border-color:var(--ink)}
 .era small{display:block;margin-top:.3rem;font:400 .78rem/1.4 var(--sans);letter-spacing:0;text-transform:none;color:var(--ink-2)}
@@ -237,6 +235,7 @@ td .tag{white-space:normal;line-height:1.25}
 .era:first-child{padding-top:0}
 .tl-list{list-style:none;margin:0;padding:0}
 .tl-item{display:grid;grid-template-columns:4.2rem 1fr;gap:.75rem;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--rule);padding:.65rem .4rem .65rem 0;cursor:pointer}
+a.tl-item{color:inherit;text-decoration:none}
 .tl-item:hover{background:var(--rule-2)}
 .tl-item .y{font:600 1.15rem/1.2 var(--serif)}
 .tl-item .t{font-weight:500;line-height:1.35}
@@ -253,6 +252,24 @@ td .tag{white-space:normal;line-height:1.25}
 .btn{display:inline-flex;align-items:center;gap:.4rem;padding:.5rem .8rem;border:1px solid var(--ink);background:var(--surface);font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;text-decoration:none;color:var(--ink)}
 .btn:hover{background:var(--ink);color:var(--bg)}
 .btn[disabled]{opacity:.35;pointer-events:none}
+
+/* =========================================================
+   ELECTIONS VIEW
+   ========================================================= */
+.countdown .cd-big{font:700 clamp(1.6rem,4.5vw,2.6rem)/1.1 var(--serif);margin:.2rem 0 .4rem}
+.strip-wrap{overflow-x:auto;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule);margin:var(--gap-s) 0 var(--gap-m)}
+.strip{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(22,minmax(38px,1fr));min-width:836px}
+.strip .day{border-right:1px solid var(--rule-2);padding:.5rem .15rem .6rem;min-height:80px}
+.strip .day.settle{background:var(--accent-soft)}
+.strip .day.mark{border-top:4px solid var(--accent)}
+.strip .day.council.mark{border-top-color:var(--ink)}
+.strip .dn{display:block;font:600 1.05rem/1 var(--serif)}
+.strip .dl{display:block;margin-top:.35rem;font:600 .58rem/1.2 var(--sans);letter-spacing:-.01em}
+.milestones{list-style:none;margin:0 0 var(--gap-m);padding:0;border-top:2px solid var(--ink)}
+.milestones li{display:grid;grid-template-columns:5.5rem 1fr;gap:.75rem;padding:.7rem 0;border-bottom:1px solid var(--rule)}
+.milestones .y{font:600 1.05rem/1.3 var(--serif)}
+.milestones .t{display:block;font-weight:600}
+.milestones .d2{display:block;color:var(--ink-2);font-size:.95rem}
 
 /* =========================================================
    FUTURE VIEW
@@ -331,6 +348,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <li><a class="link home" href="https://ascensys.co.za/">Home</a></li>
       <li><a class="link" href="#/chart" data-route="chart">Chart</a></li>
       <li><a class="link" href="#/timeline" data-route="timeline">Timeline</a></li>
+      <li><a class="link" href="#/elections" data-route="elections">Elections</a></li>
       <li><a class="link" href="#/future" data-route="future">Future</a></li>
     </ul>
   </div>
@@ -347,7 +365,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
   <div class="wrap">
     <div class="eyebrow">Mundane astrology · Event chart</div>
     <h1>South Africa, 1652</h1>
-    <p class="lede">The chart of the VOC's Cape of Good Hope Project v5, a.k.a. RSA: cast for the founding of the Dutch East India Company station at Table Bay.</p>
+    <p class="lede">The chart of RSA: Refreshment Station Africa, cast for the founding of the Dutch East India Company station at Table Bay.</p>
     <dl class="facts">
       <div class="fact"><dt>Date</dt><dd>Sunday 7 April 1652<small>Gregorian calendar · the day Van Riebeeck's command began</small></dd></div>
       <div class="fact"><dt>Time</dt><dd>12:12 LMT<small>10:58:32 UT · divined by Dlozi Mthethwa</small></dd></div>
@@ -362,13 +380,12 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
   <section class="sec">
     <div class="sec-label">00 · Thesis</div>
     <div class="sec-body">
-      <h2>The VOC's Cape of Good Hope Project v5, a.k.a. RSA</h2>
+      <h2>RSA: Refreshment Station Africa</h2>
       <p class="claim">South Africa has always been a project: a business imposed on this land and on its people since 7 April 1652.</p>
-      <blockquote class="voice">
-        <p>There have always been people in this southern region, living their lives. People from somewhere else came with a project and imposed it, and have been imposing it since 7 April 1652. It masquerades as a country. The Republic of South Africa is its current name, its current version. The people are not really involved in creating it; they work for it. It is literally like a job. Very few understand that it is a project, apart from the ones who head it.</p>
-        <cite>Dlozi Mthethwa</cite>
-      </blockquote>
-      <p>This study reads the 1652 chart as the chart of that project, not of the land or of the peoples who were already here. The reading is Dlozi Mthethwa's. The chart evidence, the history and the research on this site are offered in support of it, and each is credited where it is used.</p>
+      <h3>The name is the brief</h3>
+      <p>In 1651 the Dutch East India Company's board instructed Jan van Riebeeck to set up a refreshment station, a <i>verversingsplaats</i>, at the Cape. He was to build a fort, lay out a garden, barter cattle from the Khoikhoi, and supply the Company's passing ships with water, meat and fresh produce. He was not to found a colony. The station was the Company's only lasting foothold on the African mainland: its posts on Mauritius and at Delagoa Bay were abandoned, and West Africa belonged to the Dutch West India Company.</p>
+      <p>Refreshment Station Africa is the project's name by its founding purpose. It has run through five versions since, and the current one, launched in 1994, is called the Republic of South Africa. The initials never changed.</p>
+      <p>This study reads the 1652 chart as the chart of that project, not of the land or of the peoples who were already here. The chart evidence, the history and the research on this site are offered in support of it, and each is credited where it is used.</p>
       <h3>The project had a board, and it sat abroad</h3>
       <p>The Dutch East India Company (VOC) was a joint-stock company. It was governed by the Heeren XVII, the Lords Seventeen, a board of directors that met in the Dutch Republic and ran the Cape for 143 years without setting foot in it. The station at Table Bay was founded to serve the company's trade, and the chart's 9th house, the house of foreign trade, holds four of its bodies.</p>
       <h3>Research traces one structure through every version</h3>
@@ -547,7 +564,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
             <li>Dignities, sect, triplicities and dispositors: Hellenistic and medieval tradition, as set out in Ptolemy's <i>Tetrabiblos</i> and William Lilly's <i>Christian Astrology</i> (1647).</li>
             <li>Mundane house meanings: Baigent, Campion and Harvey, <i>Mundane Astrology</i> (1984); Nicholas Campion, <i>The Book of World Horoscopes</i>.</li>
             <li>Eclipses in mundane prediction: Ptolemy, <i>Tetrabiblos</i>, Book II.</li>
-            <li>The project reading: Dlozi Mthethwa. Supporting research: Sampie Terreblanche, <i>A History of Inequality in South Africa, 1652–2002</i> (2002) and <i>Lost in Transformation: South Africa's Search for a New Future since 1986</i> (2012).</li>
+            <li>Supporting research for the project reading: Sampie Terreblanche, <i>A History of Inequality in South Africa, 1652–2002</i> (2002) and <i>Lost in Transformation: South Africa's Search for a New Future since 1986</i> (2012).</li>
             <li>Uranus, Neptune, Pluto and Chiron are modern additions (found 1781, 1846, 1930 and 1977); dispositor chains use traditional rulers only.</li>
           </ul>
         </div>
@@ -675,13 +692,93 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
 </div>
 
 <!-- =========================================================
+     VIEW: ELECTIONS
+     ========================================================= -->
+<div class="view" data-view="elections" hidden>
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Elections · 1994 to 2026</div>
+    <h1>Elections against the chart</h1>
+    <p class="lede">Every national and local election since 1994 read against the 1652 chart, and the municipal elections of 4 November 2026.</p>
+    <div class="now countdown" id="countdown" aria-live="polite"></div>
+  </div>
+</header>
+<main class="wrap">
+  <section class="sec">
+    <div class="sec-label">01 · 4 November</div>
+    <div class="sec-body">
+      <h2>The 2026 municipal elections</h2>
+      <p class="claim" id="next-claim"></p>
+      <div id="next-reading"></div>
+      <p class="project-line"><span class="tag">In the project</span><span id="next-project"></span></p>
+      <div class="detail-grid" style="margin-top:var(--gap-m)">
+        <div class="wheel-box">
+          <svg class="wheel" id="wheel-next" viewBox="0 0 600 600" role="img" aria-label="1652 chart with the sky on 4 November 2026"></svg>
+          <div class="legend"><span class="l-natal">1652 chart</span><span class="l-transit">Sky on polling day</span><span class="l-conj">Conjunction</span><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span></div>
+        </div>
+        <div>
+          <h3 style="margin-top:0">Where the planets fall</h3>
+          <div class="tbl-wrap" style="margin-top:.5rem">
+            <table><thead><tr><th>Planet</th><th>Position</th><th>1652 house</th></tr></thead><tbody id="next-houses"></tbody></table>
+          </div>
+          <h3>Contacts on polling day</h3>
+          <div class="tbl-wrap" style="margin-top:.5rem">
+            <table><thead><tr><th>Transit</th><th>Aspect</th><th>1652 point</th><th>Orb</th></tr></thead><tbody id="next-contacts"></tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <h3>The polling-day chart</h3>
+      <p>Cast for the moment polls open, 07:00 SAST in Pretoria, the election has a chart of its own. Sagittarius rises, and its ruler Jupiter stands 0°18′ from the Midheaven in Leo, with Mars 4°28′ behind it. Read on its own, the day itself looks orderly, visible and well run; the 1652 chart carries the aftermath.</p>
+      <div class="wheel-box">
+        <svg class="wheel" id="wheel-pretoria" viewBox="0 0 600 600" role="img" aria-label="Chart for 4 November 2026, 07:00 SAST, Pretoria"></svg>
+        <p class="wheel-note">4 November 2026, 07:00 SAST, Pretoria (25°45′S, 28°14′E). Placidus houses.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-label">02 · Settling</div>
+    <div class="sec-body">
+      <h2>The settling window, 4 to 25 November</h2>
+      <p class="claim">The count closes within a week, but the chart's own planets keep moving backwards until 14 November.</p>
+      <div class="strip-wrap"><ol class="strip" id="strip"></ol></div>
+      <ol class="milestones" id="milestones"></ol>
+    </div>
+  </section>
+
+  <section class="sec" id="past-sec">
+    <div class="sec-label">03 · Since 1994</div>
+    <div class="sec-body">
+      <h2>Every election since 1994</h2>
+      <p class="claim">National elections choose the project's management; local elections choose its branches.</p>
+      <p>Six of the seven national elections were held with the Sun in the 1652 10th or 11th house, the houses of government and the legislature, because they fall in April or May. The local elections spread across the year, and the two held in November, 2021 and 2026, both put the Sun in the 4th house of the land.</p>
+    </div>
+  </section>
+  <div class="tl-layout">
+    <aside class="tl-nav" aria-label="Elections" id="el-nav"></aside>
+    <article id="el-detail" aria-live="polite"></article>
+  </div>
+
+  <section class="sec">
+    <div class="sec-label">Method</div>
+    <div class="sec-body">
+      <h2>How each election is read</h2>
+      <p class="claim">The inner wheel is the 1652 chart; the outer ring is the sky at 12:00 SAST on polling day.</p>
+      <p>The contacts tables list the slow planets, Jupiter to Pluto, within the same orbs as the Timeline, and the faster planets, the Sun to Mars, within 1°30′. The Moon is left out of the outer ring. Results are national shares of the vote as declared by the Electoral Commission.</p>
+    </div>
+  </section>
+</main>
+</div>
+
+<!-- =========================================================
      FOOTER
      ========================================================= -->
 <footer class="site">
   <div class="wrap">
     <div>
       <div class="fbrand">South Africa, 1652</div>
-      <p>The chart of the VOC's Cape of Good Hope Project v5, a.k.a. RSA, cast for the founding of the Dutch East India Company station at Table Bay. The project reading is Dlozi Mthethwa's.</p>
+      <p>The chart of RSA: Refreshment Station Africa, now on version 5, the Republic of South Africa, cast for the founding of the Dutch East India Company station at Table Bay.</p>
     </div>
     <div>
       <h4>Pages</h4>
@@ -689,6 +786,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
         <li><a href="https://ascensys.co.za/">Home: Ascensys</a></li>
         <li><a href="#/chart">Chart: the 1652 wheel in depth</a></li>
         <li><a href="#/timeline">Timeline: history against the chart</a></li>
+        <li><a href="#/elections">Elections: every vote since 1994</a></li>
         <li><a href="#/future">Future: the road to 2040</a></li>
       </ul>
     </div>
@@ -696,7 +794,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <h4>Data</h4>
       <p>7 April 1652, 12:12 LMT, Table Bay (33°55′S, 18°22′E). Time divined by Dlozi Mthethwa. Positions from the Swiss Ephemeris (Astrodienst AG). Tropical zodiac, Placidus houses, True Node.</p>
     </div>
-    <div class="base">Version 2.3 · 19 October 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
+    <div class="base">Version 2.6 · 1 November 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
   </div>
 </footer>
 
@@ -795,7 +893,7 @@ const VERSIONS = [
   { id:"colonies", v:"v2", name:"The Colonies", range:"1795–1910", note:"Change of ownership: Britain takes the project (1795, and for good in 1806, after the Batavian interlude); breakaway branches found the Boer republics." },
   { id:"union",    v:"v3", name:"The Union",    range:"1910–1961", note:"Merger: four colonies combine into one entity under the Crown." },
   { id:"republic", v:"v4", name:"The Republic", range:"1961–1994", note:"Rebrand: the project leaves the Crown and the Commonwealth." },
-  { id:"democracy",v:"v5", name:"The RSA",      range:"1994 onward", note:"Current release: a new constitution, and every worker now votes." }
+  { id:"democracy",v:"v5", name:"The Republic of South Africa", range:"1994 onward", note:"Current release: a new constitution, and every worker now votes." }
 ];
 const ERAS = VERSIONS;
 
@@ -1327,7 +1425,7 @@ const TimelineView = (() => {
       const ol = Dom.el("ol", { class:"tl-list" });
       items.forEach(e => {
         const li = Dom.el("li");
-        const a = Dom.el("a", { class:"tl-item", href:`#/timeline/${e.date}`, style:"text-decoration:none;color:inherit" },
+        const a = Dom.el("a", { class:"tl-item", href:`#/timeline/${e.date}` },
           `<span class="y">${Dates.year(e.date)}</span><span><span class="t">${Dom.esc(e.title)}</span><span class="d">${Dates.long(e.date)}</span></span>`);
         buttons[e.date] = a;
         li.append(a); ol.append(li);
@@ -1561,6 +1659,242 @@ const FutureView = (() => {
 </script>
 
 <!-- =========================================================
+     DATA: ELECTIONS
+     ========================================================= -->
+<script>
+const ELECTION_SKY = {"elections":{"1994-04-27":{"transits":{"Sun":36.92,"Mercury":33.44,"Venus":61.4,"Mars":9.8,"Jupiter":220.16,"Saturn":339.88,"Uranus":296.34,"Neptune":293.35,"Pluto":237.25,"Node":233.81},"retro":["Jupiter","Neptune","Pluto"],"contacts":[{"t":"Neptune","n":"Saturn","type":"opposition","orb":1.43},{"t":"Saturn","n":"Pluto","type":"square","orb":1.52},{"t":"Neptune","n":"MC","type":"square","orb":2.45},{"t":"Pluto","n":"Mercury","type":"trine","orb":2.57}],"fast":[{"t":"Mercury","n":"Mars","type":"conjunction","orb":0.64},{"t":"Mars","n":"Node","type":"conjunction","orb":0.93}],"houses":{"Sun":10,"Mercury":10,"Venus":11,"Mars":9,"Jupiter":4,"Saturn":8,"Uranus":7,"Neptune":7,"Pluto":5,"Node":5}},"1999-06-02":{"transits":{"Sun":71.44,"Mercury":80.69,"Venus":116.5,"Mars":204.47,"Jupiter":25.28,"Saturn":41.21,"Uranus":316.74,"Neptune":304.18,"Pluto":249.07,"Node":134.78},"retro":["Mars","Uranus","Neptune","Pluto"],"contacts":[{"t":"Neptune","n":"Mars","type":"square","orb":0.1},{"t":"Neptune","n":"Moon","type":"sextile","orb":0.52},{"t":"Saturn","n":"Jupiter","type":"trine","orb":0.82},{"t":"Neptune","n":"Chiron","type":"trine","orb":0.93},{"t":"Jupiter","n":"Uranus","type":"trine","orb":1.2},{"t":"Uranus","n":"Sun","type":"sextile","orb":1.47},{"t":"Pluto","n":"Node","type":"trine","orb":1.66},{"t":"Uranus","n":"Venus","type":"square","orb":2.33},{"t":"Pluto","n":"Pluto","type":"opposition","orb":2.33}],"fast":[{"t":"Sun","n":"Pluto","type":"conjunction","orb":0.04},{"t":"Mercury","n":"MC","type":"sextile","orb":0.21},{"t":"Sun","n":"Node","type":"sextile","orb":0.71},{"t":"Mercury","n":"Neptune","type":"opposition","orb":0.76}],"houses":{"Sun":12,"Mercury":12,"Venus":1,"Mars":4,"Jupiter":10,"Saturn":10,"Uranus":8,"Neptune":7,"Pluto":5,"Node":2}},"2000-12-05":{"transits":{"Sun":253.58,"Mercury":242.42,"Venus":296.54,"Mars":199.13,"Jupiter":65.16,"Saturn":56.22,"Uranus":317.56,"Neptune":304.5,"Pluto":252.77,"Node":106.0},"retro":["Jupiter","Saturn"],"contacts":[{"t":"Neptune","n":"Moon","type":"sextile","orb":0.2},{"t":"Neptune","n":"Mars","type":"square","orb":0.42},{"t":"Jupiter","n":"Moon","type":"sextile","orb":0.46},{"t":"Uranus","n":"Sun","type":"sextile","orb":0.65},{"t":"Neptune","n":"Chiron","type":"trine","orb":1.25},{"t":"Pluto","n":"Pluto","type":"opposition","orb":1.37},{"t":"Uranus","n":"Venus","type":"square","orb":1.51},{"t":"Jupiter","n":"Chiron","type":"trine","orb":1.91},{"t":"Pluto","n":"Node","type":"trine","orb":2.04}],"fast":[{"t":"Mercury","n":"Chiron","type":"sextile","orb":0.83},{"t":"Mars","n":"Sun","type":"opposition","orb":0.92}],"houses":{"Sun":6,"Mercury":5,"Venus":7,"Mars":3,"Jupiter":11,"Saturn":11,"Uranus":8,"Neptune":7,"Pluto":6,"Node":1}},"2004-04-14":{"transits":{"Sun":24.79,"Mercury":29.17,"Venus":69.61,"Mars":75.41,"Jupiter":159.57,"Saturn":97.57,"Uranus":335.52,"Neptune":315.1,"Pluto":262.13,"Node":41.35},"retro":["Mercury","Jupiter","Pluto"],"contacts":[{"t":"Pluto","n":"Neptune","type":"conjunction","orb":0.68},{"t":"Pluto","n":"MC","type":"trine","orb":1.23},{"t":"Uranus","n":"Mars","type":"sextile","orb":1.44},{"t":"Jupiter","n":"Pluto","type":"square","orb":1.83},{"t":"Saturn","n":"Moon","type":"square","orb":2.87}],"fast":[],"houses":{"Sun":10,"Mercury":10,"Venus":11,"Mars":12,"Jupiter":2,"Saturn":1,"Uranus":8,"Neptune":8,"Pluto":6,"Node":10}},"2006-03-01":{"transits":{"Sun":340.68,"Mercury":356.76,"Venus":296.99,"Mars":65.84,"Jupiter":228.84,"Saturn":125.46,"Uranus":340.72,"Neptune":318.15,"Pluto":266.54,"Node":4.43},"retro":["Saturn"],"contacts":[{"t":"Neptune","n":"Sun","type":"sextile","orb":0.06},{"t":"Pluto","n":"Uranus","type":"conjunction","orb":0.06},{"t":"Jupiter","n":"Venus","type":"opposition","orb":0.23},{"t":"Uranus","n":"Pluto","type":"square","orb":0.68},{"t":"Saturn","n":"Moon","type":"trine","orb":0.76},{"t":"Neptune","n":"Venus","type":"square","orb":0.92},{"t":"Uranus","n":"Jupiter","type":"sextile","orb":1.31},{"t":"Saturn","n":"Mars","type":"square","orb":1.38}],"fast":[{"t":"Mercury","n":"Uranus","type":"square","orb":0.28},{"t":"Sun","n":"Pluto","type":"square","orb":0.72}],"houses":{"Sun":8,"Mercury":9,"Venus":7,"Mars":11,"Jupiter":5,"Saturn":1,"Uranus":8,"Neptune":8,"Pluto":6,"Node":9}},"2009-04-22":{"transits":{"Sun":32.41,"Mercury":52.03,"Venus":359.61,"Mars":359.88,"Jupiter":322.72,"Saturn":165.43,"Uranus":354.79,"Neptune":326.11,"Pluto":273.22,"Node":305.2},"retro":["Saturn","Pluto"],"contacts":[{"t":"Pluto","n":"Chiron","type":"square","orb":0.03},{"t":"Neptune","n":"Uranus","type":"sextile","orb":0.37},{"t":"Pluto","n":"Mars","type":"trine","orb":0.86},{"t":"Pluto","n":"ASC","type":"opposition","orb":1.08},{"t":"Jupiter","n":"Neptune","type":"sextile","orb":1.27},{"t":"Pluto","n":"Moon","type":"square","orb":1.48},{"t":"Uranus","n":"Uranus","type":"square","orb":1.69},{"t":"Uranus","n":"Saturn","type":"trine","orb":2.87}],"fast":[{"t":"Mars","n":"Mercury","type":"conjunction","orb":0.06},{"t":"Mercury","n":"Saturn","type":"sextile","orb":0.11},{"t":"Venus","n":"Mercury","type":"conjunction","orb":0.21},{"t":"Sun","n":"ASC","type":"sextile","orb":0.27}],"houses":{"Sun":10,"Mercury":11,"Venus":9,"Mars":9,"Jupiter":8,"Saturn":2,"Uranus":9,"Neptune":8,"Pluto":7,"Node":7}},"2011-05-18":{"transits":{"Sun":57.14,"Mercury":33.39,"Venus":33.02,"Mars":35.34,"Jupiter":26.31,"Saturn":190.99,"Uranus":3.49,"Neptune":330.86,"Pluto":277.14,"Node":263.55},"retro":["Saturn","Pluto"],"contacts":[{"t":"Jupiter","n":"Uranus","type":"trine","orb":0.17},{"t":"Uranus","n":"Chiron","type":"opposition","orb":0.24},{"t":"Saturn","n":"Node","type":"opposition","orb":0.26},{"t":"Saturn","n":"Pluto","type":"trine","orb":0.41},{"t":"Saturn","n":"Jupiter","type":"square","orb":1.04},{"t":"Uranus","n":"Moon","type":"conjunction","orb":1.21},{"t":"Neptune","n":"ASC","type":"trine","orb":1.28},{"t":"Uranus","n":"ASC","type":"square","orb":1.35},{"t":"Pluto","n":"Moon","type":"square","orb":2.44}],"fast":[{"t":"Mercury","n":"Mars","type":"conjunction","orb":0.69},{"t":"Venus","n":"ASC","type":"sextile","orb":0.88},{"t":"Venus","n":"Mars","type":"conjunction","orb":1.06},{"t":"Mars","n":"Mars","type":"conjunction","orb":1.26}],"houses":{"Sun":11,"Mercury":10,"Venus":10,"Mars":10,"Jupiter":10,"Saturn":3,"Uranus":9,"Neptune":8,"Pluto":7,"Node":6}},"2014-05-07":{"transits":{"Sun":46.78,"Mercury":59.59,"Venus":4.96,"Mars":190.07,"Jupiter":105.96,"Saturn":230.27,"Uranus":14.39,"Neptune":337.29,"Pluto":283.46,"Node":208.24},"retro":["Mars","Saturn","Pluto"],"contacts":[{"t":"Saturn","n":"Venus","type":"opposition","orb":1.2},{"t":"Pluto","n":"Jupiter","type":"conjunction","orb":1.43},{"t":"Saturn","n":"Saturn","type":"trine","orb":1.65},{"t":"Uranus","n":"Jupiter","type":"square","orb":2.36},{"t":"Pluto","n":"Node","type":"square","orb":2.73}],"fast":[{"t":"Mercury","n":"Mercury","type":"sextile","orb":0.23},{"t":"Venus","n":"Moon","type":"conjunction","orb":0.26},{"t":"Mars","n":"Node","type":"opposition","orb":0.66},{"t":"Mars","n":"Pluto","type":"trine","orb":1.33}],"houses":{"Sun":10,"Mercury":11,"Venus":9,"Mars":3,"Jupiter":1,"Saturn":5,"Uranus":9,"Neptune":8,"Pluto":7,"Node":4}},"2016-08-03":{"transits":{"Sun":131.49,"Mercury":155.46,"Venus":147.26,"Mars":240.26,"Jupiter":172.52,"Saturn":249.86,"Uranus":24.5,"Neptune":341.41,"Pluto":285.58,"Node":162.92},"retro":["Saturn","Uranus","Neptune","Pluto"],"contacts":[{"t":"Neptune","n":"Pluto","type":"square","orb":0.01},{"t":"Jupiter","n":"Saturn","type":"sextile","orb":0.6},{"t":"Neptune","n":"Jupiter","type":"sextile","orb":0.62},{"t":"Saturn","n":"Node","type":"trine","orb":0.87},{"t":"Jupiter","n":"Neptune","type":"square","orb":1.07},{"t":"Saturn","n":"Pluto","type":"opposition","orb":1.54},{"t":"Uranus","n":"Uranus","type":"trine","orb":1.98},{"t":"Uranus","n":"Saturn","type":"square","orb":2.58},{"t":"Pluto","n":"Sun","type":"square","orb":2.63}],"fast":[{"t":"Sun","n":"Pluto","type":"sextile","orb":0.09},{"t":"Mars","n":"Mercury","type":"trine","orb":0.44},{"t":"Sun","n":"Node","type":"trine","orb":0.76},{"t":"Venus","n":"Uranus","type":"trine","orb":0.78},{"t":"Mercury","n":"Mars","type":"trine","orb":1.38}],"houses":{"Sun":2,"Mercury":2,"Venus":2,"Mars":5,"Jupiter":3,"Saturn":5,"Uranus":10,"Neptune":8,"Pluto":7,"Node":2}},"2019-05-08":{"transits":{"Sun":47.54,"Mercury":33.07,"Venus":21.51,"Mars":85.0,"Jupiter":263.18,"Saturn":290.46,"Uranus":33.41,"Neptune":348.2,"Pluto":293.11,"Node":109.37},"retro":["Jupiter","Saturn","Pluto"],"contacts":[{"t":"Saturn","n":"MC","type":"square","orb":0.44},{"t":"Uranus","n":"Mars","type":"conjunction","orb":0.67},{"t":"Neptune","n":"Venus","type":"sextile","orb":0.87},{"t":"Pluto","n":"Saturn","type":"opposition","orb":1.19},{"t":"Uranus","n":"ASC","type":"sextile","orb":1.27},{"t":"Saturn","n":"Venus","type":"trine","orb":1.39},{"t":"Saturn","n":"Saturn","type":"opposition","orb":1.46},{"t":"Jupiter","n":"Neptune","type":"conjunction","orb":1.73},{"t":"Pluto","n":"MC","type":"square","orb":2.21},{"t":"Saturn","n":"Sun","type":"square","orb":2.25}],"fast":[{"t":"Venus","n":"Neptune","type":"trine","orb":0.06},{"t":"Venus","n":"Saturn","type":"square","orb":0.41},{"t":"Venus","n":"MC","type":"conjunction","orb":0.61},{"t":"Mercury","n":"ASC","type":"sextile","orb":0.93},{"t":"Mercury","n":"Mars","type":"conjunction","orb":1.01},{"t":"Mars","n":"Uranus","type":"opposition","orb":1.48}],"houses":{"Sun":10,"Mercury":10,"Venus":10,"Mars":12,"Jupiter":6,"Saturn":7,"Uranus":10,"Neptune":9,"Pluto":7,"Node":1}},"2021-11-01":{"transits":{"Sun":219.2,"Mercury":203.01,"Venus":266.1,"Mars":211.22,"Jupiter":322.67,"Saturn":307.26,"Uranus":42.93,"Neptune":350.65,"Pluto":294.48,"Node":61.89},"retro":["Uranus","Neptune"],"contacts":[{"t":"Neptune","n":"Neptune","type":"square","orb":0.8},{"t":"Uranus","n":"Jupiter","type":"trine","orb":0.9},{"t":"Jupiter","n":"Neptune","type":"sextile","orb":1.22},{"t":"Neptune","n":"Saturn","type":"trine","orb":1.27},{"t":"Neptune","n":"Venus","type":"sextile","orb":1.58},{"t":"Pluto","n":"Saturn","type":"opposition","orb":2.56}],"fast":[{"t":"Venus","n":"Uranus","type":"conjunction","orb":0.38},{"t":"Mars","n":"ASC","type":"trine","orb":0.92},{"t":"Mercury","n":"Saturn","type":"square","orb":1.09}],"houses":{"Sun":4,"Mercury":4,"Venus":6,"Mars":4,"Jupiter":8,"Saturn":7,"Uranus":10,"Neptune":9,"Pluto":7,"Node":11}},"2024-05-29":{"transits":{"Sun":68.52,"Mercury":50.8,"Venus":66.84,"Mars":21.94,"Jupiter":60.81,"Saturn":348.62,"Uranus":54.03,"Neptune":359.62,"Pluto":301.94,"Node":14.05},"retro":["Pluto"],"contacts":[{"t":"Neptune","n":"Mercury","type":"conjunction","orb":0.2},{"t":"Saturn","n":"Venus","type":"sextile","orb":0.45},{"t":"Jupiter","n":"Mercury","type":"sextile","orb":0.99},{"t":"Pluto","n":"Chiron","type":"trine","orb":1.31},{"t":"Pluto","n":"Mars","type":"square","orb":2.14},{"t":"Neptune","n":"ASC","type":"square","orb":2.52},{"t":"Saturn","n":"Neptune","type":"square","orb":2.83}],"fast":[{"t":"Mars","n":"Saturn","type":"square","orb":0.02},{"t":"Mars","n":"Neptune","type":"trine","orb":0.49},{"t":"Mars","n":"MC","type":"conjunction","orb":1.04}],"houses":{"Sun":11,"Mercury":11,"Venus":11,"Mars":10,"Jupiter":11,"Saturn":9,"Uranus":11,"Neptune":9,"Pluto":7,"Node":9}},"2026-11-04":{"transits":{"Sun":222.0,"Mercury":222.42,"Venus":204.74,"Mars":140.32,"Jupiter":144.72,"Saturn":9.08,"Uranus":64.55,"Neptune":2.01,"Pluto":303.16,"Node":326.92},"retro":["Mercury","Venus","Saturn","Uranus","Neptune"],"contacts":[{"t":"Pluto","n":"Chiron","type":"trine","orb":0.09},{"t":"Neptune","n":"ASC","type":"square","orb":0.13},{"t":"Uranus","n":"Moon","type":"sextile","orb":0.15},{"t":"Pluto","n":"Mars","type":"square","orb":0.92},{"t":"Neptune","n":"Chiron","type":"opposition","orb":1.24},{"t":"Uranus","n":"Chiron","type":"trine","orb":1.3},{"t":"Pluto","n":"Moon","type":"sextile","orb":1.54},{"t":"Saturn","n":"Node","type":"conjunction","orb":1.65},{"t":"Jupiter","n":"Uranus","type":"trine","orb":1.76},{"t":"Neptune","n":"Mercury","type":"conjunction","orb":2.19},{"t":"Neptune","n":"Moon","type":"conjunction","orb":2.69},{"t":"Saturn","n":"Jupiter","type":"square","orb":2.95}],"fast":[{"t":"Sun","n":"Jupiter","type":"sextile","orb":0.03},{"t":"Mercury","n":"Jupiter","type":"sextile","orb":0.39},{"t":"Mars","n":"MC","type":"trine","orb":0.58},{"t":"Mars","n":"Neptune","type":"trine","orb":1.13},{"t":"Mars","n":"Venus","type":"square","orb":1.25}],"houses":{"Sun":4,"Mercury":4,"Venus":4,"Mars":2,"Jupiter":2,"Saturn":9,"Uranus":11,"Neptune":9,"Pluto":7,"Node":8}}},"pretoria":{"transits":{"Sun":221.79,"Mercury":222.69,"Venus":204.82,"Mars":140.22,"Jupiter":144.7,"Saturn":9.09,"Uranus":64.56,"Neptune":2.02,"Pluto":303.16,"Node":326.92,"Moon":161.5},"retro":["Mercury","Venus","Saturn","Uranus","Neptune"],"asc":249.528,"mc":144.39,"cusps":[249.528,274.323,298.067,324.39,356.125,32.999,69.528,94.323,118.067,144.39,176.125,212.999]},"stations":[{"body":"Mercury","date":"2026-10-24","lon":230.98,"dir":"retrograde"},{"body":"Mercury","date":"2026-11-13","lon":215.03,"dir":"direct"},{"body":"Venus","date":"2026-10-03","lon":218.49,"dir":"retrograde"},{"body":"Venus","date":"2026-11-14","lon":202.86,"dir":"direct"}]};
+
+const NEXT_ELECTION = { date:"2026-11-04", open:"2026-11-04T07:00:00+02:00", close:"2026-11-04T21:00:00+02:00" };
+
+const SETTLING = [
+  { date:"2026-11-04", short:"Vote", label:"Polling day", note:"Polls open from 07:00 to 21:00. Venus and Mercury are both retrograde in the 1652 4th house, the house of the land." },
+  { date:"2026-11-05", short:"Count", label:"Counting", note:"Votes are counted at each voting station and results are captured as they come in." },
+  { date:"2026-11-11", short:"Results", label:"Results deadline", note:"The Electoral Commission must declare the results within seven days of the vote." },
+  { date:"2026-11-13", short:"Mercury", label:"Mercury turns direct", note:"18:00 SAST at 5°02′ Scorpio, opposite the 1652 Mars, ruler of management, within 0°57′." },
+  { date:"2026-11-14", short:"Venus", label:"Venus turns direct", note:"02:30 SAST at 22°51′ Libra, 1°57′ from the 1652 IC. The ruler of the land, and of the whole chart, starts moving forward." },
+  { date:"2026-11-25", short:"Councils", label:"Councils sit", note:"New councils must hold their first meeting within 14 days of the results being declared. Mayors are elected and coalitions are tested here." }
+];
+
+const ELECTIONS = [
+  { date:"1994-04-27", kind:"national", title:"The first democratic election",
+    outcome:"The ANC wins 62.6% and Nelson Mandela becomes president at the head of a Government of National Unity.",
+    project:"New release: v5 launches and new management takes office.",
+    claim:"Neptune opposes the chart's Saturn, the outsider who became the body of the project.",
+    reading:["Neptune opposes the 1652 Saturn within 1°25′ and squares the Midheaven within 2°27′: the walls of the old order dissolve and government takes on a new, idealised face.",
+      "Mercury sits on Mars, the ruler of management, within 0°38′, and Mars sits on the North Node in the 9th house of law. The handover is negotiated, written and signed."] },
+  { date:"1999-06-02", kind:"national", title:"Mbeki's first election",
+    outcome:"The ANC wins 66.4%, its share rising; Thabo Mbeki succeeds Mandela.",
+    project:"Management handover inside v5: Mandela to Mbeki.",
+    claim:"Neptune squares Mars, the ruler of management, to within six minutes of arc.",
+    reading:["Neptune squares the 1652 Mars within 0°06′. Mars rules the Midheaven and the 10th house: management. Neptune softens and idealises it, and the founding president hands over without a contest.",
+      "The Sun stands on the chart's Pluto in the 12th within 0°02′: power that works out of view. Saturn trines Jupiter, ruler of the 9th house of law, within 0°49′, keeping the transition orderly."] },
+  { date:"2000-12-05", kind:"local", title:"The new municipalities",
+    outcome:"The first elections under the new municipal system, with the metros elected for the first time. The ANC wins 59.4% and the DA 22.1%.",
+    project:"The branch network rebuilt: new municipalities and metros take over.",
+    claim:"Jupiter and Saturn stand together in the 1652 11th house, the house of councils.",
+    reading:["Jupiter and Saturn, both retrograde, sit in the 1652 11th house, the house of councils, weeks before their great conjunction. The chart marks the redrawing of local government at its source.",
+      "Neptune sextiles the Moon, ruler of the people, within 0°12′ and squares Mars, ruler of management, within 0°25′. Pluto opposes its own place in the 12th."] },
+  { date:"2004-04-14", kind:"national", title:"The peak mandate",
+    outcome:"The ANC wins 69.7%, its highest share in any national election.",
+    project:"Peak consolidation: management's largest mandate.",
+    claim:"Pluto sits on the chart's Neptune in the 6th house of labour, and trines the Midheaven.",
+    reading:["Pluto stands on the 1652 Neptune in the 6th house within 0°40′ and trines the Midheaven within 1°13′. Management gathers its deepest hold on the workforce.",
+      "Transiting Saturn is in the 1st house, giving the project's body weight and structure. There are no tight contacts from the faster planets: a quiet, settled vote."] },
+  { date:"2006-03-01", kind:"local", title:"Local control confirmed",
+    outcome:"The ANC wins 66.3% and the DA 14.8%.",
+    project:"Branches confirmed: local control holds.",
+    claim:"Jupiter opposes Venus, ruler of the land and of the whole chart.",
+    reading:["Jupiter opposes the 1652 Venus within 0°13′ and Neptune squares it within 0°55′. The land's ruler is promised much and given little: these are the years of rising protests over local services.",
+      "Pluto sits exactly on the chart's Uranus at the Descendant (0°03′), and Neptune sextiles the Sun within 0°03′."] },
+  { date:"2009-04-22", kind:"national", title:"Zuma and the first breakaway",
+    outcome:"The ANC wins 65.9% and Jacob Zuma becomes president; COPE, the first breakaway from the ANC, takes 7.4%.",
+    project:"Management contest: the first breakaway and a new head of the project.",
+    claim:"Pluto squares Chiron almost exactly and opposes the Ascendant.",
+    reading:["Pluto squares the 1652 Chiron within 0°01′ and opposes the Ascendant within 1°04′, from the 7th house of rivals. The project's body meets a rival drawn from its own ranks.",
+      "Mars and Venus both stand on Mercury in the 9th house: a campaign fought over law and message."] },
+  { date:"2011-05-18", kind:"local", title:"The opposition passes a fifth",
+    outcome:"The ANC wins 62.9% and the DA 23.9%, the main opposition's first share above a fifth.",
+    project:"The branch network contested: the main opposition grows.",
+    claim:"Uranus reaches the chart's Moon, ruler of the people.",
+    reading:["Uranus is within 1°12′ of the 1652 Moon and opposes Chiron within 0°14′: the electorate starts to shift. Saturn opposes the North Node within 0°15′.",
+      "Mercury, Venus, Mars and Jupiter all stand in the 1652 10th house, the house of management, on the day."] },
+  { date:"2014-05-07", kind:"national", title:"Marikana's aftermath",
+    outcome:"The ANC wins 62.2%; the EFF, founded in 2013, enters parliament with 6.4%.",
+    project:"A challenge from labour: a new party built after Marikana and on the land question enters parliament.",
+    claim:"Pluto sits on Jupiter, ruler of the 6th house of labour.",
+    reading:["Pluto stands on the 1652 Jupiter within 1°25′. Jupiter rules the 6th house of workers, and the vote comes two years after the Marikana massacre.",
+      "Saturn opposes Venus, ruler of the land, within 1°12′: the land question is put to the ballot. Venus sits on the 1652 Moon within 0°15′."] },
+  { date:"2016-08-03", kind:"local", title:"The metros change hands",
+    outcome:"The ANC wins 53.9% and loses Johannesburg, Tshwane and Nelson Mandela Bay to opposition coalitions.",
+    project:"The biggest branches change hands: three metros go to coalitions.",
+    claim:"Neptune squares the chart's Pluto in the 12th exactly.",
+    reading:["Neptune squares the 1652 Pluto exactly (0°00′): hidden power loosens its grip. Saturn opposes the same Pluto within 1°32′.",
+      "The Sun, Mercury and Venus stand in the 1652 2nd house, the house of revenue: the metros are where the money is."] },
+  { date:"2019-05-08", kind:"national", title:"Under audit",
+    outcome:"The ANC wins 57.5% under Cyril Ramaphosa, with the state capture inquiry under way.",
+    project:"Management under audit: the vote falls below 60% for the first time.",
+    claim:"Saturn squares the Midheaven and Uranus sits on Mars, the ruler of management.",
+    reading:["Saturn squares the 1652 Midheaven within 0°26′, and Uranus stands on Mars within 0°40′. Management is examined and its conduct exposed.",
+      "Pluto opposes the chart's Saturn within 1°11′. Venus sits on the Midheaven within 0°36′, giving the vote a conciliatory face."] },
+  { date:"2021-11-01", kind:"local", title:"The councils fragment",
+    outcome:"The ANC falls below half for the first time, to 45.6%, and more councils than ever are left without a majority. Turnout is 45.9%.",
+    project:"The branch network fragments, months after the July unrest.",
+    claim:"The Sun, Mercury and Mars stand in the 1652 4th house, the house of the land.",
+    reading:["A November local election puts the Sun in the 1652 4th house, the land and the local base, as in 2026. Neptune squares its own place in the 6th within 0°48′: a weary, disillusioned workforce.",
+      "Venus sits on the chart's Uranus at the Descendant within 0°22′, and Pluto opposes the 1652 Saturn: the old allegiances break apart."] },
+  { date:"2024-05-29", kind:"national", title:"The Government of National Unity",
+    outcome:"The ANC wins 40.2% and loses its majority; MK takes 14.6%; a ten-party Government of National Unity forms.",
+    project:"Management reshuffle: no majority, and a coalition takes over.",
+    claim:"Five planets stand in the 1652 11th house, the house of the legislature and councils.",
+    reading:["The Sun, Mercury, Venus, Jupiter and Uranus are all in the 1652 11th house. The result is decided in the legislature, by coalition.",
+      "Neptune sits on Mercury in the 9th within 0°12′, and Mars squares the chart's Saturn within 0°01′ while standing on the Midheaven."] },
+  { date:"2026-11-04", kind:"local", title:"The 2026 municipal elections",
+    outcome:null,
+    project:"Branch elections, held while the ruler of the core asset is retrograde.",
+    claim:"The Sun, Mercury and Venus stand in the 1652 4th house, and Venus, ruler of the land and of the whole chart, is retrograde.",
+    reading:["Venus turned retrograde on 3 October and turns direct on 14 November, 1°57′ from the 1652 IC, the root of the chart. Mercury is retrograde too and turns direct on 13 November, opposite Mars, the ruler of management. The vote is about the land and the local base, and its real result settles in the ten days after polling.",
+      "Neptune squares the Ascendant within 0°07′: a disillusioned, unclear electorate. Uranus in the 11th house of councils sextiles the Moon within 0°09′, pointing to upsets in council results. Pluto squares Mars, the ruler of management, within 0°55′, its third pass: a struggle over who runs things."] }
+];
+</script>
+
+<!-- =========================================================
+     MODULE: ELECTIONS VIEW
+     ========================================================= -->
+<script>
+const ElectionsView = (() => {
+  const $ = id => document.getElementById(id);
+  const KIND = { national:"National", local:"Local" };
+  let buttons = {}, timer = null;
+
+  const allContacts = sky => [...sky.contacts, ...sky.fast].sort((a, b) => a.orb - b.orb);
+
+  // ---------- Countdown ----------
+  function renderCountdown() {
+    const open = new Date(NEXT_ELECTION.open), close = new Date(NEXT_ELECTION.close), now = new Date();
+    const label = Dates.long(NEXT_ELECTION.date);
+    let big, line;
+    if (now < open) {
+      const ms = open - now, d = Math.floor(ms / 864e5), h = Math.floor(ms % 864e5 / 36e5), m = Math.floor(ms % 36e5 / 6e4);
+      big = `${d} days ${h} hours ${m} minutes`;
+      line = `until polls open at 07:00 on ${label}.`;
+    } else if (now < close) {
+      big = "Polls are open";
+      line = `Voting runs until 21:00 today, ${label}.`;
+    } else {
+      big = "Polls have closed";
+      line = `Voting ended at 21:00 on ${label}. Follow the settling window below.`;
+    }
+    $("countdown").innerHTML = `<div><div class="eyebrow" style="margin-bottom:.4rem">Municipal elections · ${label}</div>
+      <div class="cd-big">${big}</div><p style="margin:0">${line}</p></div>`;
+  }
+
+  // ---------- Next election ----------
+  function renderNext() {
+    const e = ELECTIONS.find(x => x.date === NEXT_ELECTION.date), sky = ELECTION_SKY.elections[e.date];
+    $("next-claim").textContent = e.claim;
+    $("next-reading").innerHTML = e.reading.map(p => `<p>${Dom.esc(p)}</p>`).join("");
+    $("next-project").textContent = e.project;
+    const svg = $("wheel-next"), contacts = allContacts(sky);
+    Wheel.render(svg, CHART, { transits: sky.transits, contacts });
+    ContactsTable.fill($("next-contacts"), svg, contacts, 16);
+    const tb = $("next-houses");
+    Object.entries(sky.transits).forEach(([p, lon]) => tb.append(Dom.el("tr", {},
+      `<td><span class="body-cell">${gl(p)}${Astro.pointName(p)}</span></td>
+       <td class="num">${Astro.fmt(lon)}${sky.retro.includes(p) ? " R" : ""}</td><td class="num">${sky.houses[p]}</td>`)));
+    renderPretoria();
+  }
+
+  function renderPretoria() {
+    const P = ELECTION_SKY.pretoria;
+    const order = ["Sun","Moon","Mercury","Venus","Mars","Jupiter","Saturn","Uranus","Neptune","Pluto","Node"];
+    const chart = { asc:P.asc, mc:P.mc, cusps:P.cusps, aspects:[],
+      bodies: order.map(id => ({ id, glyph:GLYPHS[id], lon:P.transits[id] })) };
+    Wheel.render($("wheel-pretoria"), chart);
+  }
+
+  // ---------- Settling window ----------
+  function renderSettling() {
+    const marks = Object.fromEntries(SETTLING.map(s => [s.date, s]));
+    const start = Dates.parse("2026-11-04"), strip = $("strip");
+    for (let i = 0; i < 22; i++) {
+      const d = new Date(start.getTime() + i * 864e5), key = d.toISOString().slice(0, 10), m = marks[key];
+      const zone = key <= "2026-11-14" ? "settle" : "council";
+      strip.append(Dom.el("li", { class:`day ${zone}${m ? " mark" : ""}`, title: m ? `${m.label}: ${m.note}` : "" },
+        `<span class="dn">${d.getUTCDate()}</span>${m ? `<span class="dl">${Dom.esc(m.short)}</span>` : ""}`));
+    }
+    SETTLING.forEach(s => $("milestones").append(Dom.el("li", {},
+      `<span class="y">${Dates.short(s.date).replace(" 2026", "")}</span><span><span class="t">${Dom.esc(s.label)}</span><span class="d2">${Dom.esc(s.note)}</span></span>`)));
+  }
+
+  // ---------- Past elections ----------
+  function buildNav() {
+    const nav = $("el-nav");
+    ["national","local"].forEach(kind => {
+      nav.append(Dom.el("div", { class:"era" }, `${KIND[kind]} elections<small>${kind === "national" ? "Management: parliament and the presidency." : "Branches: municipal councils and metros."}</small>`));
+      const ol = Dom.el("ol", { class:"tl-list" });
+      ELECTIONS.filter(e => e.kind === kind).slice().reverse().forEach(e => {
+        const a = Dom.el("a", { class:"tl-item", href:`#/elections/${e.date}` },
+          `<span class="y">${Dates.year(e.date)}</span><span><span class="t">${Dom.esc(e.title)}</span><span class="d">${Dates.long(e.date)}</span></span>`);
+        buttons[e.date] = a;
+        const li = Dom.el("li"); li.append(a); ol.append(li);
+      });
+      nav.append(ol);
+    });
+  }
+
+  function renderDetail(e) {
+    const sky = ELECTION_SKY.elections[e.date], host = $("el-detail");
+    const idx = ELECTIONS.indexOf(e), prev = ELECTIONS[idx - 1], next = ELECTIONS[idx + 1];
+    const outcome = e.outcome
+      ? `<p><b>Result:</b> ${Dom.esc(e.outcome)}</p>`
+      : `<p class="muted"><b>Result:</b> to be added once the Electoral Commission declares it.</p>`;
+    host.innerHTML = `
+      <div class="detail-head">
+        <div class="eyebrow">${Dates.long(e.date)} · ${KIND[e.kind]} · v5 The Republic of South Africa</div>
+        <h2>${Dom.esc(e.title)}</h2>
+        ${outcome}
+        <p class="project-line"><span class="tag">In the project</span><span>${Dom.esc(e.project)}</span></p>
+      </div>
+      <div class="detail-grid">
+        <div class="wheel-box">
+          <svg class="wheel" id="wheel-election" viewBox="0 0 600 600" role="img" aria-label="1652 chart with the sky on ${Dates.long(e.date)}"></svg>
+          <div class="legend"><span class="l-natal">1652 chart</span><span class="l-transit">Sky on polling day</span><span class="l-conj">Conjunction</span><span class="l-hard">Square, opposition</span><span class="l-soft">Trine, sextile</span></div>
+        </div>
+        <div class="reading">
+          <p class="claim">${Dom.esc(e.claim)}</p>
+          ${e.reading.map(p => `<p>${Dom.esc(p)}</p>`).join("")}
+          <div class="tbl-wrap"><table><thead><tr><th>Transit</th><th>Aspect</th><th>1652 point</th><th>Orb</th></tr></thead><tbody id="election-contacts"></tbody></table></div>
+        </div>
+      </div>
+      <div class="pager">
+        ${prev ? `<a class="btn" href="#/elections/${prev.date}">◀ ${Dates.year(prev.date)}</a>` : `<span></span>`}
+        ${next ? `<a class="btn" href="#/elections/${next.date}">${Dates.year(next.date)} ▶</a>` : `<span></span>`}
+      </div>`;
+    const svg = host.querySelector("#wheel-election"), contacts = allContacts(sky);
+    Wheel.render(svg, CHART, { transits: sky.transits, contacts });
+    ContactsTable.fill(host.querySelector("#election-contacts"), svg, contacts, 14);
+  }
+
+  function select(date, scroll) {
+    const e = ELECTIONS.find(x => x.date === date) || ELECTIONS[ELECTIONS.length - 2];
+    Object.entries(buttons).forEach(([d, b]) => b.setAttribute("aria-current", d === e.date ? "true" : "false"));
+    renderDetail(e);
+    if (scroll) $("el-detail").scrollIntoView({ behavior:"smooth", block:"start" });
+  }
+
+  function init() {
+    renderCountdown(); renderNext(); renderSettling(); buildNav();
+    timer = setInterval(renderCountdown, 30000);
+  }
+
+  /** Route entry: optional election date. */
+  function show(date) { select(date, !!date); }
+
+  return { init, show };
+})();
+</script>
+
+<!-- =========================================================
      MODULE: ROUTER
      ========================================================= -->
 <script>
@@ -1571,7 +1905,7 @@ const Router = (() => {
 
   function parse() {
     const [, name = "chart", ...rest] = (location.hash || "#/chart").split("/");
-    return { name: ["chart","timeline","future"].includes(name) ? name : "chart", rest };
+    return { name: ["chart","timeline","elections","future"].includes(name) ? name : "chart", rest };
   }
 
   function go() {
@@ -1580,9 +1914,10 @@ const Router = (() => {
     views.forEach(v => v.hidden = v.dataset.view !== name);
     links.forEach(a => a.dataset.route === name ? a.setAttribute("aria-current", "page") : a.removeAttribute("aria-current"));
     if (name === "timeline") TimelineView.select(rest[0] || EVENTS[0].date, !changed && window.innerWidth < 980);
+    if (name === "elections") ElectionsView.show(rest[0]);
     if (name === "future") FutureView.show(rest[0], rest[1]);
     if (changed) window.scrollTo(0, 0);
-    document.title = { chart:"South Africa 1652 Chart", timeline:"South Africa 1652 Timeline", future:"South Africa 1652 Future" }[name];
+    document.title = { chart:"South Africa 1652 Chart", timeline:"South Africa 1652 Timeline", elections:"South Africa 1652 Elections", future:"South Africa 1652 Future" }[name];
     current = name;
   }
 
@@ -1596,6 +1931,7 @@ const Router = (() => {
 <script>
 ChartView.init(CHART);
 TimelineView.init();
+ElectionsView.init();
 FutureView.init();
 Router.init();
 </script>
