@@ -253,6 +253,176 @@ a.tl-item{color:inherit;text-decoration:none}
 .btn:hover{background:var(--ink);color:var(--bg)}
 .btn[disabled]{opacity:.35;pointer-events:none}
 
+
+/* =========================================================
+   FUTURE: THE PROPHECY (scoped under .pr)
+   ========================================================= */
+@font-face{font-family:"Fraunces";font-style:italic;font-weight:400;font-display:swap;src:url(fonts/fraunces-latin-400-italic.woff2) format("woff2")}
+
+
+/* =========================================================
+   TOKENS: the six colours of the flag
+   ========================================================= */
+.pr{
+  --red:#E03C31; --blue:#001489; --green:#007749; --gold:#FFB612; --black:#000; --white:#fff;
+  --ink:#111; --ink-2:#4a4a4a; --paper:#fffdf8; --rule:#e2ddd2; --card:#fff; --blue-text:#001489; --green-text:#007749; --gold-text:#9a6c00;
+  --serif:"Fraunces",Georgia,serif; --sans:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+
+/* =========================================================
+   BASE
+   ========================================================= */
+.pr{background:var(--paper);color:var(--ink);font:400 1.2rem/1.65 var(--sans)}
+.pr-wrap{max-width:920px;margin:0 auto;padding:0 20px}
+@media (min-width:720px){.pr-wrap{padding:0 40px}}
+.pr h1,.pr h2,.pr h3{font-family:var(--serif);font-weight:700;line-height:1.1;margin:0}
+.pr p{margin:0 0 1rem;max-width:64ch}
+.pr-label{font:600 .95rem/1.2 var(--sans);letter-spacing:.04em}
+
+/* =========================================================
+   MASTHEAD
+   ========================================================= */
+.pr-mast{position:relative;overflow:hidden;background:var(--black);color:var(--white)}
+.pr-mast .pr-flag{position:absolute;right:-12%;top:50%;transform:translateY(-50%);width:78%;max-width:760px;opacity:.95}
+.pr-mast::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#000 34%,rgba(0,0,0,.82) 55%,rgba(0,0,0,.25) 100%)}
+.pr-mast .pr-wrap{position:relative;z-index:1;padding-top:88px;padding-bottom:80px}
+.pr-mast .pr-label{color:var(--gold)}
+.pr-mast h1{font-size:clamp(3rem,9vw,6.4rem);letter-spacing:-.03em;margin:.9rem 0 .4rem}
+.pr-mast h1 span{display:block;font-size:.38em;font-weight:400;font-style:italic;letter-spacing:0;color:#e9e6df;margin-top:.5rem}
+.pr-mast .pr-years{font:700 clamp(2.6rem,7vw,4.6rem)/1 var(--serif);letter-spacing:-.02em;color:var(--gold);margin-top:1.4rem}
+.pr-mast .pr-byline{font:400 1.05rem/1.3 var(--sans);color:#e9e6df;margin-top:1rem;letter-spacing:.02em}
+.pr-stripe{display:grid;grid-template-columns:repeat(6,1fr);height:10px}
+.pr-stripe i:nth-child(1){background:var(--red)} .pr-stripe i:nth-child(2){background:var(--white)}
+.pr-stripe i:nth-child(3){background:var(--green)} .pr-stripe i:nth-child(4){background:var(--gold)}
+.pr-stripe i:nth-child(5){background:var(--black)} .pr-stripe i:nth-child(6){background:var(--blue)}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+.pr section{padding:72px 0 0}
+.pr-sec-head{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.pr-sec-head .pr-bar{width:44px;height:6px}
+.pr-sec-head .pr-label{color:var(--ink);font-size:1.05rem}
+.pr h2{font-size:clamp(2rem,5vw,3rem);letter-spacing:-.02em;margin-bottom:22px}
+.pr-lead{font-family:var(--serif);font-size:1.4rem;line-height:1.45;max-width:46ch}
+
+/* Thesis */
+.pr-versions{list-style:none;margin:28px 0 30px;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:2px;background:var(--rule)}
+.pr-versions li{background:var(--paper);padding:16px 14px 14px}
+.pr-versions b{display:block;font:600 .95rem/1 var(--sans);color:var(--blue-text)}
+.pr-versions span{display:block;font-weight:600;margin-top:8px;line-height:1.3;font-size:1rem}
+.pr-versions small{display:block;font:700 1.55rem/1.1 var(--serif);color:var(--ink);margin-top:2px}
+.pr-versions li.pr-now{background:var(--blue);color:var(--white)}
+.pr-versions li.pr-now b{color:var(--gold)} .pr-versions li.pr-now small{color:var(--white)}
+.pr-divined{border-left:6px solid var(--gold);background:#fff6df;padding:16px 20px;margin:8px 0 0;max-width:64ch}
+.pr-divined p{margin:0}
+
+/* Who's who */
+.pr-roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px;margin-top:8px}
+.pr-role{border-top:6px solid var(--c,var(--blue));background:var(--card);padding:18px 20px 16px;box-shadow:0 0 0 1px var(--rule) inset}
+.pr-role h3{font-size:1.5rem;margin:0 0 .3rem}
+.pr-role .pr-is{font-weight:600;color:var(--t,var(--c,var(--blue)));margin:0 0 .5rem;line-height:1.35}
+.pr-role p{font-size:1.02rem;line-height:1.55;margin:0}
+
+/* Movements overview */
+.pr-moves{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:6px}
+.pr-move{color:var(--white);padding:20px 20px 18px}
+.pr-move .pr-label{color:rgba(255,255,255,.85)}
+.pr-move .when{font:700 clamp(1.9rem,3.4vw,2.5rem)/1 var(--serif);letter-spacing:-.02em;white-space:nowrap}
+.pr-move h3{font-size:1.5rem;margin:0 0 .4rem}
+.pr-move p{margin:0;font-size:1.05rem;line-height:1.5}
+.pr-move.pr-audit{background:var(--green)} .pr-move.pr-breaking{background:var(--red)} .pr-move.pr-opening{background:var(--gold);color:var(--black)}
+.pr-move.pr-opening .pr-label{color:rgba(0,0,0,.7)}
+
+/* Movement card with its date in a separate box above */
+.pr-move-unit{display:flex;flex-direction:column;align-items:stretch;gap:10px}
+.pr-move-unit .pr-move{align-self:stretch;flex:1}
+.pr-date-box{font:700 clamp(1.6rem,3vw,2.1rem)/1 var(--serif);letter-spacing:-.01em;padding:12px 20px;border:3px solid currentColor;background:var(--card);white-space:nowrap}
+.pr-date-box.pr-green{color:var(--green-text)} .pr-date-box.pr-red{color:var(--red)} .pr-date-box.pr-gold{color:#9a6c00;border-color:var(--gold)}
+
+/* Year entries */
+.pr-movement{margin-top:56px}
+.pr-movement-title{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 18px;border-bottom:5px solid currentColor;padding-bottom:12px;margin-bottom:6px}
+.pr-movement-title .pr-span{font:700 clamp(2rem,5vw,2.8rem)/1 var(--serif);letter-spacing:-.02em}
+.pr-movement-title h3{font-size:clamp(2rem,5vw,2.8rem)}
+.pr-movement-title .pr-label{color:var(--ink-2)}
+.pr-movement.pr-audit .pr-movement-title{color:var(--green-text)}
+.pr-movement.pr-breaking .pr-movement-title{color:var(--red)}
+.pr-movement.pr-opening .pr-movement-title{color:var(--gold-text)}
+.pr-movement-title h3{color:var(--ink)}
+.pr-year{display:grid;grid-template-columns:minmax(0,1fr);gap:4px 28px;padding:26px 0;border-bottom:1px solid var(--rule)}
+@media (min-width:720px){.pr-year{grid-template-columns:170px minmax(0,1fr)}}
+.pr-year .pr-yr{font:700 clamp(3rem,8vw,4.4rem)/1 var(--serif);letter-spacing:-.03em}
+.pr-audit .pr-yr{color:var(--green-text)} .pr-breaking .pr-yr{color:var(--red)} .pr-opening .pr-yr{color:var(--gold-text)}
+.pr-year h4{font:700 1.75rem/1.2 var(--serif);margin:.15rem 0 .7rem}
+.pr-year .pr-months{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .9rem}
+.pr-year .pr-months span{font:700 1.15rem/1 var(--serif);padding:8px 12px;border:2px solid currentColor}
+.pr-audit .pr-months{color:var(--green-text)} .pr-breaking .pr-months{color:var(--red)} .pr-opening .pr-months{color:var(--gold-text)}
+.pr-year .pr-vote{display:inline-block;background:var(--black);color:var(--white);font:600 1rem/1 var(--sans);padding:9px 12px;margin-bottom:.8rem}
+.pr-year .pr-meet{display:grid;grid-template-columns:auto 1fr;gap:10px;align-items:baseline;margin:0;max-width:64ch;font-weight:600}
+.pr-year .pr-meet .pr-label{color:var(--blue-text);font-size:.95rem;white-space:nowrap}
+
+/* Closing: version 6 or version 1 */
+.pr-close{margin-top:80px;background:var(--black);color:var(--white);padding:72px 0 64px}
+.pr-close h2{color:var(--white)}
+.pr-close .pr-lead{color:#e9e6df}
+.pr-choice{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:30px 0 44px}
+.pr-card{padding:24px 24px 20px}
+.pr-card .pr-num{font:700 4rem/1 var(--serif);letter-spacing:-.03em}
+.pr-card h3{font-size:1.5rem;margin:.6rem 0 .5rem}
+.pr-card p{margin:0;line-height:1.55;font-size:1.1rem}
+.pr-card.pr-v6{background:var(--blue)} .pr-card.pr-v6 .pr-num{color:var(--gold)}
+.pr-card.pr-v1{background:var(--green)} .pr-card.pr-v1 .pr-num{color:var(--gold)}
+.pr-questions{list-style:none;margin:0;padding:0;counter-reset:q}
+.pr-questions li{counter-increment:q;padding:20px 0;border-top:1px solid rgba(255,255,255,.25)}
+.pr-questions li::before{content:counter(q);display:inline-block;width:2rem;font:700 1.6rem/1 var(--serif);color:var(--gold)}
+.pr-questions b{font:700 1.6rem/1.3 var(--serif)}
+.lines{margin:16px 0 0 2rem;height:96px;background:repeating-linear-gradient(transparent 0 31px,rgba(255,255,255,.35) 31px 32px)}
+
+/* =========================================================
+   PRINT (A4)
+   ========================================================= */
+@media print{
+  .pr{background:#fff;font-size:12.5pt}
+  .pr-year h4{font-size:17pt}
+  .pr-year .pr-yr{font-size:34pt}
+  .pr-movement-title h3,.pr-movement-title .pr-span{font-size:24pt}
+  .pr-lead{font-size:15pt}
+  .pr-mast,.pr-close,.pr-move,.pr-card,.pr-versions li.pr-now{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .pr section{padding-top:28px}
+  .pr-year,.pr-card,.pr-move{break-inside:avoid}
+  .pr-close{break-before:page;margin-top:0;padding:40px 0 28px}
+  .pr-versions,.pr-moves,.pr-divined,.pr-role{break-inside:avoid}
+  .pr-movement-title,.pr-sec-head,h2{break-after:avoid}
+  .pr-movement{break-before:auto}
+  .lines{height:56px}
+  .pr-versions{grid-template-columns:repeat(5,1fr)}
+  .pr-moves{grid-template-columns:repeat(3,1fr)}
+  .pr-date-box{font-size:20pt}
+  .pr-move-unit{break-inside:avoid}
+  .pr-versions small{font-size:14pt;white-space:nowrap}
+  .pr-year{grid-template-columns:105pt minmax(0,1fr)}
+  .pr-year .pr-months span{font-size:12pt;padding:5px 9px}
+  .pr-questions li{padding:14px 0 4px}
+  .pr-close h2{margin-bottom:12px}
+  .pr-choice{margin:20px 0 24px}
+  .lines{background:repeating-linear-gradient(transparent 0 31px,#888 31px 32px)}
+}
+
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pr{--ink:#efe9de;--ink-2:#b3a996;--paper:#14120f;--rule:#3a342c;--card:#1d1a16;--blue-text:#9fb4ff;--green-text:#3fbf83;--gold-text:#ffc23d}}
+:root[data-theme="dark"] .pr{--ink:#efe9de;--ink-2:#b3a996;--paper:#14120f;--rule:#3a342c;--card:#1d1a16;--blue-text:#9fb4ff;--green-text:#3fbf83;--gold-text:#ffc23d}
+.pr .pr-divined{color:#111}
+.pr .pr-move-unit .pr-date-box.pr-gold{color:var(--gold-text)}
+
+/* Behind the prophecy: the sky, folded */
+details.sky{margin-top:var(--gap-xl);border-top:2px solid var(--ink);padding-top:var(--gap-m)}
+details.sky > summary{cursor:pointer;list-style:none;display:flex;flex-direction:column;gap:.5rem}
+details.sky > summary::-webkit-details-marker{display:none}
+details.sky .sky-title{font:600 clamp(1.5rem,3vw,2rem)/1.2 var(--serif)}
+details.sky .sky-title::after{content:" +";color:var(--accent)}
+details.sky[open] .sky-title::after{content:" \2212"}
+details.sky .now{margin-top:var(--gap-m)}
+
 /* =========================================================
    ELECTIONS VIEW
    ========================================================= */
@@ -270,24 +440,6 @@ a.tl-item{color:inherit;text-decoration:none}
 .milestones .y{font:600 1.05rem/1.3 var(--serif)}
 .milestones .t{display:block;font-weight:600}
 .milestones .d2{display:block;color:var(--ink-2);font-size:.95rem}
-
-/* =========================================================
-   NEXT TEN YEARS (reading first, sky as support)
-   ========================================================= */
-.years{list-style:none;margin:var(--gap-m) 0 0;padding:0;border-top:2px solid var(--ink)}
-.year{display:grid;grid-template-columns:minmax(0,1fr);gap:.4rem var(--gap-m);padding:var(--gap-m) 0;border-bottom:1px solid var(--rule)}
-@media (min-width:760px){.year{grid-template-columns:7.5rem minmax(0,1fr)}}
-.year .yr{font:700 clamp(2.2rem,5vw,3.2rem)/1 var(--serif);letter-spacing:-.02em}
-.year.peak .yr{color:var(--accent)}
-.year h3{margin:0 0 .6rem;font-size:clamp(1.45rem,3vw,1.9rem);line-height:1.2}
-.year .read{font-size:1.12rem;line-height:1.65;max-width:64ch;margin-bottom:.8rem}
-.year .meta{display:flex;flex-wrap:wrap;align-items:center;gap:.5rem 1rem}
-.year .vote{background:var(--ink);color:var(--bg);border-color:var(--ink)}
-.year details{font-size:.82rem;color:var(--ink-2)}
-.year summary{cursor:pointer;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2)}
-.year summary:hover{color:var(--ink)}
-.year details ul{margin:.6rem 0 0;padding-left:1.1rem;font-family:var(--mono);font-size:.78rem;line-height:1.6}
-.year .wheel-link{background:none;border:0;padding:0;cursor:pointer;font:500 .72rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
 
 /* =========================================================
    FUTURE VIEW
@@ -636,36 +788,218 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
      VIEW: FUTURE
      ========================================================= -->
 <div class="view" data-view="future" hidden>
-<header class="hero">
-  <div class="wrap">
-    <div class="eyebrow">Future · 2026 to 2040</div>
-    <h1>The road ahead</h1>
-    <p class="lede">The slow planets' path across the 1652 chart for the next fifteen years, and what each crossing means for the project and for South Africa.</p>
-    <div class="now" id="now-box"></div>
+<div class="pr">
+<!-- =========================================================
+     MASTHEAD
+     ========================================================= -->
+<header class="pr-mast">
+  <svg class="pr-flag" viewBox="0 0 9 6" aria-hidden="true">
+    <defs><clipPath id="fc"><rect width="9" height="6"/></clipPath></defs>
+    <rect width="9" height="3" fill="#E03C31"/>
+    <rect y="3" width="9" height="3" fill="#001489"/>
+    <g clip-path="url(#fc)" fill="none">
+      <path d="M0,0 L4.5,3 L0,6 M4.5,3 H9" stroke="#fff" stroke-width="2"/>
+      <path d="M0,0 L4.5,3 L0,6 M4.5,3 H9" stroke="#007749" stroke-width="1.2"/>
+    </g>
+    <polygon points="0,0.721 3.4185,3 0,5.279" fill="#FFB612"/>
+    <polygon points="0,1.2018 2.6986,3 0,4.7982" fill="#000"/>
+  </svg>
+  <div class="pr-wrap">
+    <div class="pr-label">RSA · Refreshment Station Africa</div>
+    <h1>The Prophecy<span>The last decade of version 5</span></h1>
+    <div class="pr-years">2027 – 2037</div>
+    <div class="pr-byline">by Dlozi Lloyd Mthethwa</div>
   </div>
 </header>
+<div class="pr-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
+<div class="pr-wrap">
+
+<!-- =========================================================
+     THESIS
+     ========================================================= -->
+<section>
+  <div class="pr-sec-head"><span class="pr-bar" style="background:var(--blue)"></span><span class="pr-label">The thesis</span></div>
+  <h2>South Africa is a project</h2>
+  <p class="pr-lead">The land had its peoples long before 1652. What arrived that year was not a nation but a business venture, and it has been running ever since.</p>
+  <p>The Dutch East India Company, a trading business governed by a board that sat in Amsterdam, sent Jan van Riebeeck to the Cape with a clear brief: set up a refreshment station, build a fort, plant a garden, barter cattle, and supply the Company's ships. He was told not to found a colony. The station took root anyway, and it was the Company's only lasting foothold on the African mainland.</p>
+  <p>Call it by its founding purpose: Refreshment Station Africa. RSA. The project has changed owners, merged, rebranded and relaunched, but it has never stopped running, and its initials never changed. The people of the land were not asked to create it. They work for it.</p>
+  <ol class="pr-versions">
+    <li><b>v1</b><small>1652–1795</small><span>The Company</span></li>
+    <li><b>v2</b><small>1795–1910</small><span>The Colonies</span></li>
+    <li><b>v3</b><small>1910–1961</small><span>The Union</span></li>
+    <li><b>v4</b><small>1961–1994</small><span>The Republic</span></li>
+    <li class="pr-now"><b>v5</b><small>1994–now</small><span>The Republic of South Africa</span></li>
+  </ol>
+  <p>Version 5, the Republic of South Africa, is wrapping up. The decade ahead takes it apart, and what follows depends on what people are working towards.</p>
+  <div class="pr-divined"><p>The readings in this prophecy were divined astrologically, from the chart of the project's founding at Table Bay on 7 April 1652 12:12.</p></div>
+</section>
+
+<!-- =========================================================
+     WHO'S WHO
+     ========================================================= -->
+<section>
+  <div class="pr-sec-head"><span class="pr-bar" style="background:var(--green)"></span><span class="pr-label">Who's who</span></div>
+  <h2>Reading the project</h2>
+  <p class="pr-lead">Read South Africa as a business and every part of it has a role. These are the names used in this prophecy.</p>
+  <div class="pr-roles">
+    <div class="pr-role" style="--c:var(--black);--t:var(--ink)"><h3>The owners</h3><p class="pr-is">The interests the project serves</p><p>In version 1 they were the Company's board, seventeen directors in Amsterdam who ran the Cape for 143 years without setting foot in it. Their seat has been built into the project since 1652. Who holds it today is the question this prophecy leaves open.</p></div>
+    <div class="pr-role" style="--c:var(--blue);--t:var(--blue-text)"><h3>Management</h3><p class="pr-is">Whoever runs the state</p><p>The president, the cabinet and the governing party or coalition of the current version. National elections choose the management.</p></div>
+    <div class="pr-role" style="--c:var(--green);--t:var(--green-text)"><h3>The branches</h3><p class="pr-is">Municipal councils and metros</p><p>Where the project meets daily life: water, roads, rates and local services. Local elections choose the branch managers.</p></div>
+    <div class="pr-role" style="--c:var(--red)"><h3>The workforce</h3><p class="pr-is">The people who live in the project</p><p>Everyone whose work and taxes keep it running. They were not asked to create it.</p></div>
+    <div class="pr-role" style="--c:var(--gold);--t:var(--gold-text)"><h3>The core asset</h3><p class="pr-is">The land</p><p>Everything the project does comes back to who holds the land and what it is worth.</p></div>
+    <div class="pr-role" style="--c:var(--blue);--t:var(--blue-text)"><h3>The business model</h3><p class="pr-is">What the project exists to do</p><p>It began as feeding passing ships. It has always been to serve trade whose profits flow elsewhere.</p></div>
+    <div class="pr-role" style="--c:var(--black);--t:var(--ink)"><h3>The institutions</h3><p class="pr-is">The machinery out of public view</p><p>Government departments, state companies, prisons and hospitals.</p></div>
+    <div class="pr-role" style="--c:var(--red)"><h3>The arms that keep order</h3><p class="pr-is">Police and the military</p><p>How the project protects itself and enforces its rules.</p></div>
+    <div class="pr-role" style="--c:var(--green);--t:var(--green-text)"><h3>The structure</h3><p class="pr-is">The constitution and the form of the state</p><p>Each new version of the project rebuilds it.</p></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     THE DECADE AT A GLANCE
+     ========================================================= -->
+<section>
+  <div class="pr-sec-head"><span class="pr-bar" style="background:var(--red)"></span><span class="pr-label">The decade at a glance</span></div>
+  <h2>Three movements</h2>
+  <div class="pr-moves">
+    <div class="pr-move-unit"><div class="pr-date-box pr-green">2027–2031</div><div class="pr-move pr-audit"><h3>The Audit</h3><p>The project is examined: its managers, its secrets, its land and its branches.</p></div></div>
+    <div class="pr-move-unit"><div class="pr-date-box pr-red">2032–2036</div><div class="pr-move pr-breaking"><h3>The Breaking</h3><p>Its people, its purpose, its structure and its core asset are all in play at once.</p></div></div>
+    <div class="pr-move-unit"><div class="pr-date-box pr-gold">2037 +</div><div class="pr-move pr-opening"><h3>The Opening</h3><p>The foundation laid in 1652 moves.</p></div></div>
+  </div>
+</section>
+
+<!-- =========================================================
+     THE AUDIT
+     ========================================================= -->
+<section class="pr-movement pr-audit">
+  <div class="pr-movement-title"><h3>The Audit</h3><span class="pr-span">2027–2031</span></div>
+
+  <article class="pr-year"><div class="pr-yr">2027</div><div>
+    <h4>The managers are measured</h4>
+    <div class="pr-months"><span>April</span><span>May</span><span>December</span></div>
+    <p>Those who run the project are measured, formally and in public. Inquiries open, the executive is reshaped, and whatever cannot carry weight is cut away. The hardest moments come in April, May and December.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Build on what is solid. Positions held by favour will not survive the year; skills and real relationships will.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2028</div><div>
+    <h4>What was hidden comes into view</h4>
+    <div class="pr-months"><span>May</span><span>December</span></div>
+    <p>Arrangements kept out of sight inside the institutions break into the open, suddenly, not through slow investigation. The public mood drifts and is hard to read. The arms that keep order are tested in May and again at the turn of the year.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Keep your own house in the open. Stake nothing on arrangements that need secrecy to work.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2029</div><div>
+    <span class="pr-vote">National election expected</span>
+    <h4>The land goes to the ballot</h4>
+    <div class="pr-months"><span>June</span><span>December</span></div>
+    <p>The land, the project's core asset, becomes the question of a national election. It is tested in June and again in December, and the project's direction blurs. The land question shapes the campaign and the bargaining that follows.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Know your relationship to land: where you live, what you hold, what you work. Secure it on paper.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2030</div><div>
+    <h4>The record is made public, and work is jolted</h4>
+    <div class="pr-months"><span>June</span><span>July to December</span></div>
+    <p>What surfaced in 2028 becomes public record, and the institutions face a reckoning in June. In the second half of the year a sudden jolt hits work itself, arriving through technology and from out of view.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Learn the new tools before they arrive. Be the person who runs the machine, not the one it replaces.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2031</div><div>
+    <span class="pr-vote">Local elections expected</span>
+    <h4>The branches break ranks</h4>
+    <div class="pr-months"><span>August</span><span>November</span></div>
+    <p>Local politics fractures. Breakaways form, allegiances shift, and the strain on workers keeps coming from above.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Organise close to home. Neighbours, cooperatives and local networks carry people through when the branches split.</span></p>
+  </div></article>
+</section>
+
+<!-- =========================================================
+     THE BREAKING
+     ========================================================= -->
+<section class="pr-movement pr-breaking">
+  <div class="pr-movement-title"><h3>The Breaking</h3><span class="pr-span">2032–2036</span></div>
+
+  <article class="pr-year"><div class="pr-yr">2032</div><div>
+    <h4>The people are redefined</h4>
+    <div class="pr-months"><span>May</span><span>July</span><span>October</span></div>
+    <p>The decade's great turn begins. Over three years, who counts as the project's people, and on what terms, is renegotiated. In May the land is back in question.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Define yourself by what you can do and build, not by the category the project files you under.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2033</div><div>
+    <h4>The founding purpose is questioned</h4>
+    <div class="pr-months"><span>March</span><span>July</span><span>November</span></div>
+    <p>The project's reason for existing comes into question. The conditions of the founding return, the managers lose their outline, and the business model is open to redefinition.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>When purpose is up for grabs, those who know their own purpose lead. Write yours down.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2034</div><div>
+    <span class="pr-vote">National election expected</span>
+    <h4>The walls under strain</h4>
+    <div class="pr-months"><span>March</span><span>June</span><span>September</span></div>
+    <p>The structure of the state itself is on the table, not only who manages it. The hardest test of the decade arrives in an election year, as the people finish being redefined and the land question opens at its root.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Do not wait for the structure to save you, or to fall. Build what you need alongside it.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2035</div><div>
+    <h4>The land question at its root</h4>
+    <div class="pr-months"><span>March</span><span>July</span><span>December</span></div>
+    <p>Who owns the land, and what it is worth, is contested at the deepest level, all year. This is the year the land question is least likely to be put off.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Take part. What is decided about land this year will last a generation.</span></p>
+  </div></article>
+
+  <article class="pr-year"><div class="pr-yr">2036</div><div>
+    <span class="pr-vote">Local elections expected</span>
+    <h4>A settlement on the land</h4>
+    <div class="pr-months"><span>January</span><span>October</span><span>November</span></div>
+    <p>The land question moves to an outcome, and those in charge have room to carry a change through. What is settled here shapes whatever comes after version 5.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Be in the room, or make sure someone who speaks for you is.</span></p>
+  </div></article>
+</section>
+
+<!-- =========================================================
+     THE OPENING
+     ========================================================= -->
+<section class="pr-movement pr-opening">
+  <div class="pr-movement-title"><h3>The Opening</h3><span class="pr-span">2037 +</span></div>
+
+  <article class="pr-year"><div class="pr-yr">2037</div><div>
+    <h4>The foundation stone moves</h4>
+    <div class="pr-months"><span>July</span><span>August</span></div>
+    <p>The point where the outsiders became the body of the project is struck directly, in July and again in August. The arrangement that has held since 1652 is open to change.</p>
+    <p class="pr-meet"><span class="pr-label">To meet it</span><span>Prepare for an opening, not an ending.</span></p>
+  </div></article>
+</section>
+
+</div>
+
+<!-- =========================================================
+     CLOSING: VERSION 6 OR VERSION 1
+     ========================================================= -->
+<section class="pr-close">
+  <div class="pr-wrap">
+    <div class="pr-sec-head"><span class="pr-bar" style="background:var(--gold)"></span><span class="pr-label" style="color:#bdb8ae">After version 5</span></div>
+    <h2>Version 6, or version 1?</h2>
+    <p class="pr-lead">Version 5 is wrapping up. What replaces it will be built by whoever is clearest about what they are building.</p>
+    <div class="pr-choice">
+      <div class="pr-card pr-v6"><div class="pr-num">v6</div><h3>The next iteration</h3><p>A new name, new managers and a new constitution, running the same brief: a station that serves interests somewhere else.</p></div>
+      <div class="pr-card pr-v1"><div class="pr-num">v1</div><h3>Something fundamentally new</h3><p>Not a station but a home: a country made by the people of this land, for themselves, on terms they set.</p></div>
+    </div>
+    <ol class="pr-questions">
+      <li><b>Name the version your daily work is building: 6 or 1.</b></li>
+      <li><b>Describe this land in 2041, as you intend it to be.</b></li>
+      <li><b>Decide what this place is to you: a country, a project, or something not yet named.</b></li>
+    </ol>
+  </div>
+</section>
+<div class="pr-stripe" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
 <main class="wrap">
-  <section class="sec">
-    <div class="sec-label">01 · Chapters</div>
-    <div class="sec-body">
-      <h2>Seven movements</h2>
-      <p class="claim">Neptune's walk through the 9th house frames the whole period; the other planets write the chapters inside it.</p>
-      <p>These crossings fall on the chart of the project. They describe pressure on the project, its business model, management, workforce and assets. The land and the peoples who were here before it have a story of their own, which this chart does not hold.</p>
-      <div class="chapters" id="chapters"></div>
-    </div>
-  </section>
-
-  <section class="sec" id="next-ten">
-    <div class="sec-label">02 · Next ten years</div>
-    <div class="sec-body">
-      <h2>The next 10 years in RSA, 2027–2037</h2>
-      <p class="claim">Read for the project, the decade builds to 2032–2036, when its workforce, its business model, its structure and its core asset are all in play at once.</p>
-      <ol class="years" id="years"></ol>
-    </div>
-  </section>
-
+  <details class="sky" id="sky-details">
+    <summary><span class="eyebrow" style="margin:0">Behind the prophecy</span><span class="sky-title">The sky, month by month</span></summary>
+    <div class="now" id="now-box"></div>
   <section class="sec" id="explorer-sec">
-    <div class="sec-label">03 · Explorer</div>
+    <div class="sec-label">Explorer</div>
     <div class="sec-body">
       <h2>Move through the years</h2>
       <p class="claim">Pick a month to see the sky against the 1652 chart, and every contact the slow planets make.</p>
@@ -698,7 +1032,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
   </section>
 
   <section class="sec">
-    <div class="sec-label">04 · Calendar</div>
+    <div class="sec-label">Calendar</div>
     <div class="sec-body">
       <h2>Every crossing, 2026 to 2040</h2>
       <p class="claim">Each bar is a window within 1° of exact; click any bar or eclipse to move the explorer there.</p>
@@ -715,6 +1049,7 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
       <p class="small muted">Eclipses within 3° of a 1652 point by conjunction or opposition. For lunar eclipses the degree given is the Moon's. The calendar, the explorer and the eclipse table run to December 2040.</p>
     </div>
   </section>
+  </details>
 </main>
 </div>
 
@@ -814,14 +1149,14 @@ footer.site .base{grid-column:1/-1;border-top:1px solid var(--rule);padding-top:
         <li><a href="#/chart">Chart: the 1652 wheel in depth</a></li>
         <li><a href="#/timeline">Timeline: history against the chart</a></li>
         <li><a href="#/elections">Elections: every vote since 1994</a></li>
-        <li><a href="#/future">Future: the road to 2040</a></li>
+        <li><a href="#/future">Future: the prophecy, 2027–2037</a></li>
       </ul>
     </div>
     <div>
       <h4>Data</h4>
       <p>7 April 1652, 12:12 LMT, Table Bay (33°55′S, 18°22′E). Time divined by Dlozi Mthethwa. Positions from the Swiss Ephemeris (Astrodienst AG). Tropical zodiac, Placidus houses, True Node.</p>
     </div>
-    <div class="base">Version 2.7 · 1 November 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
+    <div class="base">Version 2.8 · 2 November 2026 · rsa.ascensys.co.za · Fonts: Fraunces and IBM Plex, SIL Open Font License</div>
   </div>
 </footer>
 
@@ -1553,6 +1888,7 @@ const FutureView = (() => {
   // ---------- Chapters ----------
   function renderChapters() {
     const host = $("chapters");
+    if (!host) return;
     CHAPTERS.forEach(ch => {
       const a = Dom.el("a", { class:"chapter", href:`#/future/${ch.peak}/${ch.id}`, "data-id":ch.id, style:"text-decoration:none;color:inherit" },
         `<div class="k">${ch.range}</div><h3>${Dom.esc(ch.title)}</h3><p>${Dom.esc(ch.claim)}</p><p class="proj"><b>For the project:</b> ${Dom.esc(ch.project)}</p><span class="go">Read and see on the wheel →</span>`);
@@ -1648,9 +1984,12 @@ const FutureView = (() => {
     });
   }
 
+  const openSky = () => { const d = $("sky-details"); if (d) d.open = true; };
+
   function jump(month) {
     const i = MONTHS.indexOf(month);
     if (i < 0) return;
+    openSky();
     setMonth(i, { syncHash:true });
     $("explorer-sec").scrollIntoView({ behavior:"smooth", block:"start" });
   }
@@ -1678,7 +2017,7 @@ const FutureView = (() => {
     showChapter(chapter || null);
     const i = month ? MONTHS.indexOf(month) : MONTHS.indexOf(todayKey());
     setMonth(i < 0 ? monthIdx : i);
-    if (chapter) $("explorer-sec").scrollIntoView({ behavior:"smooth", block:"start" });
+    if (month || chapter) { openSky(); $("explorer-sec").scrollIntoView({ behavior:"smooth", block:"start" }); }
   }
 
   return { init, show };
@@ -1922,71 +2261,6 @@ const ElectionsView = (() => {
 </script>
 
 <!-- =========================================================
-     DATA: THE NEXT TEN YEARS
-     ========================================================= -->
-<script>
-const NEXT_TEN = [
-  { year:2027, month:"2027-05", title:"Management is audited",
-    reading:"The project's management comes under a hard, formal review. Whoever runs the state is measured against the founding structure, and what cannot carry weight is cut back. Expect inquiries, a reshaped executive and pressure on how authority is used, sharpest in April, May and December.",
-    sky:["Saturn conjunct the Sun: 12 April","Saturn conjunct the Midheaven: 4 May, 24 December","Saturn square its own place: 13 May, 23 November, 25 January 2028","Neptune conjunct the Moon: 10 April","Pluto square Mars: 18 October"] },
-  { year:2028, month:"2028-06", title:"What the project hides comes into view",
-    reading:"Concealed arrangements inside the project's institutions break into the open, suddenly rather than through slow investigation. The workforce's mood drifts and is hard to read, and the enforcement arm is tested in May and again at the turn of the year.",
-    sky:["Uranus conjunct Pluto: 24 June, 24 December, 11 April 2029","Neptune conjunct the Moon: 9 February","Saturn conjunct Mars: 16 May, 6 January 2029","Partial lunar eclipse on Saturn: 12 January","Total lunar eclipse opposite Jupiter: 31 December"] },
-  { year:2029, month:"2029-06", vote:"National election expected", title:"The core asset goes to the ballot",
-    reading:"The land and its value come under review in a national election year. The land is tested in June and again in December, and the project's direction blurs. The land question shapes the campaign and the coalition talks that follow.",
-    sky:["Saturn conjunct Venus: 10 June, 17 December","Neptune conjunct the North Node: 23 August","Uranus conjunct Pluto: 11 April","Neptune square Jupiter: 14 July","Partial solar eclipse near Saturn: 11 July","Total lunar eclipse on the Ascendant: 20 December"] },
-  { year:2030, month:"2030-06", title:"The hidden becomes public record",
-    reading:"What surfaced in 2028 is now on the record. The project's institutions face a public reckoning in June, and the labour base is jolted in the second half of the year.",
-    sky:["Annular solar eclipse on Pluto: 1 June","Uranus opposite Neptune: 31 July, 29 November","Neptune conjunct the North Node: 30 March, 28 November","Uranus sextile the Sun and the Midheaven: 2 June, 20 July, 12 December"] },
-  { year:2031, month:"2031-08", vote:"Local elections expected", title:"The branches break ranks",
-    reading:"The project reaches a turning point with its workforce. Local elections fall in a year of sudden breaks, and the labour base is put under strain from above. Expect breakaways and shifts in local allegiance.",
-    sky:["Uranus opposite its own place: 21 August","Saturn opposite Neptune: 24 August, 17 November, 8 May 2032","Saturn conjunct Pluto: 27 May","Neptune square Jupiter: 24 December"] },
-  { year:2032, month:"2032-10", peak:true, title:"The workforce changes shape",
-    reading:"The project's body begins a three-year transformation. Who counts as the project's people, and on what terms, is renegotiated, and in May the core asset is back in question.",
-    sky:["Annular solar eclipse on Venus: 9 May","Total lunar eclipse opposite Mars: 25 April","Neptune conjunct the Sun: 21 July","Saturn conjunct the Ascendant: 1 August, 13 January and 17 April 2033","Uranus conjunct the Ascendant: 7 October"] },
-  { year:2033, month:"2033-03", peak:true, title:"The founding purpose is questioned",
-    reading:"The project's reason for existing is put in question. The conditions of the founding return, management loses its outline, and the project's own structure comes full circle. The business model is open to redefinition.",
-    sky:["Total solar eclipse on the North Node: 30 March","Neptune conjunct the Sun: 25 April, 30 October","Uranus conjunct the Ascendant: 28 June","Neptune conjunct the Midheaven: 23 July","Saturn return: 2 November","Total lunar eclipse on the Sun: 8 October"] },
-  { year:2034, month:"2034-06", peak:true, vote:"National election expected", title:"The walls under strain",
-    reading:"The project's structure meets its hardest test of the decade in a national election year. The structure of the state itself is on the table, not only its management, while the workforce finishes changing shape and the land question opens at its root.",
-    sky:["Total solar eclipse on Mercury: 20 March","Uranus conjunct the Ascendant: 26 March","Neptune conjunct the Midheaven: 10 May, 16 October","Pluto square Venus begins: 19 May","Neptune square Saturn: 15 June, 7 September","Saturn return: 24 June","Partial lunar eclipse on the Moon: 28 September"] },
-  { year:2035, month:"2035-03", peak:true, title:"The land question at its root",
-    reading:"Ownership and the value of the land are contested at the deepest level, all year. The strain on the project's structure continues, and this is the year the land question is least likely to be deferred.",
-    sky:["Pluto square Venus: 22 March, 24 July","Neptune square Saturn: 9 April, 15 December","Neptune conjunct the Midheaven: 12 March","Uranus opposite Jupiter: 24 July","Uranus square the North Node: 3 July"] },
-  { year:2036, month:"2036-10", peak:true, vote:"Local elections expected", title:"A settlement on the land",
-    reading:"The land question moves towards an outcome. Local elections fall inside the last of the pressure on the land, and management has the room to carry a change through. What is settled here shapes the project's next version.",
-    sky:["Neptune square Saturn, last pass: 22 January","Pluto square Venus: 30 January, 13 October, 22 November","Pluto sextile the Midheaven: 8 April, 7 July","Neptune trine Uranus: 22 June, 7 September","Uranus square the Sun: 29 August, 24 December"] },
-  { year:2037, month:"2037-07", title:"The owners' seat is shaken",
-    reading:"The project's foundation stone moves. The point where the outsider became the body of the project is struck directly, in July and again in August. The arrangement that has held since 1652 is open to change.",
-    sky:["Total solar eclipse on Saturn: 13 July","Uranus square the Midheaven: 30 July","Uranus conjunct Saturn: 16 August, 18 January and 3 June 2038","Pluto sextile Neptune: 22 August"] }
-];
-</script>
-
-<!-- =========================================================
-     MODULE: NEXT TEN YEARS VIEW
-     ========================================================= -->
-<script>
-const NextTenView = (() => {
-  function card(y) {
-    return `<li class="year${y.peak ? " peak" : ""}">
-      <div class="yr">${y.year}</div>
-      <div>
-        <h3>${Dom.esc(y.title)}</h3>
-        <p class="read">${Dom.esc(y.reading)}</p>
-        <div class="meta">
-          ${y.vote ? `<span class="tag vote">${Dom.esc(y.vote)}</span>` : ""}
-          <details><summary>The sky</summary><ul>${y.sky.map(t => `<li>${Dom.esc(t)}</li>`).join("")}</ul></details>
-          <button class="wheel-link" data-month="${y.month}">See it on the wheel →</button>
-        </div>
-      </div>
-    </li>`;
-  }
-  function init() { document.getElementById("years").innerHTML = NEXT_TEN.map(card).join(""); }
-  return { init };
-})();
-</script>
-
-<!-- =========================================================
      MODULE: ROUTER
      ========================================================= -->
 <script>
@@ -2009,7 +2283,7 @@ const Router = (() => {
     if (name === "elections") ElectionsView.show(rest[0]);
     if (name === "future") FutureView.show(rest[0], rest[1]);
     if (changed) window.scrollTo(0, 0);
-    document.title = { chart:"South Africa 1652 Chart", timeline:"South Africa 1652 Timeline", elections:"South Africa 1652 Elections", future:"South Africa 1652 Future" }[name];
+    document.title = { chart:"South Africa 1652 Chart", timeline:"South Africa 1652 Timeline", elections:"South Africa 1652 Elections", future:"RSA Prophecy 2027–2037" }[name];
     current = name;
   }
 
@@ -2024,7 +2298,6 @@ const Router = (() => {
 ChartView.init(CHART);
 TimelineView.init();
 ElectionsView.init();
-NextTenView.init();
 FutureView.init();
 Router.init();
 </script>

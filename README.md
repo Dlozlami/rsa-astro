@@ -1,6 +1,6 @@
 # South Africa, 1652
 
-The chart of the VOC's Cape of Good Hope Project v5, a.k.a. RSA: the founding of the Dutch East India Company station at Table Bay, read as the chart of a project imposed on the land and its people. The repo holds the chart data, the source charts, and an HTML study of the chart in four pages: the chart itself, a history timeline, every election since 1994, and a look ahead to 2040.
+The chart of RSA: Refreshment Station Africa, now on version 5, the Republic of South Africa: the founding of the Dutch East India Company station at Table Bay, read as the chart of a project imposed on the land and its people. The repo holds the chart data, the source charts, and an HTML study of the chart in four pages: the chart itself, a history timeline, every election since 1994, and a look ahead to 2040.
 
 ## Chart data
 
@@ -18,7 +18,7 @@ The chart of the VOC's Cape of Good Hope Project v5, a.k.a. RSA: the founding of
 | File | What it is |
 |---|---|
 | `site/index.html` | The study: one HTML file with four pages (Chart, Timeline, Elections, Future) |
-| `site/fonts/` | Self-hosted Fraunces and IBM Plex fonts (latin subset, woff2) with their SIL Open Font License texts |
+| `site/fonts/` | Self-hosted Fraunces (including its italic) and IBM Plex fonts (latin subset, woff2) with their SIL Open Font License texts |
 | `site/favicon.svg`, `site/favicon-32.png`, `site/apple-touch-icon.png` | Placeholder favicon, to be replaced by the Ascensys site-wide favicon |
 | `site/og-image.png` | 1200 × 630 preview image for links shared on WhatsApp, LinkedIn, X and similar |
 | Astro.com chart (PDF) | The Astrodienst chart for 7 April 1652, 12:12 LMT, Cape Town |
@@ -42,7 +42,7 @@ The HTML is a single file. Its pages show and hide in place, with no separate HT
 | **Chart** | `#/chart` | The 1652 wheel and placements, chart shape, angles, rulership and dispositors, planetary condition, aspects, the Moon and the 8 April 1652 eclipse, houses, and sources |
 | **Timeline** | `#/timeline` or `#/timeline/1994-04-27` | 26 events from 1657 to 2024, grouped by era. Clicking an event shows a summary, a bi-wheel (the 1652 chart inside, the sky on the day outside), the slow-planet contacts, and a reading of what the event meant for South Africa |
 | **Elections** | `#/elections` or `#/elections/2016-08-03` | A live countdown to the next election; the 2026 municipal elections read against the 1652 chart (bi-wheel, house placements, contacts) with the polling-day chart for Pretoria; the settling window from 4 to 25 November; and all 13 national and local elections since 1994, each with its result, an "In the project" line, a bi-wheel, contacts and a reading |
-| **Future** | `#/future` or `#/future/2033-04` | A live "today" panel; seven chapters covering 2026 to 2040; an explorer with a month slider and a live bi-wheel; a calendar of every slow-planet crossing, filterable by planet; and a table of the eclipses that fall on the 1652 chart |
+| **Future** | `#/future` | The Prophecy, 2027–2037: the flag masthead, the thesis, "Reading the project" (who's who), the three movements, a reading for every year with its months and expected elections, and the closing choice between version 6 and version 1. Below it, folded under "Behind the prophecy", the live "today" panel, the month explorer with its wheel, the crossing calendar and the eclipse table (`#/future/2033-04` opens it at that month) |
 
 ## Viewing
 
@@ -110,6 +110,9 @@ The **history** draws on SA History Online and Wikipedia. Election dates and res
 
 | Version | Date | Change |
 |---|---|---|
+| 2.8 | 2026-11-02 | The Future page is now The Prophecy, 2027–2037, in the flag colours and scoped so it doesn't affect the rest of the site, with light and dark modes. The seven chapters and the "Next 10 years" section are removed; the explorer, calendar, eclipse table and today panel are kept, folded under "Behind the prophecy". Added the Fraunces italic font file. |
+| 2.7 | 2026-11-01 | Added "The next 10 years in RSA, 2027–2037" to the Future page: one card per year, led by the reading of what happens to the project, with expected elections marked, the supporting sky folded under "The sky", and a link to the year on the explorer wheel. 2032 to 2036 are highlighted as the peak. |
+| 2.6 | 2026-11-01 | Renamed the project to RSA: Refreshment Station Africa, after the VOC's 1651 instruction to set up a refreshment station at the Cape. New "The name is the brief" passage in the Thesis explains the name and that version 5 is called the Republic of South Africa. Hero, meta tags, footer and version table updated. |
 | 2.5 | 2026-11-01 | Added the Elections page, with a nav and footer link: a live countdown; the 2026 municipal elections read against the 1652 chart, with the Pretoria polling-day chart; the settling window from 4 to 25 November; and all 13 elections since 1994. Fixed selected items in the Timeline and Elections lists, which showed black text on black. The nav wraps onto two lines on phones. |
 | 2.4 | 2026-10-19 | Removed the quoted passage and the authorship lines from the Thesis section, footer and sources. |
 | 2.3 | 2026-10-19 | Chart page hero now carries Charles Davidson Bell's *Jan van Riebeeck se aankoms aan die Kaap* (c. 1850, public domain), loaded from Wikimedia's 1280px thumbnail with a fallback address, under a dark overlay, with a credit line. |
